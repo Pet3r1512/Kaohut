@@ -2,6 +2,9 @@ import { cn } from "@/lib/utils";
 import Head from "next/head";
 import { ReactNode } from "react";
 import Header from "./Header/Header";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export default function Page({
   children,
@@ -41,7 +44,12 @@ export default function Page({
 
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <main className="scrollbar-hide bg-cover bg-center h-full">
+      <main
+        className={cn(
+          "scrollbar-hide bg-cover bg-center h-full bg-gradient-to-r from-violet-500 to-fuchsia-500",
+          poppins.className,
+        )}
+      >
         <Header />
         <section
           className={cn(
