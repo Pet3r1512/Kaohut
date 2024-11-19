@@ -12,8 +12,13 @@ const config = {
   theme: {
     extend: {
       colors: {
-        primary: "#11998E",
-        secondary: "#38EF7D",
+        primary: {
+          DEFAULT: "#A33757",
+          dark: "#852E4E",
+        },
+        secondary: "#DC586D",
+        cream: "#FFBB94",
+        purple: "#4C1D3D",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
