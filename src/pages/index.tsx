@@ -1,5 +1,6 @@
 import Page from "@/components/Layout/Page";
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,7 +12,11 @@ export default function Home() {
           for both teachers and students
         </p>
         <button className="bg-white flex items-center p-3 rounded-full pl-4 text-purple">
-          <p className="font-semibold">Get Started</p> <ChevronRight />
+          <p className="font-semibold">
+            <Link href="/register">Get Started</Link>
+          </p>
+          {""}
+          <ChevronRight />
         </button>
       </section>
     </Page>
