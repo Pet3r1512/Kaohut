@@ -10,7 +10,7 @@ export default function Register() {
         <p className="text-3xl font-bold">Choose your account type</p>
 
         <div className="grid grid-cols-2 gap-6 w-full max-w-4xl">
-          <a
+          <Link
             href="/"
             className="flex flex-col items-center bg-red-500 text-white rounded-lg hover:scale-110 shadow-md"
           >
@@ -18,9 +18,9 @@ export default function Register() {
               <BookOpen />
             </div>
             <p className="font-medium">Teacher</p>
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/"
             className="flex flex-col items-center bg-yellow-500 text-white rounded-lg hover:scale-110 shadow-md"
           >
@@ -28,14 +28,14 @@ export default function Register() {
               <User className="flex items-center justify-center " />
             </div>
             <p className="font-medium">Student</p>
-          </a>
+          </Link>
         </div>
 
         <p className="mt-6 text-sm text-gray-600 justify-center">
           Already have an account?
-          <a href="#" className="text-sky-400 hover:underline">
+          <Link href="/" className="text-sky-400 hover:underline">
             Log in
-          </a>
+          </Link>
         </p>
       </section>
     </div>
