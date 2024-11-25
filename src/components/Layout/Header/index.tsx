@@ -2,6 +2,7 @@ import Sidebar from "../Sidebar";
 import FullLogo from "../Logo/FullLogo";
 import NavBar from "./NavBar";
 import Settings from "./Settings";
+import Auth from "./Auth";
 
 export default function Header() {
   return (
@@ -12,8 +13,16 @@ export default function Header() {
           <FullLogo />
           <NavBar />
         </div>
-        <Settings />
+        <div className="flex items-center gap-x-3.5">
+          <Settings />
+          <VerticalLine />
+          <Auth />
+        </div>
       </header>
     </section>
   );
+}
+
+function VerticalLine() {
+  return <div className="w-0.5 h-8 dark:bg-white bg-black" />;
 }
