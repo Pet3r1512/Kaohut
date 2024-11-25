@@ -44,13 +44,13 @@ export default function Page({
 
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
+      <Header />
       <main
         className={cn(
           "scrollbar-hide bg-cover bg-center h-full bg-gradient-to-r from-violet-500 to-fuchsia-500",
           poppins.className,
         )}
       >
-        <Header />
         <section
           className={cn(
             "flex flex-col mx-auto max-w-[1440px] min-h-screen",
