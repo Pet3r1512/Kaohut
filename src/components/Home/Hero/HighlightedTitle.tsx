@@ -20,9 +20,9 @@ export default function HighlightedTitle() {
           duration: 0.5,
           ease: [0.4, 0.0, 0.2, 1],
         }}
-        className="text-4xl lg:text-7xl leading-normal text-center lg:text-left cursor-default font-extrabold text-primary"
+        className="text-3xl lg:text-7xl !leading-normal text-center lg:text-left cursor-default font-extrabold text-primary"
       >
-        Engage, Learn, and Have Fun Together with is a{" "}
+        Engage, Learn, and Have Fun Together with{" "}
         <Highlight className="text-white">Kaohut!</Highlight>
       </motion.h1>
     </HeroHighlight>
