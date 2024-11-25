@@ -14,7 +14,7 @@ export default function Hero() {
         width={0}
         height={0}
         sizes="100vw"
-        className="w-1/3 h-auto"
+        className="flex-1 h-auto"
       />
     </section>
   );
