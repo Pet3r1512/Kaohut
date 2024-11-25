@@ -47,7 +47,7 @@ export default function Page({
       <Header />
       <main
         className={cn(
-          "scrollbar-hide bg-cover bg-center h-full bg-gradient-to-r from-violet-500 to-fuchsia-500",
+          "scrollbar-hide bg-cover bg-center h-full",
           poppins.className,
         )}
       >

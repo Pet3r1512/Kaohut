@@ -2,7 +2,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/shadcn/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import { ChevronDown, Languages } from "lucide-react";
 
 export function LanguagesToggle() {
