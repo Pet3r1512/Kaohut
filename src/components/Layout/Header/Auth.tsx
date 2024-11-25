@@ -1,15 +1,17 @@
 import { cn } from "@/lib/utils";
+import { useTranslation } from "next-i18next";
 import Link from "next/link";
 
 export default function Auth() {
+  const { t } = useTranslation("common");
   const auths = [
     {
-      name: "Log In",
+      name: "signin",
       href: "/auth/signin",
       className: "",
     },
     {
-      name: "Sign Up",
+      name: "signup",
       href: "/auth/signup",
       className: "!bg-primary text-white",
     },
@@ -26,7 +28,7 @@ export default function Auth() {
               auth.className,
             )}
           >
-            {auth.name}
+            {t(`auth.${auth.name}`)}
           </Link>
         );
       })}
