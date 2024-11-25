@@ -3,5 +3,9 @@
     "About": "Giới Thiệu",
     "Features": "Tính Năng",
     "Pricing": "Chi Phí"
+  },
+  "auth": {
+    "signin": "Đăng Nhập",
+    "signup": "Đăng Kí"
   }
 }

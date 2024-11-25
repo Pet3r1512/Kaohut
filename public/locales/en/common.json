@@ -3,5 +3,9 @@
     "About": "About Us",
     "Features": "Features",
     "Pricing": "Pricing"
+  },
+  "auth": {
+    "signin": "Log In",
+    "signup": "Sign Up"
   }
 }
