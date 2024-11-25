@@ -18,7 +18,7 @@ export function LanguagesToggle() {
           return (
             <p
               key={index}
-              className="lg:hover:text-secondary transition-all duration-150 ease-linear cursor-pointer"
+              className="lg:hover:text-secondary transition-all duration-150 ease-linear cursor-pointer font-semibold"
             >
               {lang}
             </p>
