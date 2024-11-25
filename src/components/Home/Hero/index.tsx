@@ -29,6 +29,7 @@ export default function Hero() {
             <Highlight className="text-white">Kaohut!</Highlight>
           </motion.h1>
         </HeroHighlight>
+        <HighlightedTitle />
       </div>
       <Image
         src={"/images/hero.png"}
