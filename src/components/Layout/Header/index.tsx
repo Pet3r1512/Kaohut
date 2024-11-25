@@ -5,7 +5,7 @@ import FullLogo from "../Logo/FullLogo";
 
 export default function Header() {
   return (
-    <header className="p-5 max-w-7xl mx-auto">
+    <header className="p-5 max-w-[100rem] mx-auto bg-white">
       <Sidebar />
       <FullLogo />
     </header>
