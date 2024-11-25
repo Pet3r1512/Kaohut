@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
-const locales = [
+export const locales = [
   {
     locale: "vi",
     text: "Tiếng Việt",
