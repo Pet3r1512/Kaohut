@@ -1,5 +1,4 @@
 import ThemeToggle from "@/components/Theme/ThemeToggle";
-import Link from "next/link";
 import Sidebar from "../Sidebar";
 import FullLogo from "../Logo/FullLogo";
 
