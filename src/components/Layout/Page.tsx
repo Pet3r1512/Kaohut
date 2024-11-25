@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import Head from "next/head";
 import { ReactNode } from "react";
-import Header from "./Header/Header";
+import Header from "./Header";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
