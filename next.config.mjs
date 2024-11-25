@@ -5,8 +5,8 @@ const { i18n } = pkg;
 const nextConfig = {
   reactStrictMode: true,
   i18n: {
-    locales: ["vi", "en"],
-    defaultLocale: "vi",
+    defaultLocale: "en",
+    locales: ["en", "vi"],
   },
   images: {
     remotePatterns: [
