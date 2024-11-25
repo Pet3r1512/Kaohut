@@ -4,10 +4,10 @@ import Actions from "./Actions";
 
 export default function Hero() {
   return (
-    <section className="flex w-full items-center">
-      <div className="w-7/12 flex flex-col gap-y-5">
+    <section className="flex flex-col lg:flex-row w-full lg:items-center">
+      <div className="w-full lg:w-7/12 flex flex-col gap-y-5 items-center">
         <HighlightedTitle />
-        <p className="text-lg">
+        <p className="text-lg text-center lg:text-left">
           Transform the way you connect and learn through interactive quizzes,
           polls, and games—all in one dynamic platform.
         </p>
