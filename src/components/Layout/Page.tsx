@@ -47,19 +47,16 @@ export default function Page({
       <Header />
       <main
         className={cn(
-          "scrollbar-hide bg-cover bg-center h-full bg-gradient-to-r from-violet-500 to-fuchsia-500",
+          "scrollbar-hide bg-cover bg-center h-full",
           poppins.className,
         )}
       >
         <section
-          className={cn(
-            "flex flex-col mx-auto max-w-[1440px] min-h-screen",
-            pageName,
-          )}
+          className={cn("flex flex-col mx-auto max-w-[1440px]", pageName)}
         >
           <div
             className={cn(
-              "mx-auto w-full max-w-7xl px-6 min-h-screen",
+              "mx-auto w-full max-w-7xl px-5 lg:px-0 min-h-screen",
               className,
             )}
           >
