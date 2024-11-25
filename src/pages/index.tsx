@@ -1,5 +1,7 @@
 import Hero from "@/components/Home/Hero";
 import Page from "@/components/Layout/Page";
+import { GetServerSideProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export default function Home() {
   return (
@@ -8,3 +10,9 @@ export default function Home() {
     </Page>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale as string, ["common"])),
+  },
+});
