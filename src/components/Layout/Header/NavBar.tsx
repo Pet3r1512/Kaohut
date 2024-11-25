@@ -17,7 +17,7 @@ export const Navs = [
 
 export default function NavBar() {
   return (
-    <nav className="hidden lg:flex items-center gap-x-4 font-semibold text-xl mt-1 dark:text-white">
+    <nav className="hidden lg:flex items-center gap-x-4 font-semibold text-xl mt-1.5 dark:text-white">
       {Navs.map((nav, index) => {
         return (
           <Link
