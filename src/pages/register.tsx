@@ -11,7 +11,7 @@ export default function Register() {
 
         <div className="grid grid-cols-2 gap-6 w-full max-w-4xl">
           <Link
-            href="/"
+            href="/teacher"
             className="flex flex-col items-center bg-red-500 text-white rounded-lg lg:hover:scale-110 hover:bg-red-700 transition-all duration-150 ease-linear shadow-md"
           >
             <div className="flex items-center justify-center bg-red-700 rounded-full py-1 px-1">
