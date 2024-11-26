@@ -1,9 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-export default function FullLogo() {
+export default function FullLogo({ className }: { className?: string }) {
   return (
-    <div className="flex items-center gap-x-2.5 cursor-default">
+    <div
+      className={cn("flex items-center gap-x-2.5 cursor-default", className)}
+    >
       <Image
         src={"/logos/Logo.png"}
         alt="Kaohut Full Logo"
