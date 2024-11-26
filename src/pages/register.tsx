@@ -12,9 +12,9 @@ export default function Register() {
         <div className="grid grid-cols-2 gap-6 w-full max-w-4xl">
           <Link
             href="/"
-            className="flex flex-col items-center bg-red-500 text-white rounded-lg hover:scale-110 shadow-md"
+            className="flex flex-col items-center bg-red-500 text-white rounded-lg lg:hover:scale-110 hover:bg-red-700 transition-all duration-150 ease-linear shadow-md"
           >
-            <div className="flex items-center justify-center bg-red-700 rounded-full">
+            <div className="flex items-center justify-center bg-red-700 rounded-full py-1 px-1">
               <BookOpen />
             </div>
             <p className="font-medium">Teacher</p>
@@ -22,9 +22,9 @@ export default function Register() {
 
           <Link
             href="/"
-            className="flex flex-col items-center bg-yellow-500 text-white rounded-lg hover:scale-110 shadow-md"
+            className="flex flex-col items-center bg-yellow-500 text-white rounded-lg lg:hover:scale-110 hover:bg-yellow-700 transition-all duration-150 ease-linear shadow-md"
           >
-            <div className="flex items-center justify-center bg-yellow-700 rounded-full">
+            <div className="flex items-center justify-center bg-yellow-700 rounded-full py-1 px-1">
               <User className="flex items-center justify-center " />
             </div>
             <p className="font-medium">Student</p>
