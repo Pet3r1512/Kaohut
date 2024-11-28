@@ -12,9 +12,9 @@
     "lint": "next lint",
     "test": "vitest",
     "prepare": "husky",
-    "pages:build": "pnpm dlx @cloudflare/next-on-pages",
-    "preview": "pnpm run pages:build && wrangler pages dev",
-    "deploy": "pnpm run pages:build && wrangler pages deploy"
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev",
+    "deploy": "npm run pages:build && wrangler pages deploy"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
