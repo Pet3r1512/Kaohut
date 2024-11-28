@@ -37,6 +37,7 @@
     "vaul": "^1.1.1"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.0.1",
@@ -48,6 +49,7 @@
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "15.0.2",
+    "eslint-plugin-next-on-pages": "^1.13.5",
     "husky": "^9.1.6",
     "jsdom": "^25.0.1",
     "lint-staged": "^15.2.10",
