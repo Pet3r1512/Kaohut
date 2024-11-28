@@ -1,9 +1,10 @@
-# Next.js Project Structure
+# Vite - React.js Project Structure
 
 ## Overview
 
-This Next.js project follows a structured organization that emphasizes:
+This Vite + React.js project follows a structured organization that emphasizes:
 
+- **Modern Build System**: Leveraging Vite's lightning-fast HMR and build optimization
 - **Modular Architecture**: Clear separation of concerns with components organized by functionality
 - **UI Component Management**:
   - Segregated third-party components (Shadcn)
@@ -17,16 +18,18 @@ This Next.js project follows a structured organization that emphasizes:
 
     .
     ├── public/                     # Static assets served directly by the web server.
-    ├── prisma/                     # Prisma's schemas and migrations
     ├── src/                        # Contains the main source code of the application.
     │   ├── components/             # React components
-    │   │   ├── Theme/              # Components for Themes
     │   │   ├── Layouts/            # Reusable layout components
-    │   │   └── shadcn/ui/          # Shadcn's components
+    │   │   └── ui/                 # Shadcn's components
     │   ├── hooks/                  # Custom React hooks for shared functionality.
-    │   ├── pages/                  # Page-level components and routing.
+    │   ├── assets/                 # Your project's assets
     │   ├── lib/                    # Helper functions and utility code.
-    │   └── styles/                 # CSS and styling files.
+    │   ├── app.tsx                 # Root React component of the application
+    │   ├── main.tsx                # Entry point that renders the React app
+    │   ├── index.css               # Global styles and CSS reset
+    │   ├── vite-env.d.ts           # TypeScript declarations for Vite environment
+    ├── index.html                  # HTML entry point for the application
     ├── PROJECT_STRUCTURE           # Project's structure document
     ├── .gitignore                  # GIT ignore patterns for dependencies, builds, and env files
     ├── components.json             # Config for Shadcn
@@ -35,6 +38,7 @@ This Next.js project follows a structured organization that emphasizes:
     ├── postcss.config.mjs          # Config for PostCSS
     ├── next.config.mts             # Config for Nextjs
     ├── setupTests.ts               # Additional config for testing
+    ├── vite.config.ts              # Config for Vite
     ├── vitest.config.ts            # Config for Vitest
     ├── tsconfig.json               # Config for Typescript
     ├── theme.config.tsx            # Config for customized Nextra
@@ -47,24 +51,7 @@ This Next.js project follows a structured organization that emphasizes:
 React components organized by function:
 
 - `Layouts/`: Reusable layout components
-- `Theme/`: Components for interacting with theme (dark/light mode)
-- `shadcn/ui/`: Shadcn's components
-
-### pages/
-
-Next.js pages directory for routing:
-
-- `_app.tsx`: Custom App component for global configurations
-- `_document.tsx`: Custom Document component for HTML structure
-- `index.tsx`: Homepage of the application
-
-### prisma/
-
-Database layer:
-
-- Schema definitions
-- Migrations
-- Seed data
+- `ui/`: Shadcn's components
 
 ## File Naming Conventions
 

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import HighlightedTitle from "./HighlightedTitle";
 import Actions from "./Actions";
 
@@ -13,12 +12,9 @@ export default function Hero() {
         </p>
         <Actions />
       </div>
-      <Image
+      <img
         src={"/images/hero.png"}
         alt=""
-        width={0}
-        height={0}
-        sizes="100vw"
         className="w-full md:w-1/2 lg:w-5/12 h-auto"
       />
     </section>

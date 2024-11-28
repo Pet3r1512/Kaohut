@@ -1,10 +1,6 @@
-import { cn } from "@/lib/utils";
-import Head from "next/head";
 import { ReactNode } from "react";
+import { cn } from "../../lib/utils";
 import Header from "./Header";
-import { Poppins } from "next/font/google";
-
-const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
 export default function Page({
   children,
@@ -16,54 +12,23 @@ export default function Page({
   pageName?: string;
 }) {
   return (
-    <>
-      <Head>
-        <title>Kaohut | Awesome Education Quiz</title>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-        ></meta>
-        <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon/favicon-16x16.png"
-        />
-
-        <link rel="manifest" href="/site.webmanifest" />
-      </Head>
+    <main className="body bg-cover bg-center h-full">
       <Header />
-      <main
+      <section
         className={cn(
-          "scrollbar-hide bg-cover bg-center h-full",
-          poppins.className,
+          "flex flex-col mx-auto max-w-[1440px] min-h-screen",
+          pageName,
         )}
       >
-        <section
-          className={cn("flex flex-col mx-auto max-w-[1440px]", pageName)}
+        <div
+          className={cn(
+            "mx-auto w-full max-w-7xl px-6 min-h-screen",
+            className,
+          )}
         >
-          <div
-            className={cn(
-              "mx-auto w-full max-w-7xl px-5 lg:px-0 min-h-screen",
-              className,
-            )}
-          >
-            {children}
-          </div>
-        </section>
-      </main>
-    </>
+          {children}
+        </div>
+      </section>
+    </main>
   );
 }
