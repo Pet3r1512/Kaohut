@@ -6,8 +6,8 @@
 
 ### Built With
 
-- NextJS (Page Router)
-- React
+- Vite - ReactJS
+- Tanstack Router
 - TailwindCSS
 - Shadcn/ui
 - Lucide Icons
