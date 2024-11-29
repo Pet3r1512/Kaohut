@@ -12,15 +12,15 @@ export default function Page({
   pageName?: string;
 }) {
   return (
-    <main className="body bg-cover bg-center min-h-screen">
+    <main className="body bg-cover bg-center h-full min-h-screen">
       <Header />
       <section
         className={cn(
-          "flex flex-col mx-auto max-w-[1440px] min-h-[calc(100dvh-4rem)] lg:min-h-[calc(100dvh-6rem)]",
+          "flex flex-col mx-auto max-w-[1440px] h-full min-h-screen",
           pageName,
         )}
       >
-        <div className={cn("mx-auto w-full max-w-7xl px-6 flex-1", className)}>
+        <div className={cn("mx-auto w-full max-w-7xl px-6 h-full", className)}>
           {children}
         </div>
       </section>
