@@ -1,3 +1,4 @@
+import FullLogo from "../Logos/FullLogo";
 import Authentication from "./Authentication";
 import Navbar from "./Navbar";
 import Settings from "./Settings";
@@ -5,12 +6,12 @@ import Sidebar from "./Sidebar";
 
 export default function Header() {
   return (
-    <section className="sticky top-0 z-30 !backdrop-filter !backdrop-blur-xl flex justify-center lg:h-24">
+    <section className="sticky top-0 z-30 !backdrop-filter !backdrop-blur-2xl flex justify-center lg:h-24">
       <header className="p-5 max-w-[100rem] mx-auto flex items-center justify-between fixed w-full">
         <Sidebar />
-        {/* <FullLogo className="lg:hidden" /> */}
-        <div className="lg:flex items-center gap-x-7 hidden">
-          {/* <FullLogo /> */}
+        <FullLogo className="lg:hidden" />
+        <div className="lg:flex !items-center gap-x-7 hidden">
+          <FullLogo />
           <Navbar />
         </div>
         <div className="lg:flex items-center gap-x-3.5 hidden">

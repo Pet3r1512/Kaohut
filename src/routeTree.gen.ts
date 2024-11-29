@@ -16,25 +16,25 @@ import { Route as rootRoute } from "./routes/__root";
 
 // Create Virtual Routes
 
-const HomeLazyImport = createFileRoute("/home")();
+const IndexLazyImport = createFileRoute("/")();
 
 // Create/Update Routes
 
-const HomeLazyRoute = HomeLazyImport.update({
-  id: "/home",
-  path: "/home",
+const IndexLazyRoute = IndexLazyImport.update({
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import("./routes/home.lazy").then((d) => d.Route));
+} as any).lazy(() => import("./routes/index.lazy").then((d) => d.Route));
 
 // Populate the FileRoutesByPath interface
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    "/home": {
-      id: "/home";
-      path: "/home";
-      fullPath: "/home";
-      preLoaderRoute: typeof HomeLazyImport;
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexLazyImport;
       parentRoute: typeof rootRoute;
     };
   }
@@ -43,33 +43,33 @@ declare module "@tanstack/react-router" {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  "/home": typeof HomeLazyRoute;
+  "/": typeof IndexLazyRoute;
 }
 
 export interface FileRoutesByTo {
-  "/home": typeof HomeLazyRoute;
+  "/": typeof IndexLazyRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
-  "/home": typeof HomeLazyRoute;
+  "/": typeof IndexLazyRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/home";
+  fullPaths: "/";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/home";
-  id: "__root__" | "/home";
+  to: "/";
+  id: "__root__" | "/";
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  HomeLazyRoute: typeof HomeLazyRoute;
+  IndexLazyRoute: typeof IndexLazyRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  HomeLazyRoute: HomeLazyRoute,
+  IndexLazyRoute: IndexLazyRoute,
 };
 
 export const routeTree = rootRoute
@@ -82,11 +82,11 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/home"
+        "/"
       ]
     },
-    "/home": {
-      "filePath": "home.lazy.tsx"
+    "/": {
+      "filePath": "index.lazy.tsx"
     }
   }
 }
