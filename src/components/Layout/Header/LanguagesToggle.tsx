@@ -21,17 +21,15 @@ export function LanguagesToggle() {
         <ChevronDown size={12} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-max flex flex-col gap-y-5 border-none p-5">
-        {Langs.map((lang, index) => {
-          return (
-            <p
-              onClick={() => changeLanguage(lang === "English" ? "en" : "vi")}
-              key={index}
-              className="lg:hover:text-secondary transition-all duration-150 ease-linear cursor-pointer font-semibold"
-            >
-              {lang}
-            </p>
-          );
-        })}
+        {Langs.map((lang, index) => (
+          <p
+            key={index}
+            className="lg:hover:text-secondary transition-all duration-150 ease-linear cursor-pointer font-semibold"
+            onClick={() => i18n.changeLanguage(lang.code)} // Change language on click
+          >
+            {lang.name}
+          </p>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
