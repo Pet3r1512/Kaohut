@@ -1,6 +1,6 @@
 export const Navs = [
   {
-    name: "About Us",
+    name: "About",
     href: "/about",
   },
   {
