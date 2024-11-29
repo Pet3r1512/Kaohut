@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
@@ -6,5 +7,9 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./setupTests.ts"],
   },
-  resolve: {},
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src"), // Use resolve to set the correct path
+    },
+  },
 });
