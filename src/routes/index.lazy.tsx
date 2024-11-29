@@ -2,7 +2,7 @@ import Hero from "@/components/Home/Hero";
 import Page from "@/components/Layout/Page";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
-export const Route = createLazyFileRoute("/home")({
+export const Route = createLazyFileRoute("/")({
   component: Index,
 });
 
