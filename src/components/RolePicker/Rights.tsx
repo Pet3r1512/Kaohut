@@ -13,7 +13,7 @@ export default function Rights({
       rights: ["Create Quizzes", "Host a Game"],
     },
     {
-      role: "teacher",
+      role: "student",
       rights: ["Join game"],
     },
   ];
