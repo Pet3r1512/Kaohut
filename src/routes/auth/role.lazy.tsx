@@ -1,4 +1,4 @@
-import Page from "@/components/Layout/Page";
+import RolePickerContainer from "@/components/RolePicker";
 import { createLazyFileRoute } from "@tanstack/react-router";
 
 export const Route = createLazyFileRoute("/auth/role")({
@@ -6,5 +6,5 @@ export const Route = createLazyFileRoute("/auth/role")({
 });
 
 function Role() {
-  return <Page>This is Role Picker Page</Page>;
+  return <RolePickerContainer />;
 }
