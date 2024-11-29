@@ -1,11 +1,14 @@
-import Hero from "./components/Home/Hero";
-import Page from "./components/Layout/Page";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Home from "./routes/_root";
 
 function App() {
   return (
-    <Page className="flex items-center justify-center min-h-screen">
-      <Hero />
-    </Page>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
