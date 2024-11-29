@@ -1,5 +1,7 @@
 import Authentication from "./Authentication";
 import Navbar from "./Navbar";
+import Settings from "./Settings";
+import Sidebar from "./Sidebar";
 
 export default function Header() {
   return (
@@ -12,8 +14,8 @@ export default function Header() {
           <Navbar />
         </div>
         <div className="lg:flex items-center gap-x-3.5 hidden">
-          {/* <Settings />
-          <VerticalLine /> */}
+          <Settings />
+          <VerticalLine />
           <Authentication />
         </div>
       </header>
