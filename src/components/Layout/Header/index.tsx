@@ -1,3 +1,4 @@
+import Authentication from "./Authentication";
 import Navbar from "./Navbar";
 
 export default function Header() {
