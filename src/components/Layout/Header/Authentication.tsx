@@ -11,7 +11,7 @@ export default function Authentication() {
     {
       id: 2,
       name: "Sign Up",
-      href: "/auth/signup",
+      href: "/auth/role",
       className: "!bg-primary text-white",
     },
   ];

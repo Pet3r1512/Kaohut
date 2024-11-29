@@ -2,7 +2,8 @@ import { cn } from "@/lib/utils";
 
 export default function FullLogo({ className }: { className?: string }) {
   return (
-    <div
+    <a
+      href="/"
       className={cn("flex items-center gap-x-2.5 cursor-default", className)}
     >
       <img
@@ -13,6 +14,6 @@ export default function FullLogo({ className }: { className?: string }) {
       <p className="bg-gradient-to-r from-primary to-secondary inline-block text-transparent bg-clip-text font-bold lg:text-3xl">
         Kaohut!
       </p>
-    </div>
+    </a>
   );
 }
