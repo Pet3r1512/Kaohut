@@ -10,7 +10,11 @@ export default function Rights({
   const info = [
     {
       role: "teacher",
-      rights: ["Create Quizzes", "Host a Game"],
+      rights: [
+        "Create, Publish and Save Quizzes",
+        "Host a Game",
+        "Access to other Quizzes",
+      ],
     },
     {
       role: "student",
