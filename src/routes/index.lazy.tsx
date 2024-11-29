@@ -8,7 +8,7 @@ export const Route = createLazyFileRoute("/")({
 
 function Index() {
   return (
-    <Page>
+    <Page className="flex flex-col items-center justify-center">
       <Hero />
     </Page>
   );
