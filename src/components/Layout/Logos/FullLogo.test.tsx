@@ -12,4 +12,9 @@ describe("Logo Test", () => {
     const LogoImage = Logo.getByAltText("Kaohut Full Logo");
     expect(LogoImage).toBeInTheDocument();
   });
+  it("should match snapshot", () => {
+    const Logo = render(<FullLogo />);
+
+    expect(Logo).toMatchSnapshot();
+  });
 });
