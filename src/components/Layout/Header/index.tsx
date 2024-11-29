@@ -10,11 +10,11 @@ export default function Header() {
           {/* <FullLogo /> */}
           <Navbar />
         </div>
-        {/* <div className="lg:flex items-center gap-x-3.5 hidden">
-          <Settings />
-          <VerticalLine />
-          <Auth />
-        </div> */}
+        <div className="lg:flex items-center gap-x-3.5 hidden">
+          {/* <Settings />
+          <VerticalLine /> */}
+          <Authentication />
+        </div>
       </header>
     </section>
   );
