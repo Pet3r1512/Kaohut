@@ -11,6 +11,7 @@
 - TailwindCSS
 - Shadcn/ui
 - Lucide Icons
+- Testing with: Vitest and Storybook
 
 ### Team
 
