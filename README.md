@@ -16,4 +16,4 @@
 ### Team
 
 - [Thanh Phong](https://github.com/Pet3r1512) - Fullstack Developer
-- [Linh Dan](https://github.com/nguyenholinhdan) - Frontend Developer | Content | Designer
+- [Linh Dan](https://github.com/nguyenholinhdan) - Frontend Developer | Content | Designer | Tester
