@@ -11,7 +11,7 @@ export function LanguagesToggle() {
 
   // Define language options with their respective codes
   const Langs = [
-    { name: "Tieng Viet", code: "vi" },
+    { name: "Tiếng Việt", code: "vi" },
     { name: "English", code: "en" },
   ];
   return (
