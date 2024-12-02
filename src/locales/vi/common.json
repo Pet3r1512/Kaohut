@@ -7,5 +7,13 @@
   "auth": {
     "signin": "Đăng Nhập",
     "signup": "Đăng Kí"
+  },
+  "hero": {
+    "title": "Tham gia, học hỏi và vui chơi cùng",
+    "subtitle": "Thay đổi cách bạn kết nối và học hỏi thông qua các câu đố, cuộc thăm dò ý kiến ​​và trò chơi tương tác — tất cả đều có trong một nền tảng",
+    "button": {
+      "start": "Bắt Đầu Ngay",
+      "explore": "Khám Phá"
+    }
   }
 }
