@@ -7,5 +7,13 @@
   "auth": {
     "signin": "Log In",
     "signup": "Sign Up"
+  },
+  "hero": {
+    "title": "Engage, Learn, and Have Fun Together with",
+    "subtitle": "Transform the way you connect and learn through interactive quizzes, polls, and games — all in one dynamic platform.",
+    "button": {
+      "start": "Start Now",
+      "explore": "Explore Features"
+    }
   }
 }
