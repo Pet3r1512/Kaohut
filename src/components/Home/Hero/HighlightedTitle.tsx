@@ -3,8 +3,11 @@ import {
   Highlight,
 } from "@/components/aceternity/HeroHighlight";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function HighlightedTitle() {
+  const { t } = useTranslation();
+
   return (
     <HeroHighlight className="w-full">
       <motion.h1
@@ -22,8 +25,7 @@ export default function HighlightedTitle() {
         }}
         className="text-3xl md:text-5xl lg:text-7xl !leading-normal text-center lg:text-left cursor-default font-extrabold text-primary"
       >
-        Engage, Learn, and Have Fun Together with{" "}
-        <Highlight className="text-white">Kaohut!</Highlight>
+        {t("hero.title")} <Highlight className="text-white">Kaohut!</Highlight>
       </motion.h1>
     </HeroHighlight>
   );
