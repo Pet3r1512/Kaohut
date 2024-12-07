@@ -17,7 +17,7 @@ export default function RoleCard({ props }: { props: RoleCardProps }) {
     <Card
       data-testid="card"
       key={id}
-      className="cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col"
+      className="cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col max-w-56"
     >
       <CardHeader
         data-testid="card-header"
