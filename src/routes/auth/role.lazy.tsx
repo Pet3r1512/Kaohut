@@ -41,11 +41,11 @@ function Role() {
                 className="cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group"
               >
                 <CardHeader
-                  className={`flex justify-center items-center ${color} p-4 rounded-t-lg lg:size-40`}
+                  className={`flex justify-center items-center ${color} lg:group-hover:p-0 p-4 rounded-t-lg lg:size-40 transition-all duration-150 ease-linear`}
                 >
                   <div
                     className={cn(
-                      "rounded-full lg:group-hover:p-10 transition-all duration-150 ease-linear lg:p-6 text-white",
+                      "rounded-full lg:group-hover:rounded-none lg:group-hover:rounded-t-lg lg:group-hover:size-full lg:group-hover:p-10 transition-all duration-150 ease-linear lg:p-6 text-white flex items-center justify-center",
                       bgColor,
                     )}
                   >
