@@ -38,10 +38,10 @@ function Role() {
             ({ id, title, color, bgColor, titleHoverBg, icon }) => (
               <Card
                 key={id}
-                className="cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group"
+                className="cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row lg:flex-col"
               >
                 <CardHeader
-                  className={`flex justify-center items-center ${color} lg:group-hover:p-0 p-4 rounded-t-lg lg:size-40 transition-all duration-150 ease-linear`}
+                  className={`w-full flex justify-center items-center ${color} lg:group-hover:p-0 p-4 rounded-t-lg lg:h-48 transition-all duration-150 ease-linear`}
                 >
                   <div
                     className={cn(
