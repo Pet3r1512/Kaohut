@@ -28,7 +28,7 @@ export const Route = createLazyFileRoute("/auth/role")({
 
 function Role() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
+    <div className="flex min-h-[100dvh] items-center justify-center bg-gray-100">
       <div className="space-y-6">
         <h1 className="text-center text-xl md:text-2xl lg:text-3xl font-bold">
           Choose your account type
@@ -41,11 +41,11 @@ function Role() {
                 className="cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row lg:flex-col"
               >
                 <CardHeader
-                  className={`w-full flex justify-center items-center ${color} lg:group-hover:p-0 p-4 rounded-t-lg lg:h-48 transition-all duration-150 ease-linear`}
+                  className={`w-1/3 lg:w-full flex justify-center items-center ${color} lg:group-hover:p-0 p-4 lg:rounded-t-lg lg:h-48 transition-all duration-150 ease-linear`}
                 >
                   <div
                     className={cn(
-                      "rounded-full lg:group-hover:rounded-none lg:group-hover:rounded-t-lg lg:group-hover:size-full lg:group-hover:p-10 transition-all duration-150 ease-linear lg:p-6 text-white flex items-center justify-center",
+                      "rounded-full lg:group-hover:rounded-none lg:group-hover:rounded-t-lg lg:group-hover:size-full lg:group-hover:p-10 transition-all duration-150 ease-linear p-2 md:p-3.5 lg:p-6 text-white flex items-center justify-center",
                       bgColor,
                     )}
                   >
@@ -53,7 +53,7 @@ function Role() {
                   </div>
                 </CardHeader>
                 <CardContent
-                  className={`text-center p-4 ${titleHoverBg} rounded-b-lg lg:group-hover:text-white transition-all duration-150 ease-linear`}
+                  className={`text-center p-4 ${titleHoverBg} rounded-b-lg lg:group-hover:text-white transition-all duration-150 ease-linear flex items-center justify-center`}
                 >
                   <CardTitle>{title}</CardTitle>
                 </CardContent>
