@@ -30,7 +30,7 @@ function Role() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="space-y-6">
-        <h1 className="text-center text-lg md:text-xl lg:text-2xl font-bold">
+        <h1 className="text-center text-xl md:text-2xl lg:text-3xl font-bold">
           Choose your account type
         </h1>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
