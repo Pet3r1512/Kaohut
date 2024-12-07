@@ -15,10 +15,12 @@ export default function RoleCard({ props }: { props: RoleCardProps }) {
   const { id, title, bgColor, color, icon, titleHoverBg } = props;
   return (
     <Card
+      data-testid="card"
       key={id}
       className="cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col"
     >
       <CardHeader
+        data-testid="card-header"
         className={`w-1/3 md:w-full flex justify-center items-center ${color} lg:group-hover:p-0 p-4 lg:rounded-t-lg md:h-36 lg:h-48 transition-all duration-150 ease-linear`}
       >
         <div
