@@ -6,7 +6,7 @@ exports[`should match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col"
+        class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col max-w-56"
         data-testid="card"
       >
         <div
@@ -54,7 +54,7 @@ exports[`should match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col"
+      class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col max-w-56"
       data-testid="card"
     >
       <div
