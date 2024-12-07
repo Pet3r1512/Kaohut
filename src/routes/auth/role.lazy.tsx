@@ -1,3 +1,4 @@
+import FullLogo from "@/components/Layout/Logos/FullLogo";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { createLazyFileRoute } from "@tanstack/react-router";
@@ -28,7 +29,8 @@ export const Route = createLazyFileRoute("/auth/role")({
 
 function Role() {
   return (
-    <div className="flex min-h-[100dvh] items-center justify-center bg-gray-100">
+    <div className="relative flex min-h-[100dvh] items-center justify-center bg-gray-100">
+      <FullLogo className="absolute md:top-10 top-6 md:left-10 left-6" />
       <div className="space-y-6">
         <h1 className="text-center text-xl md:text-2xl lg:text-3xl font-bold">
           Choose your account type
