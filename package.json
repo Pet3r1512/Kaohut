@@ -14,7 +14,7 @@
     "build-storybook": "storybook build"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --write --ignore-unknown --allow-empty"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.2",
