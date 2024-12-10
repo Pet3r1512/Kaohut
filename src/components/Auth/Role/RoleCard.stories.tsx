@@ -24,6 +24,7 @@ export const Default: Story = {
       bgColor: "bg-[#AB0018]",
       titleHoverBg: "lg:group-hover:bg-[#AB0018]",
       icon: <GraduationCap className="lg:size-10" />,
+      href: "/auth/teacher",
     },
   },
 };
@@ -37,6 +38,7 @@ export const HoverAndChangeBackgroundColor: Story = {
       bgColor: "bg-[#AB0018]",
       titleHoverBg: "lg:group-hover:bg-[#AB0018]",
       icon: <GraduationCap className="lg:size-10" />,
+      href: "/auth/teacher",
     },
   },
   play: async ({ canvasElement }) => {
@@ -58,6 +60,7 @@ export const HoverAndScaleUp: Story = {
       bgColor: "bg-[#C97900]",
       titleHoverBg: "lg:group-hover:bg-[#C97900]",
       icon: <User className="lg:size-10" />,
+      href: "",
     },
   },
   play: async ({ canvasElement }) => {

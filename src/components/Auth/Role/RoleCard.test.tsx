@@ -9,6 +9,7 @@ const mockData = {
   bgColor: "bg-[#AB0018]",
   titleHoverBg: "lg:group-hover:bg-[#AB0018]",
   icon: <GraduationCap className="lg:size-10" />,
+  href: "/auth/teacher",
 };
 
 it("rendered correctly in DOM", async () => {
