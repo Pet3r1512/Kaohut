@@ -11,6 +11,7 @@ const accountTypes: RoleCardProps[] = [
     bgColor: "bg-[#AB0018]",
     titleHoverBg: "lg:group-hover:bg-[#AB0018]",
     icon: <GraduationCap className="lg:size-10" />,
+    href: "/auth/teacher",
   },
   {
     id: "student",
@@ -19,6 +20,7 @@ const accountTypes: RoleCardProps[] = [
     bgColor: "bg-[#C97900]",
     titleHoverBg: "lg:group-hover:bg-[#C97900]",
     icon: <User className="lg:size-10" />,
+    href: "",
   },
 ];
 
@@ -36,9 +38,9 @@ function Role() {
         </h1>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {accountTypes.map(
-            ({ id, title, color, bgColor, titleHoverBg, icon }) => (
+            ({ id, title, color, bgColor, titleHoverBg, icon, href }) => (
               <RoleCard
-                props={{ id, title, color, bgColor, titleHoverBg, icon }}
+                props={{ id, title, color, bgColor, titleHoverBg, icon, href }}
               />
             ),
           )}
