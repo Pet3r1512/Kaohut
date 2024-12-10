@@ -1,7 +1,7 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
 import RoleCard, { RoleCardProps } from "@/components/Auth/Role/RoleCard";
 import FullLogo from "@/components/Layout/Logos/FullLogo";
-import { BookOpen, BriefcaseBusiness } from "lucide-react";
+import { BookOpen, BriefcaseBusiness, School } from "lucide-react";
 
 const accountTypes: RoleCardProps[] = [
   {
@@ -19,7 +19,7 @@ const accountTypes: RoleCardProps[] = [
     color: "bg-[#669bbc]",
     bgColor: "bg-[#003049]",
     titleHoverBg: "lg:group-hover:bg-[#003049]",
-    icon: <BookOpen className="lg:size-10" />,
+    icon: <School className="lg:size-10" />,
     href: "/auth/teacher",
   },
   {
