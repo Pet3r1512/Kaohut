@@ -7,6 +7,12 @@ settings:
 importers:
   .:
     dependencies:
+      "@babel/generator":
+        specifier: ^7.26.3
+        version: 7.26.3
+      "@jridgewell/gen-mapping":
+        specifier: ^0.3.7
+        version: 0.3.7
       "@radix-ui/react-dialog":
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -228,10 +234,10 @@ packages:
       }
     engines: { node: ">=6.9.0" }
 
-  "@babel/generator@7.26.2":
+  "@babel/generator@7.26.3":
     resolution:
       {
-        integrity: sha512-zevQbhbau95nkoxSq3f/DC/SC+EEOUZd3DYqfSkMhY2/wfSeaHV1Ew4vk8e+x8lja31IbyuUa2uQ3JONqKbysw==,
+        integrity: sha512-6FF/urZvD0sTeO7k6/B15pMLC4CHUv1426lzr3N01aHJTl046uCAh9LXW/fzeXXjPNCJ6iABW5XaWOsIZB93aQ==,
       }
     engines: { node: ">=6.9.0" }
 
@@ -301,6 +307,14 @@ packages:
     engines: { node: ">=6.0.0" }
     hasBin: true
 
+  "@babel/parser@7.26.3":
+    resolution:
+      {
+        integrity: sha512-WJ/CvmY8Mea8iDXo6a7RK2wbmJITT5fN3BEkRuFlxVyNx8jOKIIhmC4fSkTcPcf8JyavbBwIe6OpiCOBXt/IcA==,
+      }
+    engines: { node: ">=6.0.0" }
+    hasBin: true
+
   "@babel/plugin-syntax-jsx@7.25.9":
     resolution:
       {
@@ -362,6 +376,13 @@ packages:
     resolution:
       {
         integrity: sha512-Z/yiTPj+lDVnF7lWeKCIJzaIkI0vYO87dMpZ4bg4TDrFe4XXLFWL1TbXU27gBP3QccxV9mZICCrnjnYlJjXHOA==,
+      }
+    engines: { node: ">=6.9.0" }
+
+  "@babel/types@7.26.3":
+    resolution:
+      {
+        integrity: sha512-vN5p+1kl59GVKMvTHt55NzzmYVxprfJD+ql7U9NFIfKCBkYE55LYtS+WtPlaYOyzydrKI8Nezd+aZextrd+FMA==,
       }
     engines: { node: ">=6.9.0" }
 
@@ -950,12 +971,11 @@ packages:
       typescript:
         optional: true
 
-  "@jridgewell/gen-mapping@0.3.5":
+  "@jridgewell/gen-mapping@0.3.7":
     resolution:
       {
-        integrity: sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==,
+        integrity: sha512-rNoqXKSm/P1EJw/lrzyaQepC6KfryLFSShA+jl1mbPYqutXlvZWwm0x03W6jMHaYJqIOmc7QarD+GVfG9hO7XQ==,
       }
-    engines: { node: ">=6.0.0" }
 
   "@jridgewell/resolve-uri@3.1.2":
     resolution:
@@ -964,12 +984,11 @@ packages:
       }
     engines: { node: ">=6.0.0" }
 
-  "@jridgewell/set-array@1.2.1":
+  "@jridgewell/sourcemap-codec@1.4.16-beta.0":
     resolution:
       {
-        integrity: sha512-R8gLRTZeyp03ymzP/6Lil/28tGeGEzhx1q2k703KGWRAI1VdvPIXdG70VJc2pAMw3NA6JKL5hhFu1sJX0Mnn/A==,
+        integrity: sha512-qiZJiTfyb00BApxRU7Apz/3jtlp4gKgOmCXlGQRlIQ5zg6U0uYIb8lZBfbiJ+TxAEJ+rczfY07+CExd8sTRo5w==,
       }
-    engines: { node: ">=6.0.0" }
 
   "@jridgewell/sourcemap-codec@1.5.0":
     resolution:
@@ -5578,7 +5597,7 @@ snapshots:
 
   "@ampproject/remapping@2.3.0":
     dependencies:
-      "@jridgewell/gen-mapping": 0.3.5
+      "@jridgewell/gen-mapping": 0.3.7
       "@jridgewell/trace-mapping": 0.3.25
 
   "@babel/code-frame@7.26.2":
@@ -5593,7 +5612,7 @@ snapshots:
     dependencies:
       "@ampproject/remapping": 2.3.0
       "@babel/code-frame": 7.26.2
-      "@babel/generator": 7.26.2
+      "@babel/generator": 7.26.3
       "@babel/helper-compilation-targets": 7.25.9
       "@babel/helper-module-transforms": 7.26.0(@babel/core@7.26.0)
       "@babel/helpers": 7.26.0
@@ -5609,11 +5628,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  "@babel/generator@7.26.2":
+  "@babel/generator@7.26.3":
     dependencies:
-      "@babel/parser": 7.26.2
-      "@babel/types": 7.26.0
-      "@jridgewell/gen-mapping": 0.3.5
+      "@babel/parser": 7.26.3
+      "@babel/types": 7.26.3
+      "@jridgewell/gen-mapping": 0.3.7
       "@jridgewell/trace-mapping": 0.3.25
       jsesc: 3.0.2
 
@@ -5658,6 +5677,10 @@ snapshots:
     dependencies:
       "@babel/types": 7.26.0
 
+  "@babel/parser@7.26.3":
+    dependencies:
+      "@babel/types": 7.26.3
+
   "@babel/plugin-syntax-jsx@7.25.9(@babel/core@7.26.0)":
     dependencies:
       "@babel/core": 7.26.0
@@ -5691,7 +5714,7 @@ snapshots:
   "@babel/traverse@7.25.9":
     dependencies:
       "@babel/code-frame": 7.26.2
-      "@babel/generator": 7.26.2
+      "@babel/generator": 7.26.3
       "@babel/parser": 7.26.2
       "@babel/template": 7.25.9
       "@babel/types": 7.26.0
@@ -5701,6 +5724,11 @@ snapshots:
       - supports-color
 
   "@babel/types@7.26.0":
+    dependencies:
+      "@babel/helper-string-parser": 7.25.9
+      "@babel/helper-validator-identifier": 7.25.9
+
+  "@babel/types@7.26.3":
     dependencies:
       "@babel/helper-string-parser": 7.25.9
       "@babel/helper-validator-identifier": 7.25.9
@@ -5959,15 +5987,14 @@ snapshots:
     optionalDependencies:
       typescript: 5.6.3
 
-  "@jridgewell/gen-mapping@0.3.5":
+  "@jridgewell/gen-mapping@0.3.7":
     dependencies:
-      "@jridgewell/set-array": 1.2.1
-      "@jridgewell/sourcemap-codec": 1.5.0
+      "@jridgewell/sourcemap-codec": 1.4.16-beta.0
       "@jridgewell/trace-mapping": 0.3.25
 
   "@jridgewell/resolve-uri@3.1.2": {}
 
-  "@jridgewell/set-array@1.2.1": {}
+  "@jridgewell/sourcemap-codec@1.4.16-beta.0": {}
 
   "@jridgewell/sourcemap-codec@1.5.0": {}
 
@@ -6648,7 +6675,7 @@ snapshots:
   "@tanstack/router-plugin@1.84.4(vite@5.4.11(@types/node@20.17.8))":
     dependencies:
       "@babel/core": 7.26.0
-      "@babel/generator": 7.26.2
+      "@babel/generator": 7.26.3
       "@babel/parser": 7.26.2
       "@babel/plugin-syntax-jsx": 7.25.9(@babel/core@7.26.0)
       "@babel/plugin-syntax-typescript": 7.25.9(@babel/core@7.26.0)
@@ -8522,7 +8549,7 @@ snapshots:
 
   sucrase@3.35.0:
     dependencies:
-      "@jridgewell/gen-mapping": 0.3.5
+      "@jridgewell/gen-mapping": 0.3.7
       commander: 4.1.1
       glob: 10.4.5
       lines-and-columns: 1.2.4
