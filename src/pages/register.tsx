@@ -21,7 +21,7 @@ export default function Register() {
           </Link>
 
           <Link
-            href="/"
+            href="/student"
             className="flex flex-col items-center bg-yellow-500 text-white rounded-lg lg:hover:scale-110 hover:bg-yellow-700 transition-all duration-150 ease-linear shadow-md"
           >
             <div className="flex items-center justify-center bg-yellow-700 rounded-full py-1 px-1">
