@@ -24,11 +24,11 @@ export function SignupForm() {
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
-            <Label htmlFor="firstname">First name</Label>
+            <Label htmlFor="firstname">First Name</Label>
             <Input id="firstname" placeholder="John" type="text" />
           </LabelInputContainer>
           <LabelInputContainer>
-            <Label htmlFor="lastname">Last name</Label>
+            <Label htmlFor="lastname">Last Name</Label>
             <Input id="lastname" placeholder="Dean" type="text" />
           </LabelInputContainer>
         </div>
