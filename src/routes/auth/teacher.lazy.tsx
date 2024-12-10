@@ -11,7 +11,7 @@ const accountTypes: RoleCardProps[] = [
     bgColor: "bg-[#003049]",
     titleHoverBg: "lg:group-hover:bg-[#003049]",
     icon: <BookOpen className="lg:size-10" />,
-    href: "/auth/teacher",
+    href: "/auth/signup",
   },
   {
     id: "university",
@@ -20,7 +20,7 @@ const accountTypes: RoleCardProps[] = [
     bgColor: "bg-[#003049]",
     titleHoverBg: "lg:group-hover:bg-[#003049]",
     icon: <School className="lg:size-10" />,
-    href: "/auth/teacher",
+    href: "/auth/signup",
   },
   {
     id: "business",
@@ -29,7 +29,7 @@ const accountTypes: RoleCardProps[] = [
     bgColor: "bg-[#003049]",
     titleHoverBg: "lg:group-hover:bg-[#003049]",
     icon: <BriefcaseBusiness className="lg:size-10" />,
-    href: "/auth/teacher",
+    href: "/auth/signup",
   },
 ];
 
