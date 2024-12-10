@@ -5,8 +5,8 @@ import { GraduationCap, User } from "lucide-react";
 
 const accountTypes: RoleCardProps[] = [
   {
-    id: "highschool",
-    title: "High School",
+    id: "schools",
+    title: "Schools",
     color: "bg-[#669bbc]",
     bgColor: "bg-[#003049]",
     titleHoverBg: "lg:group-hover:bg-[#003049]",
