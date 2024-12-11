@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import useRoleStore from "@/stores/roles/role";
 import { ReactNode } from "@tanstack/react-router";
 
 export type RoleCardProps = {
@@ -13,9 +14,24 @@ export type RoleCardProps = {
 };
 
 export default function RoleCard({ props }: { props: RoleCardProps }) {
+  const { setRole, setWorkplace } = useRoleStore();
   const { id, title, bgColor, color, icon, titleHoverBg, href } = props;
+
   return (
-    <a href={href}>
+    <a
+      onClick={() => {
+        if (id === "student" || id === "teacher") {
+          setRole(id);
+        } else if (
+          id === "schools" ||
+          id === "university" ||
+          id === "business"
+        ) {
+          setWorkplace(id);
+        }
+      }}
+      href={href}
+    >
       <Card
         data-testid="card"
         key={id}
