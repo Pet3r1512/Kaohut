@@ -19,7 +19,7 @@ export function SignupForm() {
     register,
     handleSubmit,
     // watch,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<SignupFormInputs>();
 
   const onSubmit: SubmitHandler<SignupFormInputs> = (data) => console.log(data);
@@ -72,8 +72,23 @@ export function SignupForm() {
             id="password"
             placeholder="••••••••"
             type="password"
-            {...register("password")}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
+              },
+            })}
           />
+          {errors.password && (
+            <span className="text-red-400">{errors.password.message}</span>
+          )}
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="confirmpassword">Confirm Password</Label>
@@ -81,8 +96,23 @@ export function SignupForm() {
             id="confirmpassword"
             placeholder="••••••••"
             type="password"
-            {...register("confirmpassword")}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
+              },
+            })}
           />
+          {errors.password && (
+            <span className="text-red-400">{errors.password.message}</span>
+          )}
         </LabelInputContainer>
 
         <button
