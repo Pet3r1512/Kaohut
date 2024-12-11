@@ -4,34 +4,20 @@ import { cn } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
 
-export function SignupForm() {
+export function SigninForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
   };
   return (
     <div
-      data-testid="signup-form"
-      className="px-5 pt-8 max-w-md w-full mx-auto rounded-lg md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black"
+      data-testid="signin-form"
+      className="px-5 pt-8 max-w-md w-[100vw] mx-auto rounded-lg md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black"
     >
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center">
-        Welcome to <span className="text-primary">KaoHut</span>
+        Welcome back to <span className="text-primary">KaoHut</span>
       </h2>
-      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center">
-        Create new account to discover Kaohut's World of knowledge
-      </p>
-
       <form className="my-8" onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-          <LabelInputContainer>
-            <Label htmlFor="firstname">First Name</Label>
-            <Input id="firstname" placeholder="John" type="text" />
-          </LabelInputContainer>
-          <LabelInputContainer>
-            <Label htmlFor="lastname">Last Name</Label>
-            <Input id="lastname" placeholder="Dean" type="text" />
-          </LabelInputContainer>
-        </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
           <Input
@@ -44,27 +30,21 @@ export function SignupForm() {
           <Label htmlFor="password">Password</Label>
           <Input id="password" placeholder="••••••••" type="password" />
         </LabelInputContainer>
-        <LabelInputContainer className="mb-8">
-          <Label htmlFor="confirmpassword">Confirm Password</Label>
-          <Input
-            id="confirmpassword"
-            placeholder="••••••••"
-            type="confirmpassword"
-          />
-        </LabelInputContainer>
 
         <button
           className="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
         >
-          Sign up &rarr;
+          Sign In &rarr;
           <BottomGradient />
         </button>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
         <div className="flex flex-col space-y-4">
-          <p className="text-center cursor-default text-sm">Or, Sign up with</p>
+          <p className="font-semibold text-center cursor-default">
+            Or, Sign in with
+          </p>
           <button
             className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
@@ -86,12 +66,12 @@ export function SignupForm() {
             <BottomGradient />
           </button>
           <p className="text-center font-semibold">
-            Already have an account?{" "}
+            Don't have an account?{" "}
             <a
-              href="/auth/accounts/signin"
+              href="/auth/role"
               className="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
             >
-              Sign In
+              Sign Up
             </a>
           </p>
         </div>
