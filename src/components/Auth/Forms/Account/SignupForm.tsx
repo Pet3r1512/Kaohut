@@ -3,12 +3,27 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type SignupFormInputs = {
+  firstname: string;
+  lastname: string;
+  email: string;
+  // role: string
+  password: string;
+  confirmpassword: string;
+};
 
 export function SignupForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted");
-  };
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    formState: { errors },
+  } = useForm<SignupFormInputs>();
+
+  const onSubmit: SubmitHandler<SignupFormInputs> = (data) => console.log(data);
+
   return (
     <div
       data-testid="signup-form"
@@ -21,15 +36,25 @@ export function SignupForm() {
         Create new account to discover Kaohut's World of knowledge
       </p>
 
-      <form className="my-8" onSubmit={handleSubmit}>
+      <form className="my-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor="firstname">First Name</Label>
-            <Input id="firstname" placeholder="John" type="text" />
+            <Input
+              id="firstname"
+              placeholder="John"
+              type="text"
+              {...register("firstname")}
+            />
           </LabelInputContainer>
           <LabelInputContainer>
             <Label htmlFor="lastname">Last Name</Label>
-            <Input id="lastname" placeholder="Dean" type="text" />
+            <Input
+              id="lastname"
+              placeholder="Dean"
+              type="text"
+              {...register("lastname")}
+            />
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
@@ -38,19 +63,56 @@ export function SignupForm() {
             id="email"
             placeholder="youremailaddress@gmail.com"
             type="email"
+            {...register("email")}
           />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
+          <Input
+            id="password"
+            placeholder="••••••••"
+            type="password"
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
+              },
+            })}
+          />
+          {errors.password && (
+            <span className="text-red-400">{errors.password.message}</span>
+          )}
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
           <Label htmlFor="confirmpassword">Confirm Password</Label>
           <Input
             id="confirmpassword"
             placeholder="••••••••"
-            type="confirmpassword"
+            type="password"
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+              pattern: {
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                message:
+                  "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
+              },
+            })}
           />
+          {errors.password && (
+            <span className="text-red-400">{errors.password.message}</span>
+          )}
         </LabelInputContainer>
 
         <button
