@@ -85,6 +85,15 @@ export function SignupForm() {
             </span>
             <BottomGradient />
           </button>
+          <p className="text-center font-semibold">
+            Already have an account?{" "}
+            <a
+              href="/auth/accounts/signin"
+              className="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
+            >
+              Sign In
+            </a>
+          </p>
         </div>
       </form>
     </div>
