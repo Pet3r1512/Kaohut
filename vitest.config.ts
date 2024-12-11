@@ -6,6 +6,10 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./setupTests.ts"],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text'],
+    }
   },
   resolve: {
     alias: {
