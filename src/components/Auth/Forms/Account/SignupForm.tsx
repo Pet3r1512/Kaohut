@@ -14,11 +14,11 @@ export function SignupForm() {
       data-testid="signup-form"
       className="px-5 pt-8 max-w-md w-full mx-auto rounded-lg md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black"
     >
-      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+      <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center">
         Welcome to <span className="text-primary">KaoHut</span>
       </h2>
-      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-        Login to KaoHut if you can because we don&apos;t have a login flow yet
+      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center">
+        Create new account to discover Kaohut's World of knowledge
       </p>
 
       <form className="my-8" onSubmit={handleSubmit}>
