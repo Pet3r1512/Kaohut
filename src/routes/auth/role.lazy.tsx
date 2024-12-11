@@ -40,6 +40,7 @@ function Role() {
           {accountTypes.map(
             ({ id, title, color, bgColor, titleHoverBg, icon, href }) => (
               <RoleCard
+                key={id}
                 props={{ id, title, color, bgColor, titleHoverBg, icon, href }}
               />
             ),
@@ -49,3 +50,5 @@ function Role() {
     </div>
   );
 }
+
+export default Role;
