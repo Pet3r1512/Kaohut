@@ -65,6 +65,15 @@ export function SigninForm() {
             </span>
             <BottomGradient />
           </button>
+          <p className="text-center font-semibold">
+            Don't have an account?{" "}
+            <a
+              href="/auth/role"
+              className="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
+            >
+              Sign Up
+            </a>
+          </p>
         </div>
       </form>
     </div>
