@@ -10,7 +10,7 @@ exports[`should match snapshot 1`] = `
         data-testid="signup-form"
       >
         <h2
-          class="font-bold text-xl text-neutral-800 dark:text-neutral-200"
+          class="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center"
         >
           Welcome to 
           <span
@@ -20,9 +20,9 @@ exports[`should match snapshot 1`] = `
           </span>
         </h2>
         <p
-          class="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300"
+          class="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center"
         >
-          Login to KaoHut if you can because we don't have a login flow yet
+          Create new account to discover Kaohut's World of knowledge
         </p>
         <form
           class="my-8"
@@ -150,7 +150,7 @@ exports[`should match snapshot 1`] = `
             class="flex flex-col space-y-4"
           >
             <p
-              class="font-semibold text-center cursor-default"
+              class="text-center cursor-default text-sm"
             >
               Or, Sign up with
             </p>
@@ -187,6 +187,18 @@ exports[`should match snapshot 1`] = `
                 class="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-primary to-transparent"
               />
             </button>
+            <p
+              class="text-center font-semibold"
+            >
+              Already have an account?
+               
+              <a
+                class="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
+                href="/auth/accounts/signin"
+              >
+                Sign In
+              </a>
+            </p>
           </div>
         </form>
       </div>
@@ -198,7 +210,7 @@ exports[`should match snapshot 1`] = `
       data-testid="signup-form"
     >
       <h2
-        class="font-bold text-xl text-neutral-800 dark:text-neutral-200"
+        class="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center"
       >
         Welcome to 
         <span
@@ -208,9 +220,9 @@ exports[`should match snapshot 1`] = `
         </span>
       </h2>
       <p
-        class="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300"
+        class="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center"
       >
-        Login to KaoHut if you can because we don't have a login flow yet
+        Create new account to discover Kaohut's World of knowledge
       </p>
       <form
         class="my-8"
@@ -338,7 +350,7 @@ exports[`should match snapshot 1`] = `
           class="flex flex-col space-y-4"
         >
           <p
-            class="font-semibold text-center cursor-default"
+            class="text-center cursor-default text-sm"
           >
             Or, Sign up with
           </p>
@@ -375,6 +387,18 @@ exports[`should match snapshot 1`] = `
               class="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-primary to-transparent"
             />
           </button>
+          <p
+            class="text-center font-semibold"
+          >
+            Already have an account?
+             
+            <a
+              class="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
+              href="/auth/accounts/signin"
+            >
+              Sign In
+            </a>
+          </p>
         </div>
       </form>
     </div>
