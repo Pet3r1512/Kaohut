@@ -7,18 +7,18 @@ const accountTypes: RoleCardProps[] = [
   {
     id: "schools",
     title: "Schools",
-    color: "bg-[#669bbc]",
-    bgColor: "bg-[#003049]",
-    titleHoverBg: "lg:group-hover:bg-[#003049]",
+    color: "bg-[#f8ad9d]",
+    bgColor: "bg-[#f08080]",
+    titleHoverBg: "lg:group-hover:bg-[#f08080]",
     icon: <BookOpen className="lg:size-10" />,
     href: "/auth/accounts/signup",
   },
   {
     id: "university",
     title: "University",
-    color: "bg-[#669bbc]",
-    bgColor: "bg-[#003049]",
-    titleHoverBg: "lg:group-hover:bg-[#003049]",
+    color: "bg-[#f8ad9d]",
+    bgColor: "bg-[#f08080]",
+    titleHoverBg: "lg:group-hover:bg-[#f08080]",
     icon: <School className="lg:size-10" />,
     href: "/auth/accounts/signup",
   },
@@ -34,7 +34,7 @@ function RouteComponent() {
       <FullLogo className="absolute md:top-10 top-6 md:left-10 left-6" />
       <div className="flex flex-col gap-y-5">
         <h1 className="text-center text-xl md:text-2xl lg:text-3xl font-bold">
-          Choose your workplace
+          Choose your studyplace
         </h1>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 w-full">
           {accountTypes.map(
