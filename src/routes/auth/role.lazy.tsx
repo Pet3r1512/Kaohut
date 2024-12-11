@@ -20,7 +20,7 @@ const accountTypes: RoleCardProps[] = [
     bgColor: "bg-[#C97900]",
     titleHoverBg: "lg:group-hover:bg-[#C97900]",
     icon: <User className="lg:size-10" />,
-    href: "",
+    href: "/auth/student",
   },
 ];
 
