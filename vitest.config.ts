@@ -9,7 +9,7 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text"],
-      exclude: ["storybook-static/*", ...coverageConfigDefaults.exclude],
+      exclude: ["storybook-static/*", "*.config.*", ...coverageConfigDefaults.exclude],
     },
   },
   resolve: {
