@@ -3,7 +3,10 @@ on:
   workflow_run:
     workflows: [Test]
     types: [completed]
-    branches: [master]
+    pull_request:
+      branches: [master]
+    push:
+      branches: [master]
 
 jobs:
   deploy:
