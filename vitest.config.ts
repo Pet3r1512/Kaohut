@@ -1,5 +1,5 @@
 import { resolve } from "path";
-import { defineConfig } from "vitest/config";
+import { coverageConfigDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
@@ -7,13 +7,14 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./setupTests.ts"],
     coverage: {
-      provider: 'v8',
-      reporter: ['text'],
-    }
+      provider: "v8",
+      reporter: ["text"],
+      exclude: ["storybook-static/*", "*.config.*", ...coverageConfigDefaults.exclude],
+    },
   },
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src"), // Use resolve to set the correct path
+      "@": resolve(__dirname, "src"),
     },
   },
 });

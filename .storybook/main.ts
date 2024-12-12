@@ -6,7 +6,7 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-essentials",
     "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
+    "@storybook/experimental-addon-test"
   ],
   framework: {
     name: "@storybook/react-vite",
@@ -14,6 +14,6 @@ const config: StorybookConfig = {
   },
   core: {
     builder: "@storybook/builder-vite",
-  },
+  }
 };
 export default config;
