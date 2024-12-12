@@ -29,6 +29,8 @@ jobs:
         run: pnpm install
       - name: Run ESLint
         run: pnpm lint
+      - name: Install browser
+        run: pnpm exec playwright install
       - name: Run Test
         run: pnpm test
       - name: Run Build
