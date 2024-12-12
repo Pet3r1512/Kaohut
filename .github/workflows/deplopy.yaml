@@ -1,10 +1,9 @@
-name: Deploy Worker
+name: Deploy
 on:
   workflow_run:
-    workflows: ["Test"]
+    workflows: [Test]
     types: [completed]
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   deploy:
