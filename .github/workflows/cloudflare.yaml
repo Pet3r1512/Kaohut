@@ -1,0 +1,27 @@
+name: Deploy Worker
+on:
+  workflow_run:
+    workflows:
+      - ci.yaml
+    types:
+      - completed
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  if: ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') || github.event_name == 'push' || github.event.pull_request.merged == true }}
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build & Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
