@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ThemeToggle from "./ThemeToggle";
-import { within } from "@testing-library/react";
+import { cleanup, within } from "@testing-library/react";
 import { userEvent } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
@@ -15,10 +15,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    expect(canvasElement).toBeInTheDocument();
+  },
+};
 
 export const Click: Story = {
   play: async ({ canvasElement }) => {
+    cleanup();
     const canvas = within(canvasElement);
 
     const body = canvasElement.ownerDocument.body;
@@ -36,5 +41,6 @@ export const Click: Story = {
       expect(backgroundColorAfter).toBe("rgb(30, 30, 30)");
       expect(icon).toBe("☀️");
     }
+    cleanup();
   },
 };
