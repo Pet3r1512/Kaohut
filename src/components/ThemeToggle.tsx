@@ -1,7 +1,7 @@
 import { useTheme } from "../hooks/useTheme";
 import { cn } from "../lib/utils";
 
-const ThemeToggle = ({ className }: { className?: string }) => {
+export default function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -16,6 +16,4 @@ const ThemeToggle = ({ className }: { className?: string }) => {
       {theme === "light" ? "🌙" : "☀️"}
     </button>
   );
-};
-
-export default ThemeToggle;
+}
