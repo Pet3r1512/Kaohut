@@ -33,3 +33,5 @@ jobs:
         run: pnpm exec playwright install
       - name: Run Test
         run: pnpm test
+  call-workflow:
+    uses: deploy.yaml
