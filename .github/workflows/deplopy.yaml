@@ -1,10 +1,10 @@
 name: Deploy Worker
 on:
   workflow_run:
-    workflows:
-      - test.yaml
-    types:
-      - completed
+    workflows: ["Test"]
+    types: [completed]
+    branches:
+      - master
 
 jobs:
   deploy:
