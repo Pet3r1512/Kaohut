@@ -1,7 +1,8 @@
 name: Deploy Worker
 on:
   workflow_run:
-    workflows: ["Test"]
+    workflows:
+      - test.yaml
     types:
       - completed
 
