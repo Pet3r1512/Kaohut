@@ -4,12 +4,6 @@ on:
     workflows: ["Test"]
     types:
       - completed
-  # pull_request:
-  #   branches:
-  #     - master
-  # push:
-  #   branches:
-  #     - master
 
 jobs:
   deploy:
@@ -24,20 +18,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions/checkout@v4
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
+
+      - name: Use Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node_version }}
           cache: "pnpm"
+
+      - name: Verify pnpm Installation
+        run: pnpm --version
+
       - name: Install dependencies
         run: pnpm install
+
       - name: Build
         run: pnpm build
+
       - name: Publish
         uses: cloudflare/pages-action@v1
         with:
