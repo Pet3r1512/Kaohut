@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { cn, UppercaseFirstLetter } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
@@ -19,11 +19,17 @@ export function SignupForm() {
   const {
     register,
     handleSubmit,
-    // watch,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
   const onSubmit: SubmitHandler<SignupFormInputs> = (data) => console.log(data);
+
+  useEffect(() => {
+    setValue("role", localStorage.getItem("role")!);
+    setValue("workplace", localStorage.getItem("workplace")!);
+  }, [watch]);
 
   return (
     <div
