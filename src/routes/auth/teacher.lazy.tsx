@@ -47,6 +47,7 @@ function RouteComponent() {
         {accountTypes.map(
           ({ id, title, color, bgColor, titleHoverBg, icon, href }) => (
             <RoleCard
+              key={id}
               props={{ id, title, color, bgColor, titleHoverBg, icon, href }}
             />
           ),
