@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { cn } from "@/lib/utils";
+import React, { useEffect } from "react";
+import { cn, UppercaseFirstLetter } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -9,7 +9,8 @@ type SignupFormInputs = {
   firstname: string;
   lastname: string;
   email: string;
-  // role: string
+  role: string;
+  workplace: string;
   password: string;
   confirmpassword: string;
 };
@@ -18,11 +19,17 @@ export function SignupForm() {
   const {
     register,
     handleSubmit,
-    // watch,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
   const onSubmit: SubmitHandler<SignupFormInputs> = (data) => console.log(data);
+
+  useEffect(() => {
+    setValue("role", localStorage.getItem("role")!);
+    setValue("workplace", localStorage.getItem("workplace")!);
+  }, [watch]);
 
   return (
     <div
@@ -66,6 +73,28 @@ export function SignupForm() {
             {...register("email")}
           />
         </LabelInputContainer>
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="role">Role</Label>
+            <Input
+              disabled
+              id="role"
+              value={UppercaseFirstLetter(localStorage.getItem("role")!)}
+              type="text"
+              {...register("role")}
+            />
+          </LabelInputContainer>
+          <LabelInputContainer className="mb-4">
+            <Label htmlFor="role">Workplace</Label>
+            <Input
+              disabled
+              id="workplace"
+              value={UppercaseFirstLetter(localStorage.getItem("workplace")!)}
+              type="text"
+              {...register("workplace")}
+            />
+          </LabelInputContainer>
+        </div>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
           <Input
@@ -96,7 +125,7 @@ export function SignupForm() {
             id="confirmpassword"
             placeholder="••••••••"
             type="password"
-            {...register("password", {
+            {...register("confirmpassword", {
               required: "Password is required",
               minLength: {
                 value: 8,
@@ -111,7 +140,9 @@ export function SignupForm() {
             })}
           />
           {errors.password && (
-            <span className="text-red-400">{errors.password.message}</span>
+            <span className="text-red-400">
+              {"Your password is not validated"}
+            </span>
           )}
         </LabelInputContainer>
 
