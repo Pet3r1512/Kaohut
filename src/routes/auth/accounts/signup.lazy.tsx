@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { SignupForm } from "@/components/Auth/Forms/Account/SignupForm";
 import AuthLayout from "@/components/Auth/Layout/AuthLayout";
-import useRoleStore from "@/stores/roles/role";
-import { createLazyFileRoute } from "@tanstack/react-router";
+// import { useRoleStore } from "@/stores/roles/role";
+import { createLazyFileRoute, useRouter } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 export const Route = createLazyFileRoute("/auth/accounts/signup")({
@@ -9,10 +10,30 @@ export const Route = createLazyFileRoute("/auth/accounts/signup")({
 });
 
 function RouteComponent() {
-  // Remove this later
+  // const { getRole, getWorkplace } = useRoleStore();
+  const role = localStorage.getItem("role");
+  const workplace = localStorage.getItem("workplace");
+  const router = useRouter();
+
   useEffect(() => {
-    console.log(useRoleStore.getState());
-  }, []);
+    console.log(role, workplace);
+    if (role === null && workplace === null) {
+      router.navigate({ to: "/auth/role", from: "/auth/accounts/signup" });
+    } else if (role === "teacher" && workplace === null) {
+      router.navigate({ to: "/auth/teacher" });
+    } else if (role === "student" && workplace === null) {
+      router.navigate({ to: "/auth/student" });
+    }
+  }, [role, workplace, router]);
+  // useEffect(() => {
+  //   if (getRole() === "" && getWorkplace() === "") {
+  //     router.navigate({ to: "/auth/role", from: "/auth/accounts/signup" });
+  //   } else if (getRole() === "teacher" && getWorkplace() === "") {
+  //     router.navigate({ to: "/auth/teacher" });
+  //   } else if (getRole() === "student" && getWorkplace() === "") {
+  //     router.navigate({ to: "/auth/student" });
+  //   }
+  // }, [getRole, getWorkplace, router]);
 
   return (
     <AuthLayout>

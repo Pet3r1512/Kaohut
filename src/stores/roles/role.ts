@@ -1,35 +1,44 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
-type State = {
+export type RoleState = {
     role: string;
     workplace: string;
 };
 
-type Actions = {
+export type RoleActions = {
     setRole: (role: string) => void;
     setWorkplace: (workplace: string) => void;
+    getRole: () => string;
+    getWorkplace: () => string;
 };
 
-const useRoleStore = create<State & Actions>()(
-    persist(
-        (set) => ({
-            role: "",
-            workplace: "",
-            setRole: (role) =>
-                set(() => ({
-                    role,
-                    workplace: "", // Reset workplace when role changes
-                })),
-            setWorkplace: (workplace) =>
-                set((state) => ({
-                    workplace: state.role === "teacher" || workplace === "" ? workplace : state.workplace,
-                })),
-        }),
-        {
-            name: "role-store", // Storage key name
-        }
-    )
-);
+export type RoleStore = RoleState & RoleActions;
 
-export default useRoleStore;
+export const defaultRoleState: RoleState = {
+    role: "",
+    workplace: "",
+};
+
+export const useRoleStore = create<RoleStore>((set: any, get: any) => ({
+    ...defaultRoleState,
+    setRole: (role: string) => {
+        set((state: RoleState) => ({
+            ...state,
+            role,
+            workplace: "", // Reset workplace when role changes
+        }));
+    },
+    setWorkplace: (workplace: string) => {
+        set((state: RoleState) => ({
+            ...state,
+            workplace: state.role === "teacher" || workplace === "" ? workplace : state.workplace,
+        }));
+    },
+    getRole: () => {
+        return get().role;
+    },
+    getWorkplace: () => {
+        return get().workplace;
+    },
+}));
