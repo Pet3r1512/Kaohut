@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useRoleStore } from "@/stores/roles/role";
 import { ReactNode } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
 
 export type RoleCardProps = {
   id: string;
@@ -19,19 +18,21 @@ export default function RoleCard({ props }: { props: RoleCardProps }) {
   const { id, title, bgColor, color, icon, titleHoverBg, href } = props;
 
   return (
-    <Link
+    <a
       onClick={() => {
         if (id === "student" || id === "teacher") {
           setRole(id);
+          localStorage.setItem("role", id);
         } else if (
           id === "schools" ||
           id === "university" ||
           id === "business"
         ) {
           setWorkplace(id);
+          localStorage.setItem("workplace", id);
         }
       }}
-      to={href}
+      href={href}
     >
       <Card
         data-testid="card"
@@ -57,6 +58,6 @@ export default function RoleCard({ props }: { props: RoleCardProps }) {
           <CardTitle>{title}</CardTitle>
         </CardContent>
       </Card>
-    </Link>
+    </a>
   );
 }
