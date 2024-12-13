@@ -95,6 +95,54 @@ exports[`should match snapshot 1`] = `
             </div>
           </div>
           <div
+            class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2"
+          >
+            <div
+              class="flex flex-col space-y-2 w-full mb-4"
+            >
+              <label
+                class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="role"
+              >
+                Role
+              </label>
+              <div
+                class="p-[2px] rounded-lg transition duration-300 group/input"
+              >
+                <input
+                  class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
+                  disabled=""
+                  id="role"
+                  name="role"
+                  type="text"
+                  value="Null"
+                />
+              </div>
+            </div>
+            <div
+              class="flex flex-col space-y-2 w-full mb-4"
+            >
+              <label
+                class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                for="role"
+              >
+                Workplace
+              </label>
+              <div
+                class="p-[2px] rounded-lg transition duration-300 group/input"
+              >
+                <input
+                  class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
+                  disabled=""
+                  id="workplace"
+                  name="workplace"
+                  type="text"
+                  value="Null"
+                />
+              </div>
+            </div>
+          </div>
+          <div
             class="flex flex-col space-y-2 w-full mb-4"
           >
             <label
@@ -130,7 +178,7 @@ exports[`should match snapshot 1`] = `
               <input
                 class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
                 id="confirmpassword"
-                name="password"
+                name="confirmpassword"
                 placeholder="••••••••"
                 type="password"
               />
@@ -300,6 +348,54 @@ exports[`should match snapshot 1`] = `
           </div>
         </div>
         <div
+          class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2"
+        >
+          <div
+            class="flex flex-col space-y-2 w-full mb-4"
+          >
+            <label
+              class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="role"
+            >
+              Role
+            </label>
+            <div
+              class="p-[2px] rounded-lg transition duration-300 group/input"
+            >
+              <input
+                class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
+                disabled=""
+                id="role"
+                name="role"
+                type="text"
+                value="Null"
+              />
+            </div>
+          </div>
+          <div
+            class="flex flex-col space-y-2 w-full mb-4"
+          >
+            <label
+              class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="role"
+            >
+              Workplace
+            </label>
+            <div
+              class="p-[2px] rounded-lg transition duration-300 group/input"
+            >
+              <input
+                class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
+                disabled=""
+                id="workplace"
+                name="workplace"
+                type="text"
+                value="Null"
+              />
+            </div>
+          </div>
+        </div>
+        <div
           class="flex flex-col space-y-2 w-full mb-4"
         >
           <label
@@ -335,7 +431,7 @@ exports[`should match snapshot 1`] = `
             <input
               class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
               id="confirmpassword"
-              name="password"
+              name="confirmpassword"
               placeholder="••••••••"
               type="password"
             />
