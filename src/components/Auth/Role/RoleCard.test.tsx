@@ -30,16 +30,18 @@ const mockData = {
   href: "/auth/teacher",
 };
 
-it("rendered correctly in DOM", async () => {
-  render(<RoleCard props={mockData} />);
+describe("Role Card Component Tests", () => {
+  it("rendered correctly in DOM", async () => {
+    render(<RoleCard props={mockData} />);
 
-  const RoleCardComponent = screen.getByTestId("card");
+    const RoleCardComponent = screen.getByTestId("card");
 
-  expect(RoleCardComponent).toBeInTheDocument();
-});
+    expect(RoleCardComponent).toBeInTheDocument();
+  });
 
-it("should match snapshot", async () => {
-  const component = render(<RoleCard props={mockData} />);
+  it("should match snapshot", async () => {
+    const component = render(<RoleCard props={mockData} />);
 
-  expect(component).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
+  });
 });
