@@ -1,12 +1,18 @@
 import { cn } from "@/lib/utils";
 
-export default function Authentication() {
+export default function Authentication({
+  className,
+  btnClassName,
+}: {
+  className?: string;
+  btnClassName?: string;
+}) {
   const auths = [
     {
       id: 1,
       name: "Log In",
       href: "/auth/signin",
-      className: "",
+      className: "bg-white",
     },
     {
       id: 2,
@@ -16,7 +22,7 @@ export default function Authentication() {
     },
   ];
   return (
-    <div className="flex items-center gap-x-5">
+    <div className={cn("flex items-center gap-x-5", className)}>
       {auths.map((auth) => {
         return (
           <a
@@ -25,6 +31,7 @@ export default function Authentication() {
             className={cn(
               "px-4 pb-3 pt-2.5 rounded-xl shadow-2xl font-semibold bg-white dark:bg-black dark:text-white lg:hover:scale-105 transition-all duration-150 ease-linear",
               auth.className,
+              btnClassName,
             )}
           >
             {auth.name}
