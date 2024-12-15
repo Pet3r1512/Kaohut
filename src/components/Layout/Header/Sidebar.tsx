@@ -9,6 +9,10 @@ export default function Sidebar() {
         <Menu />
       </DrawerTrigger>
       <DrawerContent className="h-[100dvh] w-2/3 !rounded-l-none rounded-r-xl px-5 py-12 flex flex-col gap-y-5">
+        <Authentication
+          className="flex-col gap-y-2.5"
+          btnClassName="w-full text-center"
+        />
       </DrawerContent>
     </Drawer>
   );
