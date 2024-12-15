@@ -1,6 +1,24 @@
 import { render, screen } from "@testing-library/react";
+import { vi, it, expect, describe } from "vitest";
 import RoleCard from "./RoleCard";
 import { GraduationCap } from "lucide-react";
+
+vi.mock("@tanstack/react-router", () => ({
+  Link: ({
+    to,
+    children,
+    className,
+    ...props
+  }: {
+    to: string;
+    children: React.ReactNode;
+    className?: string;
+  }) => (
+    <a href={to} className={className} {...props}>
+      {children}
+    </a>
+  ),
+}));
 
 const mockData = {
   id: "teacher",

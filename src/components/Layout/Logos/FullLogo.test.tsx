@@ -1,20 +1,37 @@
-import { render } from "@testing-library/react";
-import { it, describe, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { it, describe, expect, vi } from "vitest";
 import FullLogo from "./FullLogo";
 
-describe("Logo Test", () => {
-  it("should render Logo correctly", () => {
-    const Logo = render(<FullLogo />);
+vi.mock("@tanstack/react-router", () => ({
+  Link: ({
+    to,
+    children,
+    className,
+    ...props
+  }: {
+    to: string;
+    children: React.ReactNode;
+    className?: string;
+  }) => (
+    <a href={to} className={className} {...props}>
+      {children}
+    </a>
+  ),
+}));
 
-    const LogoText = Logo.getByText("Kaohut!");
-    expect(LogoText).toBeInTheDocument();
+describe("FullLogo Component Tests", () => {
+  it("should render the Logo correctly", () => {
+    render(<FullLogo />);
 
-    const LogoImage = Logo.getByAltText("Kaohut Full Logo");
-    expect(LogoImage).toBeInTheDocument();
+    const logoText = screen.getByText("Kaohut!");
+    expect(logoText).toBeInTheDocument();
+
+    const logoImage = screen.getByAltText("Kaohut Full Logo");
+    expect(logoImage).toBeInTheDocument();
   });
-  it("should match snapshot", () => {
-    const Logo = render(<FullLogo />);
 
-    expect(Logo).toMatchSnapshot();
+  it("should match snapshot", () => {
+    const { asFragment } = render(<FullLogo />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
