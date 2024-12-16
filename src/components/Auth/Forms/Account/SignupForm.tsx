@@ -48,10 +48,10 @@ export function SignupForm() {
         }),
       });
       if (!response.ok) {
-        console.log("error");
+        console.log(response);
       }
     } catch (error) {
-      console.log("error");
+      console.log(error);
     } finally {
       setLoading(false);
     }
