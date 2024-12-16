@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { cn, UppercaseFirstLetter } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { LoaderCircle } from "lucide-react";
 
 type SignupFormInputs = {
   firstname: string;
@@ -17,6 +18,7 @@ type SignupFormInputs = {
 };
 
 export function SignupForm() {
+  const [loading, setLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -26,6 +28,7 @@ export function SignupForm() {
   } = useForm<SignupFormInputs>();
 
   const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
+    setLoading(true);
     try {
       const response = await fetch("http://localhost:9999/trpc/auth.signUp/", {
         method: "POST",
@@ -33,7 +36,7 @@ export function SignupForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: data.firstname + data.lastname,
+          name: data.firstname + " " + data.lastname,
           email: data.email,
           password: data.password,
           role: "teacher",
@@ -42,9 +45,10 @@ export function SignupForm() {
       if (!response.ok) {
         console.log("error");
       }
-      console.log("done");
     } catch (error) {
       console.log("error");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -172,8 +176,14 @@ export function SignupForm() {
           className="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
         >
-          Sign up &rarr;
-          <BottomGradient />
+          {loading ? (
+            <LoaderCircle className="animate-spin mx-auto" />
+          ) : (
+            <>
+              Sign up &rarr;
+              <BottomGradient />
+            </>
+          )}
         </button>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
