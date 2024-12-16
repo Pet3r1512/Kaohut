@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useEffect } from "react";
 import { cn, UppercaseFirstLetter } from "@/lib/utils";
@@ -24,7 +25,28 @@ export function SignupForm() {
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
-  const onSubmit: SubmitHandler<SignupFormInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
+    try {
+      const response = await fetch("http://localhost:9999/trpc/auth.signUp/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.firstname + data.lastname,
+          email: data.email,
+          password: data.password,
+          role: "teacher",
+        }),
+      });
+      if (!response.ok) {
+        console.log("error");
+      }
+      console.log("done");
+    } catch (error) {
+      console.log("error");
+    }
+  };
 
   useEffect(() => {
     setValue("role", localStorage.getItem("role")!);
