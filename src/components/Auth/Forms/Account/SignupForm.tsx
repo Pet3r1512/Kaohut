@@ -27,18 +27,23 @@ export function SignupForm() {
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
+  const SERVER_URL =
+    import.meta.env.MODE === "development"
+      ? "http://localhost:9999"
+      : "https://cool-cloe-pet3r-69f73131.koyeb.app";
+
   const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:9999/trpc/auth.signUp/", {
+      const response = await fetch(`${SERVER_URL}/trpc/auth.signUp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: data.firstname + " " + data.lastname,
           email: data.email,
           password: data.password,
+          name: data.firstname + " " + data.lastname,
           role: "teacher",
         }),
       });
