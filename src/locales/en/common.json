@@ -15,6 +15,27 @@
       "school": "School",
       "university": "University",
       "business": "Bussiness"
+    },
+    "signup-page": {
+      "title": "Create an account",
+      "subtitle": "Welcome to Kaohut",
+      "heading": "Create new account to discover Kaohut's World of knowledge",
+      "name": {
+        "firstname": "First Name",
+        "lastname": "Last Name"
+      },
+      "email": "Email Address",
+      "role": "Role",
+      "workplace": "Workplace",
+      "password": {
+        "password": "Password",
+        "confirm": "Confirm Password"
+      },
+      "option": "Or, Sign up with",
+      "button": {
+        "signup": "Google"
+      },
+      "end": "Already have an account? Sign In"
     }
   },
   "hero": {
