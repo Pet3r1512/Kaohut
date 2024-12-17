@@ -6,7 +6,11 @@
   },
   "auth": {
     "signin": "Log In",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "role": {
+      "teacher": "Teacher",
+      "student": "Student"
+    }
   },
   "hero": {
     "title": "Engage, Learn, and Have Fun Together with",
