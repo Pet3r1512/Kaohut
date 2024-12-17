@@ -10,6 +10,11 @@
     "role": {
       "teacher": "Teacher",
       "student": "Student"
+    },
+    "workplace": {
+      "school": "School",
+      "university": "University",
+      "business": "Bussiness"
     }
   },
   "hero": {
