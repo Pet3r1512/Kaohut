@@ -57,6 +57,11 @@ export function SignupForm() {
             err.error.code === -32603 ? "User already exists" : error,
         });
       }
+      toast({
+        variant: "success",
+        title: "Sign Up Done",
+        description: "Congratulation for a new user",
+      });
     } catch (error) {
       console.log(error);
     } finally {
