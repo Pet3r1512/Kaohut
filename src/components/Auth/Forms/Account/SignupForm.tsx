@@ -6,6 +6,7 @@ import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
+import { toast } from "@/hooks/useToast";
 
 type SignupFormInputs = {
   firstname: string;
@@ -19,11 +20,13 @@ type SignupFormInputs = {
 
 export function SignupForm() {
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
@@ -48,19 +51,35 @@ export function SignupForm() {
         }),
       });
       if (!response.ok) {
-        console.log(response);
+        const err = await response.json();
+        setError(err.message || "Unknown error");
+        return toast({
+          variant: "destructive",
+          title: "Sign Up Failed",
+          description:
+            err.error.code === -32603 ? "User already exists" : error,
+        });
       }
+      toast({
+        variant: "success",
+        title: "Sign Up Done",
+        description: "Congratulation for a new user",
+      });
+      reset();
     } catch (error) {
-      console.log(error);
+      setError("Network or Server errors");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    setValue("role", localStorage.getItem("role")!);
-    setValue("workplace", localStorage.getItem("workplace")!);
-  }, [watch]);
+    setValue("role", UppercaseFirstLetter(localStorage.getItem("role")!));
+    setValue(
+      "workplace",
+      UppercaseFirstLetter(localStorage.getItem("workplace")!),
+    );
+  }, []);
 
   return (
     <div

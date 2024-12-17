@@ -16,7 +16,6 @@ function RouteComponent() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(role, workplace);
     if (role === null && workplace === null) {
       router.navigate({ to: "/auth/role", from: "/auth/accounts/signup" });
     } else if (role === "teacher" && workplace === null) {
