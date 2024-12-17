@@ -24,6 +24,7 @@ export function SignupForm() {
     handleSubmit,
     watch,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
@@ -62,6 +63,7 @@ export function SignupForm() {
         title: "Sign Up Done",
         description: "Congratulation for a new user",
       });
+      reset();
     } catch (error) {
       console.log(error);
     } finally {
