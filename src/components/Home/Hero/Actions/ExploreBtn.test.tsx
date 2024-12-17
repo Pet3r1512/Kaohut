@@ -39,6 +39,10 @@ describe("ExploreBtn", () => {
       expect(getComputedStyle(exploreButton).backgroundColor).toBe(
         "rgb(163, 55, 87)",
       );
+      await user.unhover(exploreButton);
+      expect(getComputedStyle(exploreButton).backgroundColor).toBe(
+        "rgb(255, 255, 255)",
+      );
     });
   });
 
