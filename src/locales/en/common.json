@@ -36,6 +36,17 @@
         "signup": "Google"
       },
       "end": "Already have an account? Sign In"
+    },
+    "signin-page": {
+      "title": "Log In",
+      "subtitle": "Welcome back to KaoHut",
+      "email": "Email Address",
+      "password": "Password",
+      "option": "Or, Sign in with",
+      "button": {
+        "signin": "Google"
+      },
+      "end": "Don't have an account? Sign Up"
     }
   },
   "hero": {
