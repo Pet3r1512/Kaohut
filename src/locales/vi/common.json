@@ -8,10 +8,12 @@
     "signin": "Đăng Nhập",
     "signup": "Đăng Kí",
     "role": {
+      "title": "Chọn tài khoản dành cho bạn",
       "teacher": "Giáo Viên",
       "student": "Học sinh"
     },
     "workplace": {
+      "title": "Chọn nơi bạn làm việc",
       "school": "Trung học",
       "university": "Đại học",
       "business": "Kinh doanh"
