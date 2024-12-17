@@ -17,7 +17,7 @@ i18n
     },
     lng: "en", // Default language
     fallbackLng: 'en',
-    debug: true,
+    debug: false,
     interpolation: {
       escapeValue: false,
     },
