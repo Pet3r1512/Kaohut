@@ -6,7 +6,11 @@
   },
   "auth": {
     "signin": "Đăng Nhập",
-    "signup": "Đăng Kí"
+    "signup": "Đăng Kí",
+    "role": {
+      "teacher": "Giáo Viên",
+      "student": "Học sinh"
+    }
   },
   "hero": {
     "title": "Tham gia, học hỏi và vui chơi cùng",
