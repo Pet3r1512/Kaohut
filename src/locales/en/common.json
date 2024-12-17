@@ -35,7 +35,10 @@
         "condition": "Password must be at least 8 characters long",
         "note": "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character"
       },
-
+      "confirm-password": {
+        "confirm": "Confirm Password",
+        "empty": "Your password is not validated"
+      },
       "option": "Or, Sign up with",
       "button": {
         "signup": "Google"
