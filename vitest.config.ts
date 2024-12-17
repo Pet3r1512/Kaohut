@@ -9,8 +9,14 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text"],
-      exclude: ["storybook-static/*", "*.config.*", ...coverageConfigDefaults.exclude],
+      exclude: [
+        "storybook-static/*",
+        "src/**/*.stories.tsx",
+        "src/**/*.{config,test}.ts",
+        ...coverageConfigDefaults.exclude,
+      ],
     },
+
   },
   resolve: {
     alias: {
