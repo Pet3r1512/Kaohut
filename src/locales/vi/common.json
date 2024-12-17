@@ -36,6 +36,17 @@
         "signup": "Google"
       },
       "end": "Bạn đã có tài khoản? Đăng nhập"
+    },
+    "signin-page": {
+      "title": "Đăng nhập",
+      "subtitle": "Chào mừng đã trở lại với KaoHut",
+      "email": "Địa chỉ email",
+      "password": "Mật khẩu",
+      "option": "Hoặc, Đăng nhập với",
+      "button": {
+        "signin": "Google"
+      },
+      "end": "Bạn chưa có tài khoản? Đăng ký"
     }
   },
   "hero": {
