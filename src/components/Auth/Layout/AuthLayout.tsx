@@ -1,6 +1,7 @@
 import { LanguagesToggle } from "@/components/Layout/Header/LanguagesToggle";
 import FullLogo from "@/components/Layout/Logos/FullLogo";
 import ThemeToggle from "@/components/ThemeToggle";
+import { Toaster } from "@/components/ui/toaster";
 import { ReactNode } from "react";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
@@ -15,5 +16,6 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       </div>
       <div className="space-y-6 mt-24 md:mt-12">{children}</div>
     </div>
+      <Toaster />
   );
 }
