@@ -6,6 +6,7 @@ import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
+import { toast } from "@/hooks/useToast";
 
 type SignupFormInputs = {
   firstname: string;
@@ -19,10 +20,11 @@ type SignupFormInputs = {
 
 export function SignupForm() {
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     setValue,
     reset,
     formState: { errors },
@@ -65,7 +67,7 @@ export function SignupForm() {
       });
       reset();
     } catch (error) {
-      console.log(error);
+      setError("Network or Server errors");
     } finally {
       setLoading(false);
     }
