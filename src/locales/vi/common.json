@@ -10,6 +10,11 @@
     "role": {
       "teacher": "Giáo Viên",
       "student": "Học sinh"
+    },
+    "workplace": {
+      "school": "Trung học",
+      "university": "Đại học",
+      "business": "Kinh doanh"
     }
   },
   "hero": {
