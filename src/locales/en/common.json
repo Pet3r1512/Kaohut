@@ -8,10 +8,12 @@
     "signin": "Log In",
     "signup": "Sign Up",
     "role": {
+      "title": "Choose your account type",
       "teacher": "Teacher",
       "student": "Student"
     },
     "workplace": {
+      "title": "Choose your workplace",
       "school": "School",
       "university": "University",
       "business": "Bussiness"
