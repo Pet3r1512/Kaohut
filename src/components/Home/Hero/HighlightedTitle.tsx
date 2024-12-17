@@ -11,6 +11,7 @@ export default function HighlightedTitle() {
   return (
     <HeroHighlight className="w-full">
       <motion.h1
+        data-testid="highlighted_title"
         initial={{
           opacity: 0,
           y: 20,
