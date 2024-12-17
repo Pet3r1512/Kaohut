@@ -6,7 +6,56 @@
   },
   "auth": {
     "signin": "Đăng Nhập",
-    "signup": "Đăng Kí"
+    "signup": "Đăng Kí",
+    "role": {
+      "title": "Chọn tài khoản dành cho bạn",
+      "teacher": "Giáo Viên",
+      "student": "Học sinh"
+    },
+    "workplace": {
+      "title": "Chọn nơi bạn làm việc",
+      "school": "Trung học",
+      "university": "Đại học",
+      "business": "Kinh doanh"
+    },
+    "sigup-page": {
+      "title": "Tạo tài khoản",
+      "subtitle": "Chào mừng đến với KaoHut",
+      "heading": "Tạo tài khoản mới để khám phá Thế giới tri thức của KaoHut",
+      "name": {
+        "firstname": "Tên",
+        "lastname": "Họ"
+      },
+      "email": "Địa chỉ email",
+      "role": "Vai trò",
+      "workplace": "Nơi làm việc",
+      "password": {
+        "password": "Mật khẩu",
+        "empty": "Mật khẩu không để trống",
+        "condition": "Mật khẩu phải có ít nhất 8 ký tự",
+        "note": "Mật khẩu phải có ít nhất 1 số, 1 chữ hoa, 1 chữ thường và 1 ký tự đặc biệt"
+      },
+      "confirm-password": {
+        "confirm": "Xác nhận lại mật khẩu",
+        "empty": "Mật khẩu của bạn không trùng khớp"
+      },
+      "option": "Hoặc, Đăng kí với",
+      "button": {
+        "signup": "Google"
+      },
+      "end": "Bạn đã có tài khoản? Đăng nhập"
+    },
+    "signin-page": {
+      "title": "Đăng nhập",
+      "subtitle": "Chào mừng đã trở lại với KaoHut",
+      "email": "Địa chỉ email",
+      "password": "Mật khẩu",
+      "option": "Hoặc, Đăng nhập với",
+      "button": {
+        "signin": "Google"
+      },
+      "end": "Bạn chưa có tài khoản? Đăng ký"
+    }
   },
   "hero": {
     "title": "Tham gia, học hỏi và vui chơi cùng",
