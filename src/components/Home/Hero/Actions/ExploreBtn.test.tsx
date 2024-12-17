@@ -26,9 +26,10 @@ describe("ExploreBtn", () => {
     render(<ExploreBtn />);
     expect(screen.getByTestId("explore-btn")).toBeInTheDocument();
   });
+
   it("should have the correct background color on hover", async () => {
-    const user = userEvent.setup();
     render(<ExploreBtn />);
+    const user = userEvent.setup();
     await screen.findByTestId("explore-btn");
 
     const exploreButton = screen.getByTestId("explore-btn");
@@ -39,5 +40,10 @@ describe("ExploreBtn", () => {
         "rgb(163, 55, 87)",
       );
     });
+  });
+
+  it("should match snapshot", () => {
+    render(<ExploreBtn />);
+    expect(screen.findByTestId("explore-btn")).toMatchSnapshot();
   });
 });
