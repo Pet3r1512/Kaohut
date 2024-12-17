@@ -48,7 +48,14 @@ export function SignupForm() {
         }),
       });
       if (!response.ok) {
-        console.log(response);
+        const err = await response.json();
+        setError(err.message || "Unknown error");
+        return toast({
+          variant: "destructive",
+          title: "Sign Up Failed",
+          description:
+            err.error.code === -32603 ? "User already exists" : error,
+        });
       }
     } catch (error) {
       console.log(error);
