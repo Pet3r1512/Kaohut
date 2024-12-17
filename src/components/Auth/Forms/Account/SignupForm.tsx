@@ -58,9 +58,12 @@ export function SignupForm() {
   };
 
   useEffect(() => {
-    setValue("role", localStorage.getItem("role")!);
-    setValue("workplace", localStorage.getItem("workplace")!);
-  }, [watch]);
+    setValue("role", UppercaseFirstLetter(localStorage.getItem("role")!));
+    setValue(
+      "workplace",
+      UppercaseFirstLetter(localStorage.getItem("workplace")!),
+    );
+  }, []);
 
   return (
     <div
