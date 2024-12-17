@@ -15,6 +15,27 @@
       "school": "Trung học",
       "university": "Đại học",
       "business": "Kinh doanh"
+    },
+    "sigup-page": {
+      "title": "Tạo tài khoản",
+      "subtitle": "Chào mừng đến với KaoHut",
+      "heading": "Tạo tài khoản mới để khám phá Thế giới tri thức của KaoHut",
+      "name": {
+        "firstname": "Tên",
+        "lastname": "Họ"
+      },
+      "email": "Địa chỉ email",
+      "role": "Vai trò",
+      "workplace": "Nơi làm việc",
+      "password": {
+        "password": "Mật khẩu",
+        "confirm": "Xác nhận mật khẩu"
+      },
+      "option": "Hoặc, Đăng kí với",
+      "button": {
+        "signup": "Google"
+      },
+      "end": "Bạn đã có tài khoản? Đăng nhập"
     }
   },
   "hero": {
