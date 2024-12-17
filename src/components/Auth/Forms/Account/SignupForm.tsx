@@ -47,7 +47,8 @@ export function SignupForm() {
           email: data.email,
           password: data.password,
           name: data.firstname + " " + data.lastname,
-          role: "teacher",
+          role: data.role,
+          workplace: data.workplace,
         }),
       });
       if (!response.ok) {
