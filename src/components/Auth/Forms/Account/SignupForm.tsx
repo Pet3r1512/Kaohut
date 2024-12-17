@@ -30,7 +30,7 @@ export function SignupForm() {
   const SERVER_URL =
     import.meta.env.MODE === "development"
       ? "http://localhost:9999"
-      : "https://blonde-michell-pet3r-22028f0a.koyeb.app/";
+      : "https://blonde-michell-pet3r-22028f0a.koyeb.app";
 
   const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
     setLoading(true);
