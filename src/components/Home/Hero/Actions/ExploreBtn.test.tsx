@@ -22,6 +22,10 @@ vi.mock("@tanstack/react-router", () => ({
 }));
 
 describe("ExploreBtn", () => {
+  it("should rendered in DOM", async () => {
+    render(<ExploreBtn />);
+    expect(screen.getByTestId("explore-btn")).toBeInTheDocument();
+  });
   it("should have the correct background color on hover", async () => {
     const user = userEvent.setup();
     render(<ExploreBtn />);
