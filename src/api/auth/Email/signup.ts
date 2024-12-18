@@ -1,3 +1,5 @@
+import { SERVER_URL } from "@/api/constant";
+
 export interface SignupRequest {
   firstname: string;
   lastname: string;
@@ -12,16 +14,6 @@ export interface SignupResponse {
   message: string;
 }
 
-const SERVER_URL =
-  import.meta.env.MODE === "development"
-    ? "http://localhost:9999"
-    : "https://blonde-michell-pet3r-22028f0a.koyeb.app";
-
-/**
- * Function to handle user signup.
- * @param data - The signup data to send to the server.
- * @returns The response from the server.
- */
 export async function signUp(data: SignupRequest): Promise<SignupResponse> {
   const response = await fetch(`${SERVER_URL}/trpc/auth.signUp`, {
     method: "POST",
