@@ -1,9 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import { it } from "vitest";
 import { SignupForm } from "./SignupForm";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { userEvent } from "@storybook/testing-library";
+
+const queryClient = new QueryClient();
 
 it("should rendered correctly in DOM", () => {
-  render(<SignupForm />);
+  render(
+    <QueryClientProvider client={queryClient}>
+      <SignupForm />
+    </QueryClientProvider>,
+  );
 
   const SignUpFormComponent = screen.getByTestId("signup-form");
 
@@ -11,7 +19,11 @@ it("should rendered correctly in DOM", () => {
 });
 
 it("should render first name and last name fields", () => {
-  render(<SignupForm />);
+  render(
+    <QueryClientProvider client={queryClient}>
+      <SignupForm />
+    </QueryClientProvider>,
+  );
 
   const firstnameLabel = screen.getByLabelText("First Name");
   const firstnameInput = screen.getByPlaceholderText("John");
@@ -27,7 +39,11 @@ it("should render first name and last name fields", () => {
 });
 
 it("should render email field", () => {
-  render(<SignupForm />);
+  render(
+    <QueryClientProvider client={queryClient}>
+      <SignupForm />
+    </QueryClientProvider>,
+  );
 
   const emailLabel = screen.getByLabelText("Email Address");
   const emailInput = screen.getByPlaceholderText("youremailaddress@gmail.com");
@@ -37,15 +53,19 @@ it("should render email field", () => {
 });
 
 it("should render password and confirm password fields", async () => {
-  render(<SignupForm />);
+  render(
+    <QueryClientProvider client={queryClient}>
+      <SignupForm />
+    </QueryClientProvider>,
+  );
 
   const passwordLabel = screen.getByLabelText("Password");
-  //   const passwordInput = screen.getAllByLabelText(/password/i);
+  const passwordInput = screen.getAllByLabelText(/password/i);
 
   expect(passwordLabel).toBeInTheDocument();
 
-  //   await userEvent.type(passwordInput[0], "mysecurepassword");
-  //   expect(passwordInput[0]).toHaveValue("mysecurepassword");
+  await userEvent.type(passwordInput[0], "mysecurepassword");
+  expect(passwordInput[0]).toHaveValue("mysecurepassword");
 
   const confirmPasswordLabel = screen.getByLabelText("Confirm Password");
 
@@ -53,7 +73,11 @@ it("should render password and confirm password fields", async () => {
 });
 
 it("should match snapshot", () => {
-  const component = render(<SignupForm />);
+  const component = render(
+    <QueryClientProvider client={queryClient}>
+      <SignupForm />
+    </QueryClientProvider>,
+  );
 
   expect(component).toMatchSnapshot();
 });
