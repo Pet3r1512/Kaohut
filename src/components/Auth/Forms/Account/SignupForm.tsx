@@ -10,6 +10,7 @@ import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
 import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/api/auth/signup";
+import { useRoleStore } from "@/stores/roles/role";
 
 type SignupFormInputs = {
   firstname: string;
@@ -22,6 +23,7 @@ type SignupFormInputs = {
 };
 
 export function SignupForm() {
+  const { getRole, getWorkplace } = useRoleStore();
   const {
     register,
     handleSubmit,
@@ -55,11 +57,8 @@ export function SignupForm() {
   };
 
   useEffect(() => {
-    setValue("role", UppercaseFirstLetter(localStorage.getItem("role")!));
-    setValue(
-      "workplace",
-      UppercaseFirstLetter(localStorage.getItem("workplace")!),
-    );
+    setValue("role", UppercaseFirstLetter(getRole()));
+    setValue("workplace", UppercaseFirstLetter(getWorkplace()));
   }, []);
 
   return (
@@ -110,7 +109,7 @@ export function SignupForm() {
             <Input
               disabled
               id="role"
-              value={UppercaseFirstLetter(localStorage.getItem("role")!)}
+              value={UppercaseFirstLetter(getRole())}
               type="text"
               {...register("role")}
             />
@@ -120,7 +119,7 @@ export function SignupForm() {
             <Input
               disabled
               id="workplace"
-              value={UppercaseFirstLetter(localStorage.getItem("workplace")!)}
+              value={UppercaseFirstLetter(getWorkplace())}
               type="text"
               {...register("workplace")}
             />
