@@ -9,7 +9,6 @@ import { signIn } from "@/api/auth/Email/signin";
 import { toast } from "@/hooks/useToast";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
 
 type SigninFormInputs = {
   email: string;
@@ -19,7 +18,6 @@ type SigninFormInputs = {
 
 export function SigninForm() {
   const { handleSubmit, register, reset } = useForm<SigninFormInputs>();
-  const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn: signIn,
     onSuccess: () => {
@@ -29,7 +27,6 @@ export function SigninForm() {
         description: "Navigating to dashboard",
       });
       reset();
-      navigate({ to: "/dashboard/dashboard" });
     },
     onError: (error: any) => {
       toast({
