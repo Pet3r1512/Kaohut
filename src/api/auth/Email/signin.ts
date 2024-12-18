@@ -3,7 +3,6 @@ import { SERVER_URL } from "@/api/constant";
 export interface SigninRequest {
   email: string;
   password: string;
-  callbackURL: string;
 }
 
 export interface SigninResponse {
@@ -20,7 +19,6 @@ export async function signIn(data: SigninRequest): Promise<SigninResponse> {
     body: JSON.stringify({
       email: data.email,
       password: data.password,
-      callbackURL: "/dashboard",
     }),
   });
 
