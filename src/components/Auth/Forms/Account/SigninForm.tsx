@@ -13,20 +13,20 @@ import { LoaderCircle } from "lucide-react";
 type SigninFormInputs = {
   email: string;
   password: string;
-  callbackURL: string;
 };
 
 export function SigninForm() {
   const { handleSubmit, register, reset } = useForm<SigninFormInputs>();
   const mutation = useMutation({
     mutationFn: signIn,
-    onSuccess: () => {
-      toast({
-        variant: "success",
-        title: "Sign In Done",
-        description: "Navigating to dashboard",
-      });
+    onSuccess: (data: any) => {
       reset();
+      if (data?.result?.data?.status === 200) {
+        const redirectTo = data.result.data.redirectTo;
+        if (redirectTo) {
+          window.location.href = redirectTo;
+        }
+      }
     },
     onError: (error: any) => {
       toast({
