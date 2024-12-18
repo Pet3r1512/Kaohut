@@ -22,14 +22,12 @@ export default function RoleCard({ props }: { props: RoleCardProps }) {
       onClick={() => {
         if (id === "student" || id === "teacher") {
           setRole(id);
-          localStorage.setItem("role", id);
         } else if (
           id === "schools" ||
           id === "university" ||
           id === "business"
         ) {
           setWorkplace(id);
-          localStorage.setItem("workplace", id);
         }
       }}
       to={href}
