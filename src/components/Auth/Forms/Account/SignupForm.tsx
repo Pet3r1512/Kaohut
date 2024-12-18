@@ -1,12 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { cn, UppercaseFirstLetter } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
+import { useMutation } from "@tanstack/react-query";
+import { signUp } from "@/api/auth/signup";
 
 type SignupFormInputs = {
   firstname: string;
@@ -19,59 +22,36 @@ type SignupFormInputs = {
 };
 
 export function SignupForm() {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
   const {
     register,
     handleSubmit,
     // watch,
-    setValue,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
-  const SERVER_URL =
-    import.meta.env.MODE === "development"
-      ? "http://localhost:9999"
-      : "https://blonde-michell-pet3r-22028f0a.koyeb.app";
-
-  const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`${SERVER_URL}/trpc/auth.signUp`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          name: data.firstname + " " + data.lastname,
-          role: data.role,
-          workplace: data.workplace,
-        }),
-      });
-      if (!response.ok) {
-        const err = await response.json();
-        setError(err.message || "Unknown error");
-        return toast({
-          variant: "destructive",
-          title: "Sign Up Failed",
-          description:
-            err.error.code === -32603 ? "User already exists" : error,
-        });
-      }
+  const mutation = useMutation({
+    mutationFn: signUp,
+    onSuccess: () => {
       toast({
         variant: "success",
         title: "Sign Up Done",
         description: "Congratulation for a new user",
       });
       reset();
-    } catch (error) {
-      setError("Network or Server errors");
-    } finally {
-      setLoading(false);
-    }
+    },
+    onError: (error: any) => {
+      toast({
+        variant: "destructive",
+        title: "Sign Up Failed",
+        description: error.message,
+      });
+    },
+  });
+
+  const onSubmit: SubmitHandler<SignupFormInputs> = (data) => {
+    mutation.mutate(data);
   };
 
   useEffect(() => {
@@ -201,7 +181,7 @@ export function SignupForm() {
           className="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
         >
-          {loading ? (
+          {mutation.isPending ? (
             <LoaderCircle className="animate-spin mx-auto" />
           ) : (
             <>
