@@ -12,11 +12,16 @@ export default defineConfig({
       exclude: [
         "storybook-static/*",
         "src/**/*.stories.tsx",
-        "src/**/*.{config,test}.ts",
+        "src/**/*.{config,test}.{ts, js}",
+        "src/**/*.ts",
+        "src/components/ui/*",
+        "src/routeTree.gen.ts",
+        "__vitest_test__/**/*",
+        "*.config.js",
+        "*.config.ts",
         ...coverageConfigDefaults.exclude,
       ],
     },
-
   },
   resolve: {
     alias: {
