@@ -17,6 +17,7 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
+const DashboardDashboardLazyImport = createFileRoute('/dashboard/dashboard')()
 const AuthTeacherLazyImport = createFileRoute('/auth/teacher')()
 const AuthStudentLazyImport = createFileRoute('/auth/student')()
 const AuthRoleLazyImport = createFileRoute('/auth/role')()
@@ -30,6 +31,14 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const DashboardDashboardLazyRoute = DashboardDashboardLazyImport.update({
+  id: '/dashboard/dashboard',
+  path: '/dashboard/dashboard',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/dashboard/dashboard.lazy').then((d) => d.Route),
+)
 
 const AuthTeacherLazyRoute = AuthTeacherLazyImport.update({
   id: '/auth/teacher',
@@ -97,6 +106,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthTeacherLazyImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/dashboard': {
+      id: '/dashboard/dashboard'
+      path: '/dashboard/dashboard'
+      fullPath: '/dashboard/dashboard'
+      preLoaderRoute: typeof DashboardDashboardLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/accounts/signin': {
       id: '/auth/accounts/signin'
       path: '/auth/accounts/signin'
@@ -121,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
+  '/dashboard/dashboard': typeof DashboardDashboardLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
 }
@@ -130,6 +147,7 @@ export interface FileRoutesByTo {
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
+  '/dashboard/dashboard': typeof DashboardDashboardLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
 }
@@ -140,6 +158,7 @@ export interface FileRoutesById {
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
+  '/dashboard/dashboard': typeof DashboardDashboardLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
 }
@@ -151,6 +170,7 @@ export interface FileRouteTypes {
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
+    | '/dashboard/dashboard'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
   fileRoutesByTo: FileRoutesByTo
@@ -159,6 +179,7 @@ export interface FileRouteTypes {
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
+    | '/dashboard/dashboard'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
   id:
@@ -167,6 +188,7 @@ export interface FileRouteTypes {
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
+    | '/dashboard/dashboard'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
   fileRoutesById: FileRoutesById
@@ -177,6 +199,7 @@ export interface RootRouteChildren {
   AuthRoleLazyRoute: typeof AuthRoleLazyRoute
   AuthStudentLazyRoute: typeof AuthStudentLazyRoute
   AuthTeacherLazyRoute: typeof AuthTeacherLazyRoute
+  DashboardDashboardLazyRoute: typeof DashboardDashboardLazyRoute
   AuthAccountsSigninLazyRoute: typeof AuthAccountsSigninLazyRoute
   AuthAccountsSignupLazyRoute: typeof AuthAccountsSignupLazyRoute
 }
@@ -186,6 +209,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoleLazyRoute: AuthRoleLazyRoute,
   AuthStudentLazyRoute: AuthStudentLazyRoute,
   AuthTeacherLazyRoute: AuthTeacherLazyRoute,
+  DashboardDashboardLazyRoute: DashboardDashboardLazyRoute,
   AuthAccountsSigninLazyRoute: AuthAccountsSigninLazyRoute,
   AuthAccountsSignupLazyRoute: AuthAccountsSignupLazyRoute,
 }
@@ -204,6 +228,7 @@ export const routeTree = rootRoute
         "/auth/role",
         "/auth/student",
         "/auth/teacher",
+        "/dashboard/dashboard",
         "/auth/accounts/signin",
         "/auth/accounts/signup"
       ]
@@ -219,6 +244,9 @@ export const routeTree = rootRoute
     },
     "/auth/teacher": {
       "filePath": "auth/teacher.lazy.tsx"
+    },
+    "/dashboard/dashboard": {
+      "filePath": "dashboard/dashboard.lazy.tsx"
     },
     "/auth/accounts/signin": {
       "filePath": "auth/accounts/signin.lazy.tsx"
