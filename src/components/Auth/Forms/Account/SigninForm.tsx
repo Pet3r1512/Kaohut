@@ -1,14 +1,49 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
+import { useMutation } from "@tanstack/react-query";
+import { signIn } from "@/api/auth/Email/signin";
+import { toast } from "@/hooks/useToast";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { LoaderCircle } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+
+type SigninFormInputs = {
+  email: string;
+  password: string;
+  callbackURL: string;
+};
 
 export function SigninForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted");
+  const { handleSubmit, register, reset } = useForm<SigninFormInputs>();
+  const navigate = useNavigate();
+  const mutation = useMutation({
+    mutationFn: signIn,
+    onSuccess: () => {
+      toast({
+        variant: "success",
+        title: "Sign In Done",
+        description: "Navigating to dashboard",
+      });
+      reset();
+      navigate({ to: "/dashboard/dashboard" });
+    },
+    onError: (error: any) => {
+      toast({
+        variant: "destructive",
+        title: "Sign Up Failed",
+        description: error.message,
+      });
+    },
+  });
+
+  const onSubmit: SubmitHandler<SigninFormInputs> = (data) => {
+    mutation.mutate(data);
   };
+
   return (
     <div
       data-testid="signin-form"
@@ -17,26 +52,38 @@ export function SigninForm() {
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center">
         Welcome back to <span className="text-primary">KaoHut</span>
       </h2>
-      <form className="my-8" onSubmit={handleSubmit}>
+      <form className="my-8" onSubmit={handleSubmit(onSubmit)}>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
           <Input
             id="email"
             placeholder="youremailaddress@gmail.com"
             type="email"
+            {...register("email")}
           />
         </LabelInputContainer>
-        <LabelInputContainer className="mb-4">
+        <LabelInputContainer className="mb-8">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
+          <Input
+            id="password"
+            placeholder="••••••••"
+            type="password"
+            {...register("password")}
+          />
         </LabelInputContainer>
 
         <button
           className="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
         >
-          Sign In &rarr;
-          <BottomGradient />
+          {mutation.isPending ? (
+            <LoaderCircle className="animate-spin mx-auto" />
+          ) : (
+            <>
+              Sign in &rarr;
+              <BottomGradient />
+            </>
+          )}
         </button>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
