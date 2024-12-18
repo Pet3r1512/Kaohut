@@ -9,7 +9,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
 import { useMutation } from "@tanstack/react-query";
-import { signUp } from "@/api/auth/signup";
+import { signUp } from "@/api/auth/Email/signup";
 import { useRoleStore } from "@/stores/roles/role";
 
 type SignupFormInputs = {
