@@ -1,14 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
-import { useMutation } from "@tanstack/react-query";
-import { signIn } from "@/api/auth/Email/signin";
-import { toast } from "@/hooks/useToast";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "@/hooks/useToast";
 
 type SigninFormInputs = {
   email: string;
@@ -16,29 +14,29 @@ type SigninFormInputs = {
 };
 
 export function SigninForm() {
-  const { handleSubmit, register, reset } = useForm<SigninFormInputs>();
-  const mutation = useMutation({
-    mutationFn: signIn,
-    onSuccess: (data: any) => {
-      reset();
-      if (data?.result?.data?.status === 200) {
-        const redirectTo = data.result.data.redirectTo;
-        if (redirectTo) {
-          window.location.href = redirectTo;
-        }
-      }
-    },
-    onError: (error: any) => {
-      toast({
-        variant: "destructive",
-        title: "Sign Up Failed",
-        description: error.message,
-      });
-    },
-  });
-
-  const onSubmit: SubmitHandler<SigninFormInputs> = (data) => {
-    mutation.mutate(data);
+  const [loading, setLoading] = useState<boolean>(false);
+  const { handleSubmit, register } = useForm<SigninFormInputs>();
+  const onSubmit: SubmitHandler<SigninFormInputs> = async (credentials) => {
+    await authClient.signIn.email(
+      {
+        email: credentials.email,
+        password: credentials.password,
+        callbackURL: "http://localhost:5173/dashboard/dashboard",
+      },
+      {
+        onRequest: () => {
+          setLoading(true);
+        },
+        onSuccess: () => {},
+        onError: (ctx) => {
+          toast({
+            variant: "destructive",
+            title: "Sign Up Failed",
+            description: ctx.error.message,
+          });
+        },
+      },
+    );
   };
 
   return (
@@ -73,7 +71,7 @@ export function SigninForm() {
           className="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
         >
-          {mutation.isPending ? (
+          {loading ? (
             <LoaderCircle className="animate-spin mx-auto" />
           ) : (
             <>
