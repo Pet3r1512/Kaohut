@@ -20,4 +20,12 @@ export const authClient = createAuthClient({
   advanced: {
     useSecureCookies: true,
   },
+  cookieOptions: {
+    secure: process.env.NODE_ENV === "production", // Secure in production
+    httpOnly: true, // Prevents JavaScript access
+    sameSite: "lax", // Adjust for cross-origin needs
+    path: "/", // Ensure it works across the app
+    domain:
+      process.env.NODE_ENV === "production" ? ".yourdomain.com" : undefined,
+  },
 });
