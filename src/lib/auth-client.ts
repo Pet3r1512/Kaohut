@@ -20,6 +20,7 @@ export const authClient = createAuthClient({
   advanced: {
     useSecureCookies: true,
   },
+  cookieName: "better-auth.session_token",
   cookieOptions: {
     secure: process.env.NODE_ENV === "production", // Secure in production
     httpOnly: true, // Prevents JavaScript access
