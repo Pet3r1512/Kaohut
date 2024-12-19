@@ -17,4 +17,7 @@ export const authClient = createAuthClient({
       },
     }),
   ],
+  advanced: {
+    useSecureCookies: true,
+  },
 });

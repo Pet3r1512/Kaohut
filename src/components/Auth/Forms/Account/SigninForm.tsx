@@ -28,7 +28,9 @@ export function SigninForm() {
         onRequest: () => {
           setLoading(true);
         },
-        onSuccess: () => {},
+        onSuccess: () => {
+          setLoading(false);
+        },
         onError: (ctx) => {
           toast({
             variant: "destructive",
