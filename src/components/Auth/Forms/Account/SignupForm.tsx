@@ -1,16 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { cn, UppercaseFirstLetter } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
-import { useMutation } from "@tanstack/react-query";
-import { signUp } from "@/api/auth/Email/signup";
 import { useRoleStore } from "@/stores/roles/role";
+import { authClient } from "@/lib/auth-client";
 
 type SignupFormInputs = {
   firstname: string;
@@ -24,36 +22,34 @@ type SignupFormInputs = {
 
 export function SignupForm() {
   const { getRole, getWorkplace } = useRoleStore();
+  const [loading, setLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     // watch,
-    reset,
     setValue,
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
-  const mutation = useMutation({
-    mutationFn: signUp,
-    onSuccess: () => {
-      toast({
-        variant: "success",
-        title: "Sign Up Done",
-        description: "Congratulation for a new user",
-      });
-      reset();
-    },
-    onError: (error: any) => {
+  const onSubmit: SubmitHandler<SignupFormInputs> = async (credential) => {
+    setLoading(true);
+    const { data, error } = await authClient.signUp.email({
+      email: credential.email,
+      password: credential.password,
+      name: `${credential.firstname} ${credential.lastname}`,
+      role: credential.role,
+      workplace: credential.workplace,
+    });
+    setLoading(false);
+    if (error) {
       toast({
         variant: "destructive",
         title: "Sign Up Failed",
         description: error.message,
       });
-    },
-  });
-
-  const onSubmit: SubmitHandler<SignupFormInputs> = (data) => {
-    mutation.mutate(data);
+    } else if (data) {
+      window.location.href = "http://localhost:5173/auth/accounts/signin/";
+    }
   };
 
   useEffect(() => {
@@ -180,7 +176,7 @@ export function SignupForm() {
           className="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
         >
-          {mutation.isPending ? (
+          {loading ? (
             <LoaderCircle className="animate-spin mx-auto" />
           ) : (
             <>
