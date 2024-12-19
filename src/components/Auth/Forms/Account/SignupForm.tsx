@@ -48,7 +48,7 @@ export function SignupForm() {
         description: error.message,
       });
     } else if (data) {
-      window.location.href = "http://localhost:5173/auth/accounts/signin/";
+      window.location.href = "https://kaohut.pages.dev/auth/accounts/signin/";
     }
   };
 
