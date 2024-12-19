@@ -27,6 +27,8 @@ export const authClient = createAuthClient({
     sameSite: "lax", // Adjust for cross-origin needs
     path: "/", // Ensure it works across the app
     domain:
-      process.env.NODE_ENV === "production" ? ".yourdomain.com" : undefined,
+      process.env.NODE_ENV === "production"
+        ? "https://kaohut.pages.dev"
+        : undefined,
   },
 });
