@@ -13,11 +13,11 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as UserDashboardImport } from './routes/user/dashboard'
 
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
-const DashboardDashboardLazyImport = createFileRoute('/dashboard/dashboard')()
 const AuthTeacherLazyImport = createFileRoute('/auth/teacher')()
 const AuthStudentLazyImport = createFileRoute('/auth/student')()
 const AuthRoleLazyImport = createFileRoute('/auth/role')()
@@ -31,14 +31,6 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
-
-const DashboardDashboardLazyRoute = DashboardDashboardLazyImport.update({
-  id: '/dashboard/dashboard',
-  path: '/dashboard/dashboard',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/dashboard/dashboard.lazy').then((d) => d.Route),
-)
 
 const AuthTeacherLazyRoute = AuthTeacherLazyImport.update({
   id: '/auth/teacher',
@@ -57,6 +49,12 @@ const AuthRoleLazyRoute = AuthRoleLazyImport.update({
   path: '/auth/role',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/auth/role.lazy').then((d) => d.Route))
+
+const UserDashboardRoute = UserDashboardImport.update({
+  id: '/user/dashboard',
+  path: '/user/dashboard',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthAccountsSignupLazyRoute = AuthAccountsSignupLazyImport.update({
   id: '/auth/accounts/signup',
@@ -85,6 +83,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/user/dashboard': {
+      id: '/user/dashboard'
+      path: '/user/dashboard'
+      fullPath: '/user/dashboard'
+      preLoaderRoute: typeof UserDashboardImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/role': {
       id: '/auth/role'
       path: '/auth/role'
@@ -104,13 +109,6 @@ declare module '@tanstack/react-router' {
       path: '/auth/teacher'
       fullPath: '/auth/teacher'
       preLoaderRoute: typeof AuthTeacherLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/dashboard': {
-      id: '/dashboard/dashboard'
-      path: '/dashboard/dashboard'
-      fullPath: '/dashboard/dashboard'
-      preLoaderRoute: typeof DashboardDashboardLazyImport
       parentRoute: typeof rootRoute
     }
     '/auth/accounts/signin': {
@@ -134,20 +132,20 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/user/dashboard': typeof UserDashboardRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
-  '/dashboard/dashboard': typeof DashboardDashboardLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/user/dashboard': typeof UserDashboardRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
-  '/dashboard/dashboard': typeof DashboardDashboardLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
 }
@@ -155,10 +153,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/user/dashboard': typeof UserDashboardRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
-  '/dashboard/dashboard': typeof DashboardDashboardLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
 }
@@ -167,28 +165,28 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/user/dashboard'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
-    | '/dashboard/dashboard'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/user/dashboard'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
-    | '/dashboard/dashboard'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
   id:
     | '__root__'
     | '/'
+    | '/user/dashboard'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
-    | '/dashboard/dashboard'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
   fileRoutesById: FileRoutesById
@@ -196,20 +194,20 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  UserDashboardRoute: typeof UserDashboardRoute
   AuthRoleLazyRoute: typeof AuthRoleLazyRoute
   AuthStudentLazyRoute: typeof AuthStudentLazyRoute
   AuthTeacherLazyRoute: typeof AuthTeacherLazyRoute
-  DashboardDashboardLazyRoute: typeof DashboardDashboardLazyRoute
   AuthAccountsSigninLazyRoute: typeof AuthAccountsSigninLazyRoute
   AuthAccountsSignupLazyRoute: typeof AuthAccountsSignupLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  UserDashboardRoute: UserDashboardRoute,
   AuthRoleLazyRoute: AuthRoleLazyRoute,
   AuthStudentLazyRoute: AuthStudentLazyRoute,
   AuthTeacherLazyRoute: AuthTeacherLazyRoute,
-  DashboardDashboardLazyRoute: DashboardDashboardLazyRoute,
   AuthAccountsSigninLazyRoute: AuthAccountsSigninLazyRoute,
   AuthAccountsSignupLazyRoute: AuthAccountsSignupLazyRoute,
 }
@@ -225,16 +223,19 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/user/dashboard",
         "/auth/role",
         "/auth/student",
         "/auth/teacher",
-        "/dashboard/dashboard",
         "/auth/accounts/signin",
         "/auth/accounts/signup"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/user/dashboard": {
+      "filePath": "user/dashboard.tsx"
     },
     "/auth/role": {
       "filePath": "auth/role.lazy.tsx"
@@ -244,9 +245,6 @@ export const routeTree = rootRoute
     },
     "/auth/teacher": {
       "filePath": "auth/teacher.lazy.tsx"
-    },
-    "/dashboard/dashboard": {
-      "filePath": "dashboard/dashboard.lazy.tsx"
     },
     "/auth/accounts/signin": {
       "filePath": "auth/accounts/signin.lazy.tsx"
