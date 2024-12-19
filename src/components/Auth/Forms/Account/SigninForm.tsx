@@ -7,6 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "@/hooks/useToast";
+import { CALLBACK_URL } from "@/api/constant";
 
 type SigninFormInputs = {
   email: string;
@@ -21,7 +22,7 @@ export function SigninForm() {
       {
         email: credentials.email,
         password: credentials.password,
-        callbackURL: "http://localhost:5173/dashboard/dashboard",
+        callbackURL: CALLBACK_URL,
       },
       {
         onRequest: () => {
