@@ -1,16 +1,26 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import {
+  Calendar,
+  CirclePower,
+  Home,
+  Inbox,
+  LoaderCircle,
+  Search,
+  Settings,
+} from "lucide-react";
 
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
-import SignOutButton from "./SignOutButton";
+import { Link, useRouter } from "@tanstack/react-router";
+import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 // Menu items.
 const items = [
@@ -42,25 +52,47 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
+  const { open } = useSidebar();
+
   return (
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup className="h-full py-8">
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent className="flex flex-col h-full">
             <SidebarMenu className="flex-1">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <SidebarMenuItem className="mt-auto bg-red-500 text-white rounded-full">
+                <SidebarMenuButton
+                  onClick={async () => {
+                    setLoading(true);
+                    await authClient.signOut();
+                    setLoading(false);
+                    router.navigate({ to: "/auth/accounts/signin" });
+                  }}
+                  className="flex items-center justify-center"
+                >
+                  {loading ? (
+                    <LoaderCircle className="animate-spin mx-auto" size={14} />
+                  ) : (
+                    <div className="flex items-center gap-x-2">
+                      <CirclePower size={14} />
+                      {open && <span>Sign Out</span>}
+                    </div>
+                  )}
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
-            <SignOutButton />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
