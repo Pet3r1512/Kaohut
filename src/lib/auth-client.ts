@@ -20,15 +20,4 @@ export const authClient = createAuthClient({
   advanced: {
     useSecureCookies: true,
   },
-  cookieName: "better-auth.session_token",
-  cookieOptions: {
-    secure: process.env.NODE_ENV === "production", // Secure in production
-    httpOnly: true, // Prevents JavaScript access
-    sameSite: "lax", // Adjust for cross-origin needs
-    path: "/", // Ensure it works across the app
-    domain:
-      process.env.NODE_ENV === "production"
-        ? "https://kaohut.pages.dev"
-        : undefined,
-  },
 });
