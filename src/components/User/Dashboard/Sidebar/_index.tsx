@@ -1,12 +1,4 @@
-import {
-  Calendar,
-  CirclePower,
-  Home,
-  Inbox,
-  LoaderCircle,
-  Search,
-  Settings,
-} from "lucide-react";
+import { CirclePower, LoaderCircle, Play, Settings, User } from "lucide-react";
 
 import {
   Sidebar,
@@ -21,28 +13,21 @@ import {
 import { Link, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import { cn } from "@/lib/utils";
 
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Play",
     url: "#",
-    icon: Home,
+    icon: Play,
+    className:
+      "bg-primary rounded-full text-white lg:hover:bg-primary lg:hover:text-white lg:hover:pl-full lg:text-xl lg:font-bold lg:py-5",
   },
   {
-    title: "Inbox",
+    title: "Profile",
     url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    icon: User,
   },
   {
     title: "Settings",
@@ -65,7 +50,13 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Link to={item.url}>
+                    <Link
+                      to={item.url}
+                      className={cn(
+                        "lg:hover:scale-105 transition-all lg:hover:px-5 duration-150 ease-linear",
+                        item.className,
+                      )}
+                    >
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>
