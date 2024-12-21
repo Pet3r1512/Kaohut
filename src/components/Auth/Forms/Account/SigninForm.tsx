@@ -55,7 +55,9 @@ export function SigninForm() {
       </h2>
       <form className="my-8" onSubmit={handleSubmit(onSubmit)}>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">{t("auth.signin-page.email")}</Label>
+          <Label data-testid="email-label" htmlFor="email">
+            {t("auth.signin-page.email")}
+          </Label>
           <Input
             id="email"
             placeholder="youremailaddress@gmail.com"
@@ -64,7 +66,9 @@ export function SigninForm() {
           />
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
-          <Label htmlFor="password">{t("auth.signin-page.password")}</Label>
+          <Label data-testid="password-label" htmlFor="password">
+            {t("auth.signin-page.password")}
+          </Label>
           <Input
             id="password"
             placeholder="••••••••"
