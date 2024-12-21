@@ -47,14 +47,15 @@
     },
     "signin-page": {
       "title": "Đăng nhập",
-      "subtitle": "Chào mừng đã trở lại với KaoHut",
+      "subtitle": "Chào mừng đã trở lại với",
       "email": "Địa chỉ email",
       "password": "Mật khẩu",
       "option": "Hoặc, Đăng nhập với",
       "button": {
         "signin": "Google"
       },
-      "end": "Bạn chưa có tài khoản? Đăng ký"
+      "end": "Bạn chưa có tài khoản?",
+      "signup": "Đăng Kí"
     }
   },
   "hero": {
