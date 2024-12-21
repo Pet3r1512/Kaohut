@@ -19,14 +19,12 @@ import { cn } from "@/lib/utils";
 const items = [
   {
     title: "Play",
-    url: "#",
+    url: "/dashboard/play",
     icon: Play,
-    className:
-      "bg-primary rounded-full text-white lg:hover:bg-primary lg:hover:text-white lg:hover:pl-full lg:text-xl lg:font-bold lg:py-5",
   },
   {
     title: "Profile",
-    url: "#",
+    url: "/dashboard/account",
     icon: User,
   },
   {
