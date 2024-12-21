@@ -9,7 +9,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="p-8">
+      <main className="p-8 w-full">
         <SidebarTrigger />
         {children}
       </main>
