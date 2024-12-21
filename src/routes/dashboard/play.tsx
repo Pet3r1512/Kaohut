@@ -1,9 +1,8 @@
-import Dashboard from "@/components/User/Dashboard/_index";
+import DashboardLayout from "@/components/User/Dashboard/DashboardLayout";
 import { authClient } from "@/lib/auth-client";
-// import { authClient } from "@/lib/auth-client";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/user/dashboard")({
+export const Route = createFileRoute("/dashboard/play")({
   component: RouteComponent,
   beforeLoad: async () => {
     const session = authClient.getSession();
@@ -16,5 +15,9 @@ export const Route = createFileRoute("/user/dashboard")({
 });
 
 function RouteComponent() {
-  return <Dashboard />;
+  return (
+    <DashboardLayout>
+      <p>Let's Play</p>
+    </DashboardLayout>
+  );
 }

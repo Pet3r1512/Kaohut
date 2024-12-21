@@ -10,7 +10,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Link, useRouter } from "@tanstack/react-router";
+import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
@@ -19,14 +19,12 @@ import { cn } from "@/lib/utils";
 const items = [
   {
     title: "Play",
-    url: "#",
+    url: "/dashboard/play",
     icon: Play,
-    className:
-      "bg-primary rounded-full text-white lg:hover:bg-primary lg:hover:text-white lg:hover:pl-full lg:text-xl lg:font-bold lg:py-5",
   },
   {
     title: "Profile",
-    url: "#",
+    url: "/dashboard/account",
     icon: User,
   },
   {
@@ -40,6 +38,7 @@ export function AppSidebar() {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const { open } = useSidebar();
+  const location = useLocation();
 
   return (
     <Sidebar collapsible="icon">
@@ -54,7 +53,9 @@ export function AppSidebar() {
                       to={item.url}
                       className={cn(
                         "lg:hover:scale-105 transition-all lg:hover:px-5 duration-150 ease-linwear",
-                        item.className,
+                        location.pathname === item.url
+                          ? "bg-primary rounded-full text-white lg:hover:bg-primary lg:hover:text-white lg:hover:pl-full lg:text-xl lg:font-bold lg:py-5"
+                          : "",
                       )}
                     >
                       <item.icon />

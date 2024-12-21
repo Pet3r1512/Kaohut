@@ -5,5 +5,5 @@ export const SERVER_URL =
 
 export const CALLBACK_URL =
   import.meta.env.MODE === "development"
-    ? "http://localhost:5173/user/dashboard"
-    : "https://kaohut.pages.dev/user/dashboard";
+    ? "http://localhost:5173/dashboard/play"
+    : "https://kaohut.pages.dev/dashboard/play";
