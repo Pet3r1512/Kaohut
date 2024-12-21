@@ -8,6 +8,7 @@ import { LoaderCircle } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "@/hooks/useToast";
 import { CALLBACK_URL } from "@/api/constant";
+import { useTranslation } from "react-i18next";
 
 type SigninFormInputs = {
   email: string;
@@ -17,6 +18,7 @@ type SigninFormInputs = {
 export function SigninForm() {
   const [loading, setLoading] = useState<boolean>(false);
   const { handleSubmit, register } = useForm<SigninFormInputs>();
+  const { t } = useTranslation();
   const onSubmit: SubmitHandler<SigninFormInputs> = async (credentials) => {
     await authClient.signIn.email(
       {
@@ -48,11 +50,14 @@ export function SigninForm() {
       className="px-5 pt-8 max-w-md w-[100vw] mx-auto rounded-lg md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black"
     >
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center">
-        Welcome back to <span className="text-primary">KaoHut</span>
+        {t("auth.signin-page.subtitle")}{" "}
+        <span className="text-primary">KaoHut</span>
       </h2>
       <form className="my-8" onSubmit={handleSubmit(onSubmit)}>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
+          <Label data-testid="email-label" htmlFor="email">
+            {t("auth.signin-page.email")}
+          </Label>
           <Input
             id="email"
             placeholder="youremailaddress@gmail.com"
@@ -61,7 +66,9 @@ export function SigninForm() {
           />
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
-          <Label htmlFor="password">Password</Label>
+          <Label data-testid="password-label" htmlFor="password">
+            {t("auth.signin-page.password")}
+          </Label>
           <Input
             id="password"
             placeholder="••••••••"
@@ -78,7 +85,7 @@ export function SigninForm() {
             <LoaderCircle className="animate-spin mx-auto" />
           ) : (
             <>
-              Sign in &rarr;
+              {t("auth.signin-page.title")} &rarr;
               <BottomGradient />
             </>
           )}
@@ -88,7 +95,7 @@ export function SigninForm() {
 
         <div className="flex flex-col space-y-4">
           <p className="font-semibold text-center cursor-default">
-            Or, Sign in with
+            {t("auth.signin-page.option")}
           </p>
           <button
             className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
@@ -111,12 +118,12 @@ export function SigninForm() {
             <BottomGradient />
           </button>
           <p className="text-center font-semibold">
-            Don't have an account?{" "}
+            {t("auth.signin-page.end")}{" "}
             <a
               href="/auth/role"
               className="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
             >
-              Sign Up
+              {t("auth.signin-page.signup")}
             </a>
           </p>
         </div>

@@ -53,7 +53,7 @@ export function AppSidebar() {
                     <Link
                       to={item.url}
                       className={cn(
-                        "lg:hover:scale-105 transition-all lg:hover:px-5 duration-150 ease-linear",
+                        "lg:hover:scale-105 transition-all lg:hover:px-5 duration-150 ease-linwear",
                         item.className,
                       )}
                     >

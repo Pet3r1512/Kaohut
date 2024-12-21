@@ -35,7 +35,7 @@ it("should render email field", () => {
     </QueryClientProvider>,
   );
 
-  const emailLabel = screen.getByLabelText("Email Address");
+  const emailLabel = screen.getByTestId("email-label");
   const emailInput = screen.getByPlaceholderText("youremailaddress@gmail.com");
 
   expect(emailLabel).toBeInTheDocument();
@@ -49,7 +49,7 @@ it("should render password fields", async () => {
     </QueryClientProvider>,
   );
 
-  const passwordLabel = screen.getByLabelText("Password");
+  const passwordLabel = screen.getByTestId("password-label");
   const passwordInput = screen.getAllByLabelText(/password/i);
 
   expect(passwordLabel).toBeInTheDocument();
