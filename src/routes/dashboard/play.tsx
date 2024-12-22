@@ -1,3 +1,4 @@
+import GameRoom from "@/components/Game/Room";
 import DashboardLayout from "@/components/User/Dashboard/DashboardLayout";
 import { authClient } from "@/lib/auth-client";
 import { createFileRoute, redirect } from "@tanstack/react-router";
@@ -18,6 +19,7 @@ function RouteComponent() {
   return (
     <DashboardLayout>
       <p>Let's Play</p>
+      <GameRoom />
     </DashboardLayout>
   );
 }
