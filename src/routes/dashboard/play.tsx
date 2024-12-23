@@ -1,25 +1,47 @@
-import GameRoom from "@/components/Game/Room";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import TeacherPlay from "@/components/Game/Play/TeacherPlay";
+import LoadingScreen from "@/components/LoadingScreen";
 import DashboardLayout from "@/components/User/Dashboard/DashboardLayout";
 import { authClient } from "@/lib/auth-client";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/dashboard/play")({
   component: RouteComponent,
-  beforeLoad: async () => {
-    const session = authClient.getSession();
-    if (!session) {
-      throw redirect({
-        to: "/auth/accounts/signin",
-      });
-    }
-  },
 });
 
 function RouteComponent() {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [session, setSession] = useState<any>(null);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const result = await authClient.getSession();
+        setSession(result.data?.session);
+      } catch (error: any) {
+        console.error("Error fetching session", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSession();
+  }, []);
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
+  if (!session) {
+    router.navigate({ to: "/auth/accounts/signin" });
+    return null;
+  }
+
   return (
     <DashboardLayout>
-      <p>Let's Play</p>
-      <GameRoom />
+      <TeacherPlay />
     </DashboardLayout>
   );
 }
