@@ -42,7 +42,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarContent>
+      <SidebarContent className="bg-white shadow-2xl">
         <SidebarGroup className="h-full py-8">
           <SidebarGroupContent className="flex flex-col h-full">
             <SidebarMenu className="flex-1">
@@ -64,7 +64,7 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              <SidebarMenuItem className="mt-auto bg-red-500 text-white rounded-full">
+              <SidebarMenuItem className="mt-auto bg-red-500/85 lg:hover:bg-red-500 transition-all duration-150 ease-linear text-white rounded-full">
                 <SidebarMenuButton
                   onClick={async () => {
                     setLoading(true);
@@ -77,7 +77,7 @@ export function AppSidebar() {
                   {loading ? (
                     <LoaderCircle className="animate-spin mx-auto" size={14} />
                   ) : (
-                    <div className="flex items-center gap-x-2">
+                    <div className="flex items-center gap-x-2 transition-all duration-300 ease-linear">
                       <CirclePower size={14} />
                       {open && <span>Sign Out</span>}
                     </div>
