@@ -1,42 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./Sidebar/_index";
-import { useEffect, useState } from "react";
-import { useRouter } from "@tanstack/react-router";
 import LoadingScreen from "@/components/LoadingScreen";
-import { authClient } from "@/lib/auth-client";
+import { useCheckSession } from "@/hooks/useCheckSession";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [session, setSession] = useState<any>(null);
+  const { fetching } = useCheckSession();
 
-  const router = useRouter();
-
-  useEffect(() => {
-    const fetchSession = async () => {
-      try {
-        const result = await authClient.getSession();
-        setSession(result.data?.session);
-      } catch (error: any) {
-        console.error("Error fetching session", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchSession();
-  }, []);
-
-  if (loading) {
+  if (fetching) {
     return <LoadingScreen />;
-  }
-
-  if (!session) {
-    router.navigate({ to: "/auth/accounts/signin" });
-    return null;
   }
 
   return (
