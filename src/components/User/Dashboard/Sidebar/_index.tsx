@@ -42,7 +42,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarContent>
+      <SidebarContent className="bg-white">
         <SidebarGroup className="h-full py-8">
           <SidebarGroupContent className="flex flex-col h-full">
             <SidebarMenu className="flex-1">
