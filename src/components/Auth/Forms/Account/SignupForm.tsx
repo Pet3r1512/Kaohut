@@ -135,7 +135,7 @@ export function SignupForm() {
               },
               pattern: {
                 value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d@$!%*?&#]{8,}$/,
                 message:
                   "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
               },
@@ -159,7 +159,7 @@ export function SignupForm() {
               },
               pattern: {
                 value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d@$!%*?&#]{8,}$/,
                 message:
                   "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
               },
