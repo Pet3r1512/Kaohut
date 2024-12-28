@@ -115,7 +115,7 @@ exports[`should match snapshot 1`] = `
                   id="role"
                   name="role"
                   type="text"
-                  value="Null"
+                  value=""
                 />
               </div>
             </div>
@@ -137,7 +137,7 @@ exports[`should match snapshot 1`] = `
                   id="workplace"
                   name="workplace"
                   type="text"
-                  value="Null"
+                  value=""
                 />
               </div>
             </div>
@@ -368,7 +368,7 @@ exports[`should match snapshot 1`] = `
                 id="role"
                 name="role"
                 type="text"
-                value="Null"
+                value=""
               />
             </div>
           </div>
@@ -390,7 +390,7 @@ exports[`should match snapshot 1`] = `
                 id="workplace"
                 name="workplace"
                 type="text"
-                value="Null"
+                value=""
               />
             </div>
           </div>

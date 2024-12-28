@@ -2,25 +2,40 @@ import { it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { SigninForm } from "./SigninForm";
 import { userEvent } from "@storybook/testing-library";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-it("should rendered correctly in DOM", () => {
-  render(<SigninForm />);
+const queryClient = new QueryClient();
 
-  const SignInFormCompponent = screen.getByTestId("signin-form");
+it("should render correctly in the DOM", () => {
+  render(
+    <QueryClientProvider client={queryClient}>
+      <SigninForm />
+    </QueryClientProvider>,
+  );
 
-  expect(SignInFormCompponent).toBeInTheDocument();
+  const SignInFormComponent = screen.getByTestId("signin-form");
+
+  expect(SignInFormComponent).toBeInTheDocument();
 });
 
 it("should match snapshot", () => {
-  const component = render(<SigninForm />);
+  const component = render(
+    <QueryClientProvider client={queryClient}>
+      <SigninForm />
+    </QueryClientProvider>,
+  );
 
   expect(component).toMatchSnapshot();
 });
 
 it("should render email field", () => {
-  render(<SigninForm />);
+  render(
+    <QueryClientProvider client={queryClient}>
+      <SigninForm />
+    </QueryClientProvider>,
+  );
 
-  const emailLabel = screen.getByLabelText("Email Address");
+  const emailLabel = screen.getByTestId("email-label");
   const emailInput = screen.getByPlaceholderText("youremailaddress@gmail.com");
 
   expect(emailLabel).toBeInTheDocument();
@@ -28,9 +43,13 @@ it("should render email field", () => {
 });
 
 it("should render password fields", async () => {
-  render(<SigninForm />);
+  render(
+    <QueryClientProvider client={queryClient}>
+      <SigninForm />
+    </QueryClientProvider>,
+  );
 
-  const passwordLabel = screen.getByLabelText("Password");
+  const passwordLabel = screen.getByTestId("password-label");
   const passwordInput = screen.getAllByLabelText(/password/i);
 
   expect(passwordLabel).toBeInTheDocument();

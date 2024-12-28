@@ -12,7 +12,8 @@ exports[`should match snapshot 1`] = `
         <h2
           class="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center"
         >
-          Welcome back to 
+          auth.signin-page.subtitle
+           
           <span
             class="text-primary"
           >
@@ -27,9 +28,10 @@ exports[`should match snapshot 1`] = `
           >
             <label
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-testid="email-label"
               for="email"
             >
-              Email Address
+              auth.signin-page.email
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -37,19 +39,21 @@ exports[`should match snapshot 1`] = `
               <input
                 class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
                 id="email"
+                name="email"
                 placeholder="youremailaddress@gmail.com"
                 type="email"
               />
             </div>
           </div>
           <div
-            class="flex flex-col space-y-2 w-full mb-4"
+            class="flex flex-col space-y-2 w-full mb-8"
           >
             <label
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-testid="password-label"
               for="password"
             >
-              Password
+              auth.signin-page.password
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -57,6 +61,7 @@ exports[`should match snapshot 1`] = `
               <input
                 class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
                 id="password"
+                name="password"
                 placeholder="••••••••"
                 type="password"
               />
@@ -66,7 +71,8 @@ exports[`should match snapshot 1`] = `
             class="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
           >
-            Sign In →
+            auth.signin-page.title
+             →
             <span
               class="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-secondary to-transparent"
             />
@@ -83,7 +89,7 @@ exports[`should match snapshot 1`] = `
             <p
               class="font-semibold text-center cursor-default"
             >
-              Or, Sign in with
+              auth.signin-page.option
             </p>
             <button
               class="relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
@@ -121,13 +127,13 @@ exports[`should match snapshot 1`] = `
             <p
               class="text-center font-semibold"
             >
-              Don't have an account?
+              auth.signin-page.end
                
               <a
                 class="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
                 href="/auth/role"
               >
-                Sign Up
+                auth.signin-page.signup
               </a>
             </p>
           </div>
@@ -143,7 +149,8 @@ exports[`should match snapshot 1`] = `
       <h2
         class="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center"
       >
-        Welcome back to 
+        auth.signin-page.subtitle
+         
         <span
           class="text-primary"
         >
@@ -158,9 +165,10 @@ exports[`should match snapshot 1`] = `
         >
           <label
             class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-testid="email-label"
             for="email"
           >
-            Email Address
+            auth.signin-page.email
           </label>
           <div
             class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -168,19 +176,21 @@ exports[`should match snapshot 1`] = `
             <input
               class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
               id="email"
+              name="email"
               placeholder="youremailaddress@gmail.com"
               type="email"
             />
           </div>
         </div>
         <div
-          class="flex flex-col space-y-2 w-full mb-4"
+          class="flex flex-col space-y-2 w-full mb-8"
         >
           <label
             class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-testid="password-label"
             for="password"
           >
-            Password
+            auth.signin-page.password
           </label>
           <div
             class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -188,6 +198,7 @@ exports[`should match snapshot 1`] = `
             <input
               class="flex h-10 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600 disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)] group-hover/input:shadow-none transition duration-400"
               id="password"
+              name="password"
               placeholder="••••••••"
               type="password"
             />
@@ -197,7 +208,8 @@ exports[`should match snapshot 1`] = `
           class="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
         >
-          Sign In →
+          auth.signin-page.title
+           →
           <span
             class="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-secondary to-transparent"
           />
@@ -214,7 +226,7 @@ exports[`should match snapshot 1`] = `
           <p
             class="font-semibold text-center cursor-default"
           >
-            Or, Sign in with
+            auth.signin-page.option
           </p>
           <button
             class="relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
@@ -252,13 +264,13 @@ exports[`should match snapshot 1`] = `
           <p
             class="text-center font-semibold"
           >
-            Don't have an account?
+            auth.signin-page.end
              
             <a
               class="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
               href="/auth/role"
             >
-              Sign Up
+              auth.signin-page.signup
             </a>
           </p>
         </div>

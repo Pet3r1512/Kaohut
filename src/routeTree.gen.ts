@@ -13,6 +13,9 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PlayLobbyImport } from './routes/play/lobby'
+import { Route as DashboardPlayImport } from './routes/dashboard/play'
+import { Route as DashboardAccountImport } from './routes/dashboard/account'
 
 // Create Virtual Routes
 
@@ -49,6 +52,24 @@ const AuthRoleLazyRoute = AuthRoleLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/auth/role.lazy').then((d) => d.Route))
 
+const PlayLobbyRoute = PlayLobbyImport.update({
+  id: '/play/lobby',
+  path: '/play/lobby',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardPlayRoute = DashboardPlayImport.update({
+  id: '/dashboard/play',
+  path: '/dashboard/play',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardAccountRoute = DashboardAccountImport.update({
+  id: '/dashboard/account',
+  path: '/dashboard/account',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AuthAccountsSignupLazyRoute = AuthAccountsSignupLazyImport.update({
   id: '/auth/accounts/signup',
   path: '/auth/accounts/signup',
@@ -74,6 +95,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/account': {
+      id: '/dashboard/account'
+      path: '/dashboard/account'
+      fullPath: '/dashboard/account'
+      preLoaderRoute: typeof DashboardAccountImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/play': {
+      id: '/dashboard/play'
+      path: '/dashboard/play'
+      fullPath: '/dashboard/play'
+      preLoaderRoute: typeof DashboardPlayImport
+      parentRoute: typeof rootRoute
+    }
+    '/play/lobby': {
+      id: '/play/lobby'
+      path: '/play/lobby'
+      fullPath: '/play/lobby'
+      preLoaderRoute: typeof PlayLobbyImport
       parentRoute: typeof rootRoute
     }
     '/auth/role': {
@@ -118,6 +160,9 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/dashboard/account': typeof DashboardAccountRoute
+  '/dashboard/play': typeof DashboardPlayRoute
+  '/play/lobby': typeof PlayLobbyRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
@@ -127,6 +172,9 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/dashboard/account': typeof DashboardAccountRoute
+  '/dashboard/play': typeof DashboardPlayRoute
+  '/play/lobby': typeof PlayLobbyRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
@@ -137,6 +185,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/dashboard/account': typeof DashboardAccountRoute
+  '/dashboard/play': typeof DashboardPlayRoute
+  '/play/lobby': typeof PlayLobbyRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
@@ -148,6 +199,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/dashboard/account'
+    | '/dashboard/play'
+    | '/play/lobby'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
@@ -156,6 +210,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/dashboard/account'
+    | '/dashboard/play'
+    | '/play/lobby'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
@@ -164,6 +221,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/dashboard/account'
+    | '/dashboard/play'
+    | '/play/lobby'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
@@ -174,6 +234,9 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  DashboardAccountRoute: typeof DashboardAccountRoute
+  DashboardPlayRoute: typeof DashboardPlayRoute
+  PlayLobbyRoute: typeof PlayLobbyRoute
   AuthRoleLazyRoute: typeof AuthRoleLazyRoute
   AuthStudentLazyRoute: typeof AuthStudentLazyRoute
   AuthTeacherLazyRoute: typeof AuthTeacherLazyRoute
@@ -183,6 +246,9 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  DashboardAccountRoute: DashboardAccountRoute,
+  DashboardPlayRoute: DashboardPlayRoute,
+  PlayLobbyRoute: PlayLobbyRoute,
   AuthRoleLazyRoute: AuthRoleLazyRoute,
   AuthStudentLazyRoute: AuthStudentLazyRoute,
   AuthTeacherLazyRoute: AuthTeacherLazyRoute,
@@ -201,6 +267,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/dashboard/account",
+        "/dashboard/play",
+        "/play/lobby",
         "/auth/role",
         "/auth/student",
         "/auth/teacher",
@@ -210,6 +279,15 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/dashboard/account": {
+      "filePath": "dashboard/account.tsx"
+    },
+    "/dashboard/play": {
+      "filePath": "dashboard/play.tsx"
+    },
+    "/play/lobby": {
+      "filePath": "play/lobby.tsx"
     },
     "/auth/role": {
       "filePath": "auth/role.lazy.tsx"

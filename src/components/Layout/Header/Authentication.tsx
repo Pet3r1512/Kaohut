@@ -11,8 +11,8 @@ export default function Authentication({
     {
       id: 1,
       name: "Log In",
-      href: "/auth/signin",
-      className: "bg-white",
+      href: "/auth/accounts/signin",
+      className: "bg-white dark:text-white text-dark",
     },
     {
       id: 2,

@@ -6,7 +6,57 @@
   },
   "auth": {
     "signin": "Log In",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "role": {
+      "title": "Choose your account type",
+      "teacher": "Teacher",
+      "student": "Student"
+    },
+    "workplace": {
+      "title": "Choose your workplace",
+      "school": "School",
+      "university": "University",
+      "business": "Bussiness"
+    },
+    "signup-page": {
+      "title": "Create an account",
+      "subtitle": "Welcome to KaoHut",
+      "heading": "Create new account to discover Kaohut's World of knowledge",
+      "name": {
+        "firstname": "First Name",
+        "lastname": "Last Name"
+      },
+      "email": "Email Address",
+      "role": "Role",
+      "workplace": "Workplace",
+      "password": {
+        "password": "Password",
+        "empty": "Password is required",
+        "condition": "Password must be at least 8 characters long",
+        "note": "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character"
+      },
+      "confirm-password": {
+        "confirm": "Confirm Password",
+        "empty": "Your password is not validated"
+      },
+      "option": "Or, Sign up with",
+      "button": {
+        "signup": "Google"
+      },
+      "end": "Already have an account? Sign In"
+    },
+    "signin-page": {
+      "title": "Log In",
+      "subtitle": "Welcome back to",
+      "email": "Email Address",
+      "password": "Password",
+      "option": "Or, Sign in with",
+      "button": {
+        "signin": "Google"
+      },
+      "end": "Don't have an account?",
+      "signup": "Sign Up"
+    }
   },
   "hero": {
     "title": "Engage, Learn, and Have Fun Together with",

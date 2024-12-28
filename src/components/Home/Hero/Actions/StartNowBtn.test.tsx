@@ -42,6 +42,7 @@ describe("Start Now button", () => {
       expect(getComputedStyle(exploreButton).backgroundColor).toBe(
         "rgb(220, 88, 109)",
       );
+
     });
   });
 

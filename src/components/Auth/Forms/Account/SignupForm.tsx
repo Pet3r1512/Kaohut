@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import React, { useEffect, useState } from "react";
 import { cn, UppercaseFirstLetter } from "@/lib/utils";
@@ -7,6 +7,8 @@ import { Input } from "@/components/aceternity/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
+import { useRoleStore } from "@/stores/roles/role";
+import { authClient } from "@/lib/auth-client";
 
 type SignupFormInputs = {
   firstname: string;
@@ -19,67 +21,40 @@ type SignupFormInputs = {
 };
 
 export function SignupForm() {
+  const { getRole, getWorkplace } = useRoleStore();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
   const {
     register,
     handleSubmit,
     // watch,
     setValue,
-    reset,
     formState: { errors },
   } = useForm<SignupFormInputs>();
 
-  const SERVER_URL =
-    import.meta.env.MODE === "development"
-      ? "http://localhost:9999"
-      : "https://blonde-michell-pet3r-22028f0a.koyeb.app";
-
-  const onSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<SignupFormInputs> = async (credential) => {
     setLoading(true);
-    try {
-      const response = await fetch(`${SERVER_URL}/trpc/auth.signUp`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: data.email,
-          password: data.password,
-          name: data.firstname + " " + data.lastname,
-          role: data.role,
-          workplace: data.workplace,
-        }),
-      });
-      if (!response.ok) {
-        const err = await response.json();
-        setError(err.message || "Unknown error");
-        return toast({
-          variant: "destructive",
-          title: "Sign Up Failed",
-          description:
-            err.error.code === -32603 ? "User already exists" : error,
-        });
-      }
+    const { data, error } = await authClient.signUp.email({
+      email: credential.email,
+      password: credential.password,
+      name: `${credential.firstname} ${credential.lastname}`,
+      role: credential.role,
+      workplace: credential.workplace,
+    });
+    setLoading(false);
+    if (error) {
       toast({
-        variant: "success",
-        title: "Sign Up Done",
-        description: "Congratulation for a new user",
+        variant: "destructive",
+        title: "Sign Up Failed",
+        description: error.message,
       });
-      reset();
-    } catch (error) {
-      setError("Network or Server errors");
-    } finally {
-      setLoading(false);
+    } else if (data) {
+      window.location.href = "https://kaohut.pages.dev/auth/accounts/signin/";
     }
   };
 
   useEffect(() => {
-    setValue("role", UppercaseFirstLetter(localStorage.getItem("role")!));
-    setValue(
-      "workplace",
-      UppercaseFirstLetter(localStorage.getItem("workplace")!),
-    );
+    setValue("role", UppercaseFirstLetter(getRole()));
+    setValue("workplace", UppercaseFirstLetter(getWorkplace()));
   }, []);
 
   return (
@@ -130,7 +105,7 @@ export function SignupForm() {
             <Input
               disabled
               id="role"
-              value={UppercaseFirstLetter(localStorage.getItem("role")!)}
+              value={UppercaseFirstLetter(getRole())}
               type="text"
               {...register("role")}
             />
@@ -140,7 +115,7 @@ export function SignupForm() {
             <Input
               disabled
               id="workplace"
-              value={UppercaseFirstLetter(localStorage.getItem("workplace")!)}
+              value={UppercaseFirstLetter(getWorkplace())}
               type="text"
               {...register("workplace")}
             />
@@ -160,7 +135,7 @@ export function SignupForm() {
               },
               pattern: {
                 value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d@$!%*?&#]{8,}$/,
                 message:
                   "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
               },
@@ -184,7 +159,7 @@ export function SignupForm() {
               },
               pattern: {
                 value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d@$!%*?&#]{8,}$/,
                 message:
                   "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
               },
