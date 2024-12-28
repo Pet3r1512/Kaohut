@@ -1,0 +1,90 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Hero section tests > should matches its snapshot 1`] = `
+[
+  <section
+    class="min-h-[calc(100dvh-4rem)] lg:min-h-[calc(100dvh-6rem)] flex flex-col justify-center gap-y-7 lg:flex-row w-full md:items-center py-12 lg:py-0 mt-5 lg:mt-0"
+    data-testid="hero"
+  >
+    <div
+      class="w-full md:w-9/12 lg:w-7/12 flex flex-col gap-y-5 items-center lg:items-start"
+    >
+      <div
+        class="relative flex items-center justify-center w-full group"
+      >
+        <div
+          class="absolute inset-0 pointer-events-none"
+        />
+        <div
+          class="relative z-20 w-full"
+        >
+          <h1
+            class="text-3xl md:text-5xl lg:text-7xl !leading-normal text-center lg:text-left cursor-default font-extrabold text-primary"
+            data-testid="highlighted_title"
+            style="opacity: 0; transform: translateY(20px);"
+          >
+            hero.title
+             
+            <span
+              class="relative inline-block pb-1 px-1 rounded-lg bg-gradient-to-br from-secondary via-primary to-primary-dark text-white"
+              style="background-repeat: no-repeat; background-position: left center; display: inline; background-size: 0% 100%;"
+            >
+              Kaohut!
+            </span>
+          </h1>
+        </div>
+      </div>
+      <p
+        class="md:text-lg lg:text-xl text-center lg:text-left"
+      >
+        hero.subtitle
+      </p>
+      <div
+        class="flex items-center gap-x-5 font-semibold"
+        data-testid="actions-btns"
+      >
+        <a
+          class="px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg flex items-center gap-x-1.5 lg:text-lg bg-primary text-white lg:hover:bg-secondary duration-150 transition-all ease-linear hover:a"
+          data-testid="startnow"
+          href="/"
+        >
+          hero.button.start
+           
+          <svg
+            class="lucide lucide-move-up-right"
+            fill="none"
+            height="12"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="12"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13 5H19V11"
+            />
+            <path
+              d="M19 5L5 19"
+            />
+          </svg>
+        </a>
+        <a
+          class="explore-btn px-3 lg:px-4 py-1.5 lg:py-2 rounded-lg lg:text-lg dark:bg-white/80 bg-white shadow-2xl text-secondary lg:hover:bg-primary lg:hover:text-white transition-all duration-150 ease-linear"
+          data-testid="explore-btn"
+          href="/"
+        >
+          hero.button.explore
+        </a>
+      </div>
+    </div>
+    <img
+      alt=""
+      class="w-full md:w-1/2 lg:w-5/12 h-auto"
+      data-testid="hero-img"
+      src="/images/hero.png"
+    />
+  </section>,
+]
+`;
