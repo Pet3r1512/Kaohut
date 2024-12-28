@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import TeacherPlay from "@/components/Game/Play/TeacherPlay";
 import DashboardLayout from "@/components/User/Dashboard/DashboardLayout";
 import { createFileRoute } from "@tanstack/react-router";
