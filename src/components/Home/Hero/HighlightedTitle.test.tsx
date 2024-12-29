@@ -1,6 +1,15 @@
 import { describe, it } from "vitest";
 import HighlightedTitle from "./HighlightedTitle";
 import { render, screen } from "@testing-library/react";
+import { vi } from "vitest";
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => {
+    return {
+      t: (str: string): string => str,
+    };
+  },
+}));
 
 describe("Highlighted Title tests", () => {
   it("should renders correctly in DOM", async () => {

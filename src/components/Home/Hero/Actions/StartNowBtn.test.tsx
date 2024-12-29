@@ -21,6 +21,14 @@ vi.mock("@tanstack/react-router", () => ({
   ),
 }));
 
+vi.mock("react-i18next", () => ({
+  useTranslation: () => {
+    return {
+      t: (str: string): string => str,
+    };
+  },
+}));
+
 describe("Start Now button", () => {
   it("should rendered in DOM", async () => {
     render(<StartNowBtn />);
@@ -42,7 +50,6 @@ describe("Start Now button", () => {
       expect(getComputedStyle(exploreButton).backgroundColor).toBe(
         "rgb(220, 88, 109)",
       );
-
     });
   });
 

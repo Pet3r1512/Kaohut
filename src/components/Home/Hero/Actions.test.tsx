@@ -20,6 +20,14 @@ vi.mock("@tanstack/react-router", () => ({
   ),
 }));
 
+vi.mock("react-i18next", () => ({
+  useTranslation: () => {
+    return {
+      t: (str: string): string => str,
+    };
+  },
+}));
+
 describe("Action Buttons component tests", () => {
   it("should renders correctly in DOM", () => {
     render(<Actions />);

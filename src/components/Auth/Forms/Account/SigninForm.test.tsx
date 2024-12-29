@@ -3,8 +3,17 @@ import { render, screen } from "@testing-library/react";
 import { SigninForm } from "./SigninForm";
 import { userEvent } from "@storybook/testing-library";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { vi } from "vitest";
 
 const queryClient = new QueryClient();
+
+vi.mock("react-i18next", () => ({
+  useTranslation: () => {
+    return {
+      t: (str: string): string => str,
+    };
+  },
+}));
 
 it("should render correctly in the DOM", () => {
   render(
