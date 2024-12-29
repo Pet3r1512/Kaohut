@@ -22,7 +22,6 @@ export default defineConfig({
         ...coverageConfigDefaults.exclude,
       ],
     },
-
   },
   resolve: {
     alias: {
