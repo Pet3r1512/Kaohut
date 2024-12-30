@@ -19,7 +19,7 @@ export default function DashboardLayout({
       <AppSidebar />
       <main className="p-8 w-full">
         <SidebarTrigger />
-        {children}
+        <section className="lg:py-8">{children}</section>
       </main>
     </SidebarProvider>
   );
