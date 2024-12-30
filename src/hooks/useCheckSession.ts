@@ -15,6 +15,7 @@ export function useCheckSession() {
             setFetching(true)
             try {
                 const result = await authClient.getSession();
+                console.log(result)
                 if (!result.data?.session) {
                     router.navigate({
                         to: "/auth/accounts/signin"
