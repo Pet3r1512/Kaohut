@@ -2,6 +2,7 @@ import { createLazyFileRoute } from "@tanstack/react-router";
 import RoleCard, { RoleCardProps } from "@/components/Auth/Role/RoleCard";
 import { BookOpen, BriefcaseBusiness, School } from "lucide-react";
 import AuthLayout from "@/components/Auth/Layout/AuthLayout";
+import { useTranslation } from "react-i18next";
 
 const accountTypes: RoleCardProps[] = [
   {
@@ -38,10 +39,11 @@ export const Route = createLazyFileRoute("/auth/teacher")({
 });
 
 function RouteComponent() {
+  const { t } = useTranslation();
   return (
     <AuthLayout>
       <h1 className="text-center text-xl md:text-2xl lg:text-3xl font-bold">
-        Choose your workplace
+        {t("auth.workplace.title")}
       </h1>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 w-full">
         {accountTypes.map(

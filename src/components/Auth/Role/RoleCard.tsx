@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useRoleStore } from "@/stores/roles/role";
 import { Link, ReactNode } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 export type RoleCardProps = {
   id: string;
@@ -15,7 +16,8 @@ export type RoleCardProps = {
 
 export default function RoleCard({ props }: { props: RoleCardProps }) {
   const { setRole, setWorkplace } = useRoleStore();
-  const { id, title, bgColor, color, icon, titleHoverBg, href } = props;
+  const { t } = useTranslation();
+  const { id, bgColor, color, icon, titleHoverBg, href } = props;
 
   return (
     <Link
@@ -53,7 +55,11 @@ export default function RoleCard({ props }: { props: RoleCardProps }) {
         <CardContent
           className={`text-center p-4 ${titleHoverBg} rounded-b-lg lg:group-hover:text-white transition-all duration-150 ease-linear flex items-center justify-center`}
         >
-          <CardTitle>{title}</CardTitle>
+          {id === "student" || id === "teacher" ? (
+            <CardTitle>{t(`auth.role.${id}`)}</CardTitle>
+          ) : (
+            <CardTitle>{t(`auth.workplace.${id}`)}</CardTitle>
+          )}
         </CardContent>
       </Card>
     </Link>

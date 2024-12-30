@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 export default function Authentication({
   className,
@@ -7,16 +8,17 @@ export default function Authentication({
   className?: string;
   btnClassName?: string;
 }) {
+  const { t } = useTranslation();
   const auths = [
     {
       id: 1,
-      name: "Log In",
+      name: "auth.signin",
       href: "/auth/accounts/signin",
       className: "bg-white dark:text-white text-dark",
     },
     {
       id: 2,
-      name: "Sign Up",
+      name: "auth.signup",
       href: "/auth/role",
       className: "!bg-primary text-white",
     },
@@ -34,7 +36,7 @@ export default function Authentication({
               btnClassName,
             )}
           >
-            {auth.name}
+            {t(auth.name)}
           </a>
         );
       })}
