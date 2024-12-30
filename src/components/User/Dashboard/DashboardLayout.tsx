@@ -8,11 +8,13 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { fetching } = useCheckSession();
+  const { fetching, data } = useCheckSession();
 
   if (fetching) {
     return <LoadingScreen />;
   }
+
+  console.log(data);
 
   return (
     <SidebarProvider>
