@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Highlighted Title tests > should matches snapshot 1`] = `
+[
+  <h1
+    class="text-3xl md:text-5xl lg:text-7xl !leading-normal text-center lg:text-left cursor-default font-extrabold text-primary"
+    data-testid="highlighted_title"
+    style="opacity: 0; transform: translateY(20px);"
+  >
+    hero.title
+     
+    <span
+      class="relative inline-block pb-1 px-1 rounded-lg bg-gradient-to-br from-secondary via-primary to-primary-dark text-white"
+      style="background-repeat: no-repeat; background-position: left center; display: inline; background-size: 0% 100%;"
+    >
+      Kaohut!
+    </span>
+  </h1>,
+]
+`;
