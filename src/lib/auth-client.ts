@@ -1,9 +1,9 @@
-import { SERVER_URL } from "@/api/constant";
+import { CLIENT_URL } from "@/api/constant";
 import { createAuthClient } from "better-auth/react";
 import { inferAdditionalFields } from "better-auth/client/plugins";
 
 export const authClient = createAuthClient({
-  baseURL: SERVER_URL,
+  baseURL: CLIENT_URL,
   plugins: [
     inferAdditionalFields({
       user: {
@@ -19,6 +19,6 @@ export const authClient = createAuthClient({
     }),
   ],
   emailAndPassword: {
-    emable: true
+    emable: true,
   },
 });
