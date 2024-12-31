@@ -3,6 +3,7 @@ import { AppSidebar } from "./Sidebar/_index";
 import LoadingScreen from "@/components/LoadingScreen";
 import { useRouter } from "@tanstack/react-router";
 import { authClient } from "@/lib/auth-client";
+import { useEffect } from "react";
 
 export default function DashboardLayout({
   children,
@@ -15,6 +16,10 @@ export default function DashboardLayout({
     error, //error object
   } = authClient.useSession();
   const router = useRouter();
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   if (isPending) {
     return <LoadingScreen />;
