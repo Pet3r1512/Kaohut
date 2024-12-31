@@ -18,4 +18,7 @@ export const authClient = createAuthClient({
       },
     }),
   ],
+  emailAndPassword: {
+    emable: true
+  },
 });
