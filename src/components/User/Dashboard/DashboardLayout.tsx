@@ -2,7 +2,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./Sidebar/_index";
 import LoadingScreen from "@/components/LoadingScreen";
 import { useRouter } from "@tanstack/react-router";
-import { authClient } from "@/lib/auth-client";
+import { createAuthClient } from "better-auth/react";
+const { useSession } = createAuthClient();
 import { useEffect } from "react";
 
 export default function DashboardLayout({
@@ -14,11 +15,11 @@ export default function DashboardLayout({
     data: session,
     isPending, //loading state
     error, //error object
-  } = authClient.useSession();
+  } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    console.log(session);
+    console.log(session?.session);
   }, [session]);
 
   if (isPending) {
