@@ -1,6 +1,8 @@
 import { SERVER_URL } from "@/api/constant";
 import { createAuthClient } from "better-auth/react";
 import { inferAdditionalFields } from "better-auth/client/plugins";
+import { customSessionClient } from "better-auth/client/plugins";
+import { auth } from "./auth";
 
 export const { useSession, signIn, signOut, signUp, getSession } =
   createAuthClient({
@@ -18,6 +20,7 @@ export const { useSession, signIn, signOut, signUp, getSession } =
           },
         },
       }),
+      customSessionClient<typeof auth>()
     ],
     emailAndPassword: {
       emable: true,
