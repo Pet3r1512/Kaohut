@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { authClient } from "@/lib/auth-client";
 import { useUserStore } from "@/stores/user";
 import { useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { createAuthClient } from "better-auth/react";
+import { getSession } from "@/lib/auth-client";
 const { useSession } = createAuthClient();
 
 export function useCheckSession() {
@@ -18,7 +18,7 @@ export function useCheckSession() {
     const fetchSession = async () => {
       setFetching(true);
       try {
-        const result = await authClient.getSession();
+        const result = await getSession();
         console.log(result);
         if (!result.data?.session) {
           router.navigate({
