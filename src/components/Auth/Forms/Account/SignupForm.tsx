@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
 import { useRoleStore } from "@/stores/roles/role";
+import { useTranslation } from "react-i18next";
 import { signUp } from "@/lib/auth-client";
 
 type SignupFormInputs = {
@@ -22,6 +23,7 @@ type SignupFormInputs = {
 
 export function SignupForm() {
   const { getRole, getWorkplace } = useRoleStore();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState<boolean>(false);
   const {
     register,
