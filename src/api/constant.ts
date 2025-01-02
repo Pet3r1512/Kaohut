@@ -6,7 +6,7 @@ export const SERVER_URL =
 export const CLIENT_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5173"
-    : "https://kaohut.pages.dev"
+    : "https://kaohut.pages.dev";
 
 export const CALLBACK_URL =
   import.meta.env.MODE === "development"

@@ -1,10 +1,11 @@
 import { SERVER_URL } from "@/api/constant";
 import { createAuthClient } from "better-auth/react";
 import { inferAdditionalFields } from "better-auth/client/plugins";
+import { customSessionClient } from "better-auth/client/plugins";
+import { auth } from "./auth";
 
 export const authClient = createAuthClient({
   baseURL: SERVER_URL,
-  basePath: "/api/auth",
   plugins: [
     inferAdditionalFields({
       user: {
@@ -18,9 +19,9 @@ export const authClient = createAuthClient({
         },
       },
     }),
+    customSessionClient<typeof auth>(),
   ],
-  emailAndPassword: {
-    emable: true,
-    autoSignin: true,
+  advanced: {
+    useSecureCookies: true,
   },
 });

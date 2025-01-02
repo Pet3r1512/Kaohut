@@ -1,17 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./Sidebar/_index";
-import { authClient } from "@/lib/auth-client";
+import LoadingScreen from "@/components/LoadingScreen";
+import { useCheckSession } from "@/hooks/useCheckSession";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { data: session, isPending } = authClient.useSession();
+  const { fetching } = useCheckSession();
 
-  if (!isPending) {
-    console.log(session);
+  if (fetching) {
+    return <LoadingScreen />;
   }
 
   return (

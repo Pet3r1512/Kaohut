@@ -9,6 +9,8 @@ import { toast } from "@/hooks/useToast";
 import { useRoleStore } from "@/stores/roles/role";
 import { useTranslation } from "react-i18next";
 import { authClient } from "@/lib/auth-client";
+import { CLIENT_URL } from "@/api/constant";
+import { useRouter } from "@tanstack/react-router";
 
 type SignupFormInputs = {
   firstname: string;
@@ -31,6 +33,7 @@ export function SignupForm() {
     formState: { errors },
   } = useForm<SignupFormInputs>();
   const { t } = useTranslation();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<SignupFormInputs> = async (credential) => {
     setLoading(true);
@@ -49,7 +52,9 @@ export function SignupForm() {
         description: error.message,
       });
     } else if (data) {
-      window.location.href = "https://kaohut.pages.dev/auth/accounts/signin/";
+      router.navigate({
+        to: "/dashboard/play",
+      });
     }
   };
 
