@@ -43,6 +43,5 @@ export function useCheckSession() {
     };
     fetchSession();
   }, []);
-
   return { fetching };
 }
