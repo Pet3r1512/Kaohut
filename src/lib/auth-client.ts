@@ -21,6 +21,6 @@ export const { useSession, signIn, signOut, signUp, getSession } =
     ],
     emailAndPassword: {
       emable: true,
-      autoSignin: true
+      autoSignin: true,
     },
   });
