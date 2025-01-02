@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-"use client";
 import React, { useEffect, useState } from "react";
 import { cn, UppercaseFirstLetter } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
@@ -8,7 +7,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
 import { useRoleStore } from "@/stores/roles/role";
-import { authClient } from "@/lib/auth-client";
+import { signUp } from "@/lib/auth-client";
+import { useTranslation } from "react-i18next";
 
 type SignupFormInputs = {
   firstname: string;
@@ -30,10 +30,11 @@ export function SignupForm() {
     setValue,
     formState: { errors },
   } = useForm<SignupFormInputs>();
+  const { t } = useTranslation();
 
   const onSubmit: SubmitHandler<SignupFormInputs> = async (credential) => {
     setLoading(true);
-    const { data, error } = await authClient.signUp.email({
+    const { data, error } = await signUp.email({
       email: credential.email,
       password: credential.password,
       name: `${credential.firstname} ${credential.lastname}`,
@@ -63,16 +64,18 @@ export function SignupForm() {
       className="px-5 pt-8 max-w-md w-full mx-auto rounded-lg md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black"
     >
       <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center">
-        Welcome to <span className="text-primary">KaoHut</span>
+        {t("auth.signup-page.title")}{" "}
+        <span className="text-primary">KaoHut</span>
       </h2>
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center">
-        Create new account to discover Kaohut's World of knowledge
+        {t("auth.signup-page.heading")}
       </p>
-
       <form className="my-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
-            <Label htmlFor="firstname">First Name</Label>
+            <Label data-testid="First Name" htmlFor="firstname">
+              {t("auth.signup-page.name.firstname")}
+            </Label>
             <Input
               id="firstname"
               placeholder="John"
@@ -81,7 +84,9 @@ export function SignupForm() {
             />
           </LabelInputContainer>
           <LabelInputContainer>
-            <Label htmlFor="lastname">Last Name</Label>
+            <Label data-testid="Last Name" htmlFor="lastname">
+              {t("auth.signup-page.name.lastname")}
+            </Label>
             <Input
               id="lastname"
               placeholder="Dean"
@@ -91,7 +96,9 @@ export function SignupForm() {
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
+          <Label data-testid="Email Address" htmlFor="email">
+            {t("auth.signup-page.email")}
+          </Label>
           <Input
             id="email"
             placeholder="youremailaddress@gmail.com"
@@ -101,7 +108,7 @@ export function SignupForm() {
         </LabelInputContainer>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="role">Role</Label>
+            <Label htmlFor="role">{t("auth.signup-page.role")}</Label>
             <Input
               disabled
               id="role"
@@ -111,7 +118,7 @@ export function SignupForm() {
             />
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="role">Workplace</Label>
+            <Label htmlFor="role">{t("auth.signup-page.workplace")}</Label>
             <Input
               disabled
               id="workplace"
@@ -122,22 +129,26 @@ export function SignupForm() {
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="password">Password</Label>
+          <Label data-testid="Password" htmlFor="password">
+            {t("auth.signup-page.password.password")}
+          </Label>
           <Input
             id="password"
             placeholder="••••••••"
             type="password"
             {...register("password", {
-              required: "Password is required",
+              required: {
+                value: true,
+                message: t("auth.signup-page.password.empty"),
+              },
               minLength: {
                 value: 8,
-                message: "Password must be at least 8 characters long",
+                message: t("auth.signup-page.password.condition"),
               },
               pattern: {
                 value:
                   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d@$!%*?&#]{8,}$/,
-                message:
-                  "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
+                message: t("auth.signup-page.password.note"),
               },
             })}
           />
@@ -146,7 +157,9 @@ export function SignupForm() {
           )}
         </LabelInputContainer>
         <LabelInputContainer className="mb-8">
-          <Label htmlFor="confirmpassword">Confirm Password</Label>
+          <Label data-testid="Confirm Password" htmlFor="confirmpassword">
+            {t("auth.signup-page.confirm-password.confirm")}
+          </Label>
           <Input
             id="confirmpassword"
             placeholder="••••••••"
@@ -167,7 +180,7 @@ export function SignupForm() {
           />
           {errors.password && (
             <span className="text-red-400">
-              {"Your password is not validated"}
+              {t("auth.signup-page.confirm-password.empty")}
             </span>
           )}
         </LabelInputContainer>
@@ -180,7 +193,7 @@ export function SignupForm() {
             <LoaderCircle className="animate-spin mx-auto" />
           ) : (
             <>
-              Sign up &rarr;
+              {t("auth.signup")} &rarr;
               <BottomGradient />
             </>
           )}
@@ -189,7 +202,9 @@ export function SignupForm() {
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
         <div className="flex flex-col space-y-4">
-          <p className="text-center cursor-default text-sm">Or, Sign up with</p>
+          <p className="text-center cursor-default text-sm">
+            {t("auth.signup-page.option")}
+          </p>
           <button
             className="relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
@@ -211,7 +226,7 @@ export function SignupForm() {
             <BottomGradient />
           </button>
           <p className="text-center font-semibold">
-            Already have an account?{" "}
+            {t("auth.signup-page.end")}{" "}
             <a
               href="/auth/accounts/signin"
               className="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"

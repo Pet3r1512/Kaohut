@@ -19,7 +19,8 @@ export const authClient = createAuthClient({
       },
     }),
   ],
-  advanced: {
-    useSecureCookies: true,
+  emailAndPassword: {
+    emable: true,
+    autoSignin: true,
   },
 });
