@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/aceternity/Label";
 import { Input } from "@/components/aceternity/Input";
-import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  // SubmitHandler,
+  useForm,
+} from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
 import { CALLBACK_URL } from "@/api/constant";
@@ -16,7 +19,11 @@ type SigninFormInputs = {
 
 export function SigninForm() {
   const [loading, setLoading] = useState<boolean>(false);
-  const { handleSubmit, register, getValues } = useForm<SigninFormInputs>();
+  const {
+    // handleSubmit,
+    register,
+    getValues,
+  } = useForm<SigninFormInputs>();
   const { t } = useTranslation();
   // const onSubmit: SubmitHandler<SigninFormInputs> = async (credentials) => {
   //   await signIn.email(
