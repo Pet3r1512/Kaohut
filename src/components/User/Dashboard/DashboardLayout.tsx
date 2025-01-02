@@ -10,7 +10,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [currSession, setCurrSession] = useState<any>();
-  const session = useSession();
+  const { data: session } = useSession();
   useEffect(() => {
     const fetchSession = async () => {
       console.log(session);
