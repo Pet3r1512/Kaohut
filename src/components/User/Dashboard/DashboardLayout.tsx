@@ -2,23 +2,17 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./Sidebar/_index";
 import { useSession } from "@/lib/auth-client";
-import { useEffect, useState } from "react";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [currSession, setCurrSession] = useState<any>();
-  const { data: session } = useSession();
-  useEffect(() => {
-    const fetchSession = async () => {
-      console.log(session);
-      setCurrSession(session);
-      console.log(currSession);
-    };
-    fetchSession();
-  }, [session, currSession]);
+  const { data: session, isPending } = useSession();
+
+  if (!isPending) {
+    console.log(session);
+  }
 
   return (
     <SidebarProvider>
