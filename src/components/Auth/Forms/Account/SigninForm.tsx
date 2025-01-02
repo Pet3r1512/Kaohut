@@ -7,7 +7,7 @@ import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
 import { CALLBACK_URL } from "@/api/constant";
 import { useTranslation } from "react-i18next";
-import { signIn } from "@/lib/auth-client";
+import { getSession, signIn } from "@/lib/auth-client";
 
 type SigninFormInputs = {
   email: string;
@@ -30,6 +30,7 @@ export function SigninForm() {
           setLoading(true);
         },
         onSuccess: () => {
+          console.log(getSession());
           setLoading(false);
         },
         onError: (ctx) => {
