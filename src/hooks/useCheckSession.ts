@@ -4,7 +4,7 @@ import { useUserStore } from "@/stores/user";
 import { useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { createAuthClient } from "better-auth/react";
-import { getSession } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 const { useSession } = createAuthClient();
 
 export function useCheckSession() {
@@ -18,7 +18,7 @@ export function useCheckSession() {
     const fetchSession = async () => {
       setFetching(true);
       try {
-        const result = await getSession();
+        const result = await authClient.getSession();
         console.log(result);
         if (!result.data?.session) {
           router.navigate({

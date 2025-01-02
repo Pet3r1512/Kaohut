@@ -3,7 +3,7 @@
 import { SigninForm } from "@/components/Auth/Forms/Account/SigninForm";
 import AuthLayout from "@/components/Auth/Layout/AuthLayout";
 import LoadingScreen from "@/components/LoadingScreen";
-import { getSession } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { createLazyFileRoute, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +21,7 @@ function RouteComponent() {
     const fetchSession = async () => {
       setFetching(true);
       try {
-        const result = await getSession();
+        const result = await authClient.getSession();
         if (result.data?.session) {
           router.navigate({
             to: "/dashboard/play",

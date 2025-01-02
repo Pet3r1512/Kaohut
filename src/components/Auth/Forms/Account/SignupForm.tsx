@@ -7,8 +7,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
 import { useRoleStore } from "@/stores/roles/role";
-import { signUp } from "@/lib/auth-client";
 import { useTranslation } from "react-i18next";
+import { authClient } from "@/lib/auth-client";
 
 type SignupFormInputs = {
   firstname: string;
@@ -34,7 +34,7 @@ export function SignupForm() {
 
   const onSubmit: SubmitHandler<SignupFormInputs> = async (credential) => {
     setLoading(true);
-    const { data, error } = await signUp.email({
+    const { data, error } = await authClient.signUp.email({
       email: credential.email,
       password: credential.password,
       name: `${credential.firstname} ${credential.lastname}`,

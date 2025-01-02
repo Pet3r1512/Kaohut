@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/sidebar";
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
-import { signOut } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
+import { authClient } from "@/lib/auth-client";
 
 // Menu items.
 const items = [
@@ -68,7 +68,7 @@ export function AppSidebar() {
                 <SidebarMenuButton
                   onClick={async () => {
                     setLoading(true);
-                    await signOut();
+                    await authClient.signOut();
                     setLoading(false);
                     router.navigate({ to: "/auth/accounts/signin" });
                   }}
