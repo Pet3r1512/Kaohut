@@ -7,7 +7,7 @@ import { LoaderCircle } from "lucide-react";
 import { toast } from "@/hooks/useToast";
 import { CALLBACK_URL } from "@/api/constant";
 import { useTranslation } from "react-i18next";
-import { signIn } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 type SigninFormInputs = {
   email: string;
@@ -19,7 +19,7 @@ export function SigninForm() {
   const { handleSubmit, register } = useForm<SigninFormInputs>();
   const { t } = useTranslation();
   const onSubmit: SubmitHandler<SigninFormInputs> = async (credentials) => {
-    await signIn.email(
+    await authClient.signIn.email(
       {
         email: credentials.email,
         password: credentials.password,
