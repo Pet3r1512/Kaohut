@@ -18,9 +18,9 @@
       "university": "Đại học",
       "business": "Kinh doanh"
     },
-    "sigup-page": {
+    "signup-page": {
       "title": "Tạo tài khoản",
-      "subtitle": "Chào mừng đến với KaoHut",
+      "subtitle": "Chào mừng đến với",
       "heading": "Tạo tài khoản mới để khám phá Thế giới tri thức của KaoHut",
       "name": {
         "firstname": "Tên",
