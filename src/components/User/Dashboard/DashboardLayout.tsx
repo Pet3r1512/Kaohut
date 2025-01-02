@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./Sidebar/_index";
-import { getSession } from "@/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 import { useEffect, useState } from "react";
 
 export default function DashboardLayout({
@@ -10,15 +10,15 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [currSession, setCurrSession] = useState<any>();
+  const session = useSession();
   useEffect(() => {
     const fetchSession = async () => {
-      const session = await getSession();
       console.log(session);
       setCurrSession(session);
       console.log(currSession);
     };
     fetchSession();
-  }, [currSession]);
+  }, [session, currSession]);
 
   return (
     <SidebarProvider>
