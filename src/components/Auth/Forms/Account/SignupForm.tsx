@@ -9,7 +9,6 @@ import { toast } from "@/hooks/useToast";
 import { useRoleStore } from "@/stores/roles/role";
 import { useTranslation } from "react-i18next";
 import { authClient } from "@/lib/auth-client";
-import { CLIENT_URL } from "@/api/constant";
 import { useRouter } from "@tanstack/react-router";
 
 type SignupFormInputs = {
