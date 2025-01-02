@@ -4,6 +4,7 @@ import { inferAdditionalFields } from "better-auth/client/plugins";
 
 export const authClient = createAuthClient({
   baseURL: SERVER_URL,
+  basePath: "/api/auth",
   plugins: [
     inferAdditionalFields({
       user: {

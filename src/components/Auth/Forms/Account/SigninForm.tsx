@@ -36,9 +36,10 @@ export function SigninForm() {
         onError: (ctx) => {
           toast({
             variant: "destructive",
-            title: "Sign Up Failed",
+            title: "Sign In Failed",
             description: ctx.error.message,
           });
+          setLoading(false);
         },
       },
     );
