@@ -1,18 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./Sidebar/_index";
-import { useCheckSession } from "@/hooks/useCheckSession";
-import LoadingScreen from "@/components/LoadingScreen";
+import { getSession } from "@/lib/auth-client";
+import { useEffect, useState } from "react";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { fetching } = useCheckSession();
-
-  if (fetching) {
-    return <LoadingScreen />;
-  }
+  const [currSession, setCurrSession] = useState<any>();
+  useEffect(() => {
+    const fetchSession = async () => {
+      const session = await getSession();
+      console.log(session);
+      setCurrSession(session);
+      console.log(currSession);
+    };
+    fetchSession();
+  }, [currSession]);
 
   return (
     <SidebarProvider>
