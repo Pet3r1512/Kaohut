@@ -4,6 +4,7 @@ import AuthLayout from "@/components/Auth/Layout/AuthLayout";
 import { useRoleStore } from "@/stores/roles/role";
 // import { useRoleStore } from "@/stores/roles/role";
 import { createLazyFileRoute, useRouter } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
 export const Route = createLazyFileRoute("/auth/accounts/signup")({
@@ -13,6 +14,7 @@ export const Route = createLazyFileRoute("/auth/accounts/signup")({
 function RouteComponent() {
   const { getRole, getWorkplace } = useRoleStore();
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (getRole() === "" && getWorkplace() === "") {
@@ -27,7 +29,7 @@ function RouteComponent() {
   return (
     <AuthLayout>
       <h1 className="text-center text-xl md:text-2xl lg:text-3xl font-bold">
-        Create an account
+        {t("auth.signup-page.title")}
       </h1>
       <SignupForm />
     </AuthLayout>
