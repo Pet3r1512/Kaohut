@@ -1,5 +1,5 @@
 import { useSidebar } from "@/components/ui/sidebar";
-import { authClient } from "@/lib/auth-client";
+import { signOut } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { useRouter } from "@tanstack/react-router";
 import { CirclePower, LoaderCircle } from "lucide-react";
@@ -14,7 +14,7 @@ export default function SignOutButton() {
     <button
       onClick={async () => {
         setLoading(true);
-        await authClient.signOut();
+        await signOut();
         setLoading(false);
         router.navigate({ to: "/auth/accounts/signin" });
       }}
