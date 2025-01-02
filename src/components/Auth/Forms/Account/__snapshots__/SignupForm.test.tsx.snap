@@ -12,7 +12,8 @@ exports[`should match snapshot 1`] = `
         <h2
           class="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center"
         >
-          Welcome to 
+          auth.signup-page.title
+           
           <span
             class="text-primary"
           >
@@ -22,7 +23,7 @@ exports[`should match snapshot 1`] = `
         <p
           class="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center"
         >
-          Create new account to discover Kaohut's World of knowledge
+          auth.signup-page.heading
         </p>
         <form
           class="my-8"
@@ -35,9 +36,10 @@ exports[`should match snapshot 1`] = `
             >
               <label
                 class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                data-testid="First Name"
                 for="firstname"
               >
-                First Name
+                auth.signup-page.name.firstname
               </label>
               <div
                 class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -56,9 +58,10 @@ exports[`should match snapshot 1`] = `
             >
               <label
                 class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                data-testid="Last Name"
                 for="lastname"
               >
-                Last Name
+                auth.signup-page.name.lastname
               </label>
               <div
                 class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -78,9 +81,10 @@ exports[`should match snapshot 1`] = `
           >
             <label
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-testid="Email Address"
               for="email"
             >
-              Email Address
+              auth.signup-page.email
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -104,7 +108,7 @@ exports[`should match snapshot 1`] = `
                 class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 for="role"
               >
-                Role
+                auth.signup-page.role
               </label>
               <div
                 class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -126,7 +130,7 @@ exports[`should match snapshot 1`] = `
                 class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 for="role"
               >
-                Workplace
+                auth.signup-page.workplace
               </label>
               <div
                 class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -147,9 +151,10 @@ exports[`should match snapshot 1`] = `
           >
             <label
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-testid="Password"
               for="password"
             >
-              Password
+              auth.signup-page.password.password
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -168,9 +173,10 @@ exports[`should match snapshot 1`] = `
           >
             <label
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-testid="Confirm Password"
               for="confirmpassword"
             >
-              Confirm Password
+              auth.signup-page.confirm-password.confirm
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -188,7 +194,8 @@ exports[`should match snapshot 1`] = `
             class="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
           >
-            Sign up →
+            auth.signup
+             →
             <span
               class="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-secondary to-transparent"
             />
@@ -205,7 +212,7 @@ exports[`should match snapshot 1`] = `
             <p
               class="text-center cursor-default text-sm"
             >
-              Or, Sign up with
+              auth.signup-page.option
             </p>
             <button
               class="relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
@@ -243,7 +250,7 @@ exports[`should match snapshot 1`] = `
             <p
               class="text-center font-semibold"
             >
-              Already have an account?
+              auth.signup-page.end
                
               <a
                 class="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"
@@ -265,7 +272,8 @@ exports[`should match snapshot 1`] = `
       <h2
         class="font-bold text-xl text-neutral-800 dark:text-neutral-200 text-center"
       >
-        Welcome to 
+        auth.signup-page.title
+         
         <span
           class="text-primary"
         >
@@ -275,7 +283,7 @@ exports[`should match snapshot 1`] = `
       <p
         class="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300 text-center"
       >
-        Create new account to discover Kaohut's World of knowledge
+        auth.signup-page.heading
       </p>
       <form
         class="my-8"
@@ -288,9 +296,10 @@ exports[`should match snapshot 1`] = `
           >
             <label
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-testid="First Name"
               for="firstname"
             >
-              First Name
+              auth.signup-page.name.firstname
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -309,9 +318,10 @@ exports[`should match snapshot 1`] = `
           >
             <label
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              data-testid="Last Name"
               for="lastname"
             >
-              Last Name
+              auth.signup-page.name.lastname
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -331,9 +341,10 @@ exports[`should match snapshot 1`] = `
         >
           <label
             class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-testid="Email Address"
             for="email"
           >
-            Email Address
+            auth.signup-page.email
           </label>
           <div
             class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -357,7 +368,7 @@ exports[`should match snapshot 1`] = `
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               for="role"
             >
-              Role
+              auth.signup-page.role
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -379,7 +390,7 @@ exports[`should match snapshot 1`] = `
               class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               for="role"
             >
-              Workplace
+              auth.signup-page.workplace
             </label>
             <div
               class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -400,9 +411,10 @@ exports[`should match snapshot 1`] = `
         >
           <label
             class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-testid="Password"
             for="password"
           >
-            Password
+            auth.signup-page.password.password
           </label>
           <div
             class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -421,9 +433,10 @@ exports[`should match snapshot 1`] = `
         >
           <label
             class="text-sm font-medium text-black dark:text-white leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            data-testid="Confirm Password"
             for="confirmpassword"
           >
-            Confirm Password
+            auth.signup-page.confirm-password.confirm
           </label>
           <div
             class="p-[2px] rounded-lg transition duration-300 group/input"
@@ -441,7 +454,8 @@ exports[`should match snapshot 1`] = `
           class="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
         >
-          Sign up →
+          auth.signup
+           →
           <span
             class="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-secondary to-transparent"
           />
@@ -458,7 +472,7 @@ exports[`should match snapshot 1`] = `
           <p
             class="text-center cursor-default text-sm"
           >
-            Or, Sign up with
+            auth.signup-page.option
           </p>
           <button
             class="relative group/btn flex space-x-2 items-center justify-center px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
@@ -496,7 +510,7 @@ exports[`should match snapshot 1`] = `
           <p
             class="text-center font-semibold"
           >
-            Already have an account?
+            auth.signup-page.end
              
             <a
               class="underline text-primary lg:hover:text-secondary transition-colors duration-150 ease-linear"

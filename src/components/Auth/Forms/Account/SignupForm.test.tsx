@@ -34,13 +34,13 @@ it("should render first name and last name fields", () => {
     </QueryClientProvider>,
   );
 
-  const firstnameLabel = screen.getByLabelText("First Name");
+  const firstnameLabel = screen.getByTestId("First Name");
   const firstnameInput = screen.getByPlaceholderText("John");
 
   expect(firstnameLabel).toBeInTheDocument();
   expect(firstnameInput).toBeInTheDocument();
 
-  const lastnameLabel = screen.getByLabelText("Last Name");
+  const lastnameLabel = screen.getByTestId("Last Name");
   const lastnameInput = screen.getByPlaceholderText("Dean");
 
   expect(lastnameLabel).toBeInTheDocument();
@@ -54,7 +54,7 @@ it("should render email field", () => {
     </QueryClientProvider>,
   );
 
-  const emailLabel = screen.getByLabelText("Email Address");
+  const emailLabel = screen.getByTestId("Email Address");
   const emailInput = screen.getByPlaceholderText("youremailaddress@gmail.com");
 
   expect(emailLabel).toBeInTheDocument();
@@ -68,7 +68,7 @@ it("should render password and confirm password fields", async () => {
     </QueryClientProvider>,
   );
 
-  const passwordLabel = screen.getByLabelText("Password");
+  const passwordLabel = screen.getByTestId("Password");
   const passwordInput = screen.getAllByLabelText(/password/i);
 
   expect(passwordLabel).toBeInTheDocument();
@@ -76,7 +76,7 @@ it("should render password and confirm password fields", async () => {
   await userEvent.type(passwordInput[0], "mysecurepassword");
   expect(passwordInput[0]).toHaveValue("mysecurepassword");
 
-  const confirmPasswordLabel = screen.getByLabelText("Confirm Password");
+  const confirmPasswordLabel = screen.getByTestId("Confirm Password");
 
   expect(confirmPasswordLabel).toBeInTheDocument();
 });
