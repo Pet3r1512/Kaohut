@@ -16,32 +16,32 @@ type SigninFormInputs = {
 
 export function SigninForm() {
   const [loading, setLoading] = useState<boolean>(false);
-  const { handleSubmit, register } = useForm<SigninFormInputs>();
+  const { handleSubmit, register, getValues } = useForm<SigninFormInputs>();
   const { t } = useTranslation();
-  const onSubmit: SubmitHandler<SigninFormInputs> = async (credentials) => {
-    await signIn.email(
-      {
-        email: credentials.email,
-        password: credentials.password,
-        callbackURL: CALLBACK_URL,
-      },
-      {
-        onRequest: () => {
-          setLoading(true);
-        },
-        onSuccess: () => {
-          setLoading(false);
-        },
-        onError: (ctx) => {
-          toast({
-            variant: "destructive",
-            title: "Sign Up Failed",
-            description: ctx.error.message,
-          });
-        },
-      },
-    );
-  };
+  // const onSubmit: SubmitHandler<SigninFormInputs> = async (credentials) => {
+  //   await signIn.email(
+  //     {
+  //       email: credentials.email,
+  //       password: credentials.password,
+  //       callbackURL: CALLBACK_URL,
+  //     },
+  //     {
+  //       onRequest: () => {
+  //         setLoading(true);
+  //       },
+  //       onSuccess: () => {
+  //         setLoading(false);
+  //       },
+  //       onError: (ctx) => {
+  //         toast({
+  //           variant: "destructive",
+  //           title: "Sign Up Failed",
+  //           description: ctx.error.message,
+  //         });
+  //       },
+  //     },
+  //   );
+  // };
 
   return (
     <div
@@ -52,7 +52,7 @@ export function SigninForm() {
         {t("auth.signin-page.subtitle")}{" "}
         <span className="text-primary">KaoHut</span>
       </h2>
-      <form className="my-8" onSubmit={handleSubmit(onSubmit)}>
+      <form className="my-8">
         <LabelInputContainer className="mb-4">
           <Label data-testid="email-label" htmlFor="email">
             {t("auth.signin-page.email")}
@@ -79,6 +79,31 @@ export function SigninForm() {
         <button
           className="bg-gradient-to-br relative group/btn from-primary to-secondary block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
           type="submit"
+          onClick={async () => {
+            await signIn.email(
+              {
+                email: getValues("email"),
+                password: getValues("password"),
+                callbackURL: CALLBACK_URL,
+              },
+              {
+                onRequest: () => {
+                  setLoading(true);
+                },
+                onSuccess: () => {
+                  setLoading(false);
+                },
+                onError: (ctx) => {
+                  toast({
+                    variant: "destructive",
+                    title: "Sign Up Failed",
+                    description: ctx.error.message,
+                  });
+                  setLoading(false);
+                },
+              },
+            );
+          }}
         >
           {loading ? (
             <LoaderCircle className="animate-spin mx-auto" />
