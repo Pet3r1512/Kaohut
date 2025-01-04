@@ -8,6 +8,7 @@ import { toast } from "@/hooks/useToast";
 import { CALLBACK_URL } from "@/api/constant";
 import { useTranslation } from "react-i18next";
 import { authClient } from "@/lib/auth-client";
+import { getSession } from "@/api/user/getSession";
 
 type SigninFormInputs = {
   email: string;
@@ -29,7 +30,13 @@ export function SigninForm() {
         onRequest: () => {
           setLoading(true);
         },
-        onSuccess: () => {
+        onSuccess: async () => {
+          const session = await getSession({ email: credentials.email });
+          localStorage.setItem("token", session.session.result.data.token);
+          localStorage.setItem(
+            "expired",
+            session.session.result.data.expiresAt,
+          );
           setLoading(false);
         },
         onError: (ctx) => {
