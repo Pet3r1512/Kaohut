@@ -14,7 +14,7 @@ import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Cookies from "universal-cookie";
-import signOut from "@/api/user/signout";
+import { signOut } from "@/api/user/auth/signOut";
 
 // Menu items.
 const items = [

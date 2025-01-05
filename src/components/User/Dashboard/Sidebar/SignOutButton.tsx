@@ -1,4 +1,4 @@
-import signOut from "@/api/user/signout";
+import { signOut } from "@/api/user/auth/signOut";
 import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { useRouter } from "@tanstack/react-router";
