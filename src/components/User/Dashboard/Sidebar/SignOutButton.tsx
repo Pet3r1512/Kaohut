@@ -4,16 +4,19 @@ import { cn } from "@/lib/utils";
 import { useRouter } from "@tanstack/react-router";
 import { CirclePower, LoaderCircle } from "lucide-react";
 import { useState } from "react";
+import Cookies from "universal-cookie";
 
 export default function SignOutButton() {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const { open } = useSidebar();
+  const cookies = new Cookies(null, { path: "/" });
 
   return (
     <button
       onClick={async () => {
         setLoading(true);
+        cookies.remove("token");
         await authClient.signOut();
         setLoading(false);
         router.navigate({ to: "/auth/accounts/signin" });

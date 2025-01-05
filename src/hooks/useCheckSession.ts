@@ -1,40 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useUserStore } from "@/stores/user";
+// import { useUserStore } from "@/stores/user";
 import { useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { createAuthClient } from "better-auth/react";
-import { authClient } from "@/lib/auth-client";
-const { useSession } = createAuthClient();
+import Cookies from "universal-cookie";
 
 export function useCheckSession() {
   const [fetching, setFetching] = useState<boolean>(false);
-  const { setUser } = useUserStore();
+  // const { setUser } = useUserStore();
   const router = useRouter();
-  const { data: session } = useSession();
+  const cookies = new Cookies(null, { path: "/" });
 
   useEffect(() => {
-    console.log(session);
     const fetchSession = async () => {
       setFetching(true);
       try {
-        const result = await authClient.getSession();
-        console.log(result);
-        if (!result.data?.session) {
+        const token = cookies.get("token");
+        if (!token) {
           router.navigate({
             to: "/auth/accounts/signin",
           });
         }
         // store current user info to zustand store
-        if (result.data?.user) {
-          const user = result.data?.user;
-          setUser({
-            name: user.name,
-            email: user.email,
-            role: user.role,
-            workplace: user.workplace,
-          });
-        }
+        // if (result.data?.user) {
+        //   const user = result.data?.user;
+        //   setUser({
+        //     name: user.name,
+        //     email: user.email,
+        //     role: user.role,
+        //     workplace: user.workplace,
+        //   });
+        // }
       } catch (error: any) {
         console.error("Error fetching session", error);
       } finally {
