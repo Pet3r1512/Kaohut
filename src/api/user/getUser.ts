@@ -1,12 +1,12 @@
 import { QUERY_URL } from "../constant";
 
-export async function getUser(userId: string) {
+export async function getUserByEmail(email: string) {
     const response = await fetch(`${QUERY_URL}/user.getUser`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ userId: userId })
+        body: JSON.stringify({ email: email })
     })
 
     if (!response.ok) {
