@@ -24,11 +24,11 @@ export default function AccountInfo() {
         role: user.role,
         workplace: user.workplace,
       });
-      setInitialized(true); // Prevents further triggers
+      setInitialized(true);
     },
     onError: (error) => {
-      console.error("Error fetching user:", error);
-      setInitialized(true); // Prevents infinite retries
+      console.error("Error fetching user:", error.message);
+      setInitialized(true);
     },
   });
 
@@ -43,7 +43,7 @@ export default function AccountInfo() {
         mutation.mutate(userEmail);
       } else {
         console.warn("No userEmail cookie found.");
-        setInitialized(true); // Stops further attempts
+        setInitialized(true);
       }
     }
   }, [currUser, initialized]);
