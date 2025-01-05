@@ -5,13 +5,12 @@ import LoadingScreen from "@/components/LoadingScreen";
 import { Input } from "@/components/ui/input";
 import { defaultUser, useUserStore } from "@/stores/user";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Cookies from "universal-cookie";
 
 export default function AccountInfo() {
   const { getUser, setUser } = useUserStore();
   const currUser = getUser();
-  const [initialized, setInitialized] = useState(false);
 
   const mutation = useMutation({
     mutationFn: getUserByEmail,
@@ -24,29 +23,23 @@ export default function AccountInfo() {
         role: user.role,
         workplace: user.workplace,
       });
-      setInitialized(true);
     },
     onError: (error) => {
       console.error("Error fetching user:", error.message);
-      setInitialized(true);
     },
   });
 
   useEffect(() => {
-    if (
-      !initialized &&
-      (JSON.stringify(currUser) === JSON.stringify(defaultUser) || !currUser)
-    ) {
+    if (currUser.email === defaultUser.email) {
       const cookies = new Cookies();
       const userEmail = cookies.get("userEmail");
       if (userEmail) {
         mutation.mutate(userEmail);
       } else {
         console.warn("No userEmail cookie found.");
-        setInitialized(true);
       }
     }
-  }, [currUser, initialized]);
+  }, [currUser.email]);
 
   if (mutation.isPending) {
     return <LoadingScreen />;
