@@ -13,8 +13,8 @@ import {
 import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { authClient } from "@/lib/auth-client";
 import Cookies from "universal-cookie";
+import signOut from "@/api/user/signout";
 
 // Menu items.
 const items = [
@@ -70,9 +70,9 @@ export function AppSidebar() {
                 <SidebarMenuButton
                   onClick={async () => {
                     setLoading(true);
+                    await signOut(cookies.get("token"));
                     cookies.remove("token");
                     cookies.remove("userEmail");
-                    await authClient.signOut();
                     setLoading(false);
                     router.navigate({ to: "/auth/accounts/signin" });
                   }}
