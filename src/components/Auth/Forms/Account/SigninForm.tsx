@@ -35,6 +35,7 @@ export function SigninForm() {
         },
         onSuccess: async () => {
           const session = await getSession({ email: credentials.email });
+          cookies.set("userEmail", credentials.email);
           cookies.set("token", session.session.result.data.token, {
             expires: new Date(session.session.result.data.expiresAt),
           });
