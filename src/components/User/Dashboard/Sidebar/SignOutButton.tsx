@@ -17,6 +17,7 @@ export default function SignOutButton() {
       onClick={async () => {
         setLoading(true);
         cookies.remove("token");
+        cookies.remove("userEmail");
         await authClient.signOut();
         setLoading(false);
         router.navigate({ to: "/auth/accounts/signin" });
