@@ -1,6 +1,6 @@
-import { QUERY_URL } from "../constant";
+import { QUERY_URL } from "@/api/constant"
 
-export default async function signOut(token: string) {
+export async function signOut(token: string) {
     const response = await fetch(`${QUERY_URL}/auth.signOut`, {
         method: "POST",
         headers: {
