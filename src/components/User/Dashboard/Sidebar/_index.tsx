@@ -14,6 +14,7 @@ import { Link, useLocation, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
+import Cookies from "universal-cookie";
 
 // Menu items.
 const items = [
@@ -39,6 +40,7 @@ export function AppSidebar() {
   const router = useRouter();
   const { open } = useSidebar();
   const location = useLocation();
+  const cookies = new Cookies(null, { path: "/" });
 
   return (
     <Sidebar collapsible="icon">
@@ -68,6 +70,7 @@ export function AppSidebar() {
                 <SidebarMenuButton
                   onClick={async () => {
                     setLoading(true);
+                    cookies.remove("token");
                     await authClient.signOut();
                     setLoading(false);
                     router.navigate({ to: "/auth/accounts/signin" });

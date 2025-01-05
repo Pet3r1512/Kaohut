@@ -9,6 +9,7 @@ import { CALLBACK_URL } from "@/api/constant";
 import { useTranslation } from "react-i18next";
 import { authClient } from "@/lib/auth-client";
 import { getSession } from "@/api/user/getSession";
+import Cookies from "universal-cookie";
 
 type SigninFormInputs = {
   email: string;
@@ -19,6 +20,8 @@ export function SigninForm() {
   const [loading, setLoading] = useState<boolean>(false);
   const { handleSubmit, register } = useForm<SigninFormInputs>();
   const { t } = useTranslation();
+  const cookies = new Cookies(null, { path: "/" });
+
   const onSubmit: SubmitHandler<SigninFormInputs> = async (credentials) => {
     await authClient.signIn.email(
       {
@@ -32,11 +35,9 @@ export function SigninForm() {
         },
         onSuccess: async () => {
           const session = await getSession({ email: credentials.email });
-          localStorage.setItem("token", session.session.result.data.token);
-          localStorage.setItem(
-            "expired",
-            session.session.result.data.expiresAt,
-          );
+          cookies.set("token", session.session.result.data.token, {
+            expires: new Date(session.session.result.data.expiresAt),
+          });
           setLoading(false);
         },
         onError: (ctx) => {
