@@ -19,7 +19,9 @@ export default function DashboardLayout({
       <AppSidebar />
       <main className="p-8 w-full">
         <SidebarTrigger />
-        <section className="lg:py-8">{children}</section>
+        <section className="lg:py-8 min-h-[calc(100vh-6.5rem)]">
+          {children}
+        </section>
       </main>
     </SidebarProvider>
   );

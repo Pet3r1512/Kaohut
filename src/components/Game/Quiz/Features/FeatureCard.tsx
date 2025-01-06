@@ -1,0 +1,37 @@
+import { cn } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
+import { ReactNode } from "react";
+
+export interface Feature {
+  name: string;
+  desc: string;
+  icon: ReactNode;
+  href: string;
+  className: string;
+  mainColor: string;
+}
+
+export default function FeatureCard({ feature }: { feature: Feature }) {
+  const { name, desc, icon, href, className, mainColor } = feature;
+  const textColor = `text-${mainColor}`;
+
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "flex flex-col gap-y-5 rounded-2xl p-3.5 h-40 w-96 lg:hover:scale-105 transition-all duration-150 ease-linear",
+        className,
+      )}
+    >
+      <div className="flex gap-x-8 justify-between items-start text-white">
+        {icon}
+        <p className="lg:text-lg font-semibold text-white">{desc}</p>
+      </div>
+      <button
+        className={`rounded-xl bg-white ${textColor} font-semibold py-2 px-3.5 w-fit self-end`}
+      >
+        {name}
+      </button>
+    </Link>
+  );
+}
