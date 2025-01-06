@@ -6,7 +6,7 @@ export default function SearchBar() {
     <div className="flex items-center gap-x-1.5 h-12">
       <Input
         placeholder="Search public content"
-        className="!outline-none !border-none w-96 h-full"
+        className="w-96 h-full text-xl"
       />
       <button className="bg-secondary text-white !size-12 flex items-center justify-center rounded-lg">
         <Search size={18} />
