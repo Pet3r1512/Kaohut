@@ -2,7 +2,7 @@
 
 exports[`should render email field 1`] = `
 <div
-  class="w-screen h-screen flex items-center justify-center"
+  class="w-full h-full flex items-center justify-center"
   data-testid="LoadingScreen"
 >
   <svg
