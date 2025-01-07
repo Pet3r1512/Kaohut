@@ -24,7 +24,6 @@ import { cn } from "@/lib/utils";
 import Cookies from "universal-cookie";
 import { signOut } from "@/api/user/auth/signOut";
 
-// Menu items.
 const items = [
   {
     title: "Play",
@@ -48,7 +47,7 @@ const items = [
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/dashboard/settings",
     icon: Settings,
   },
 ];
