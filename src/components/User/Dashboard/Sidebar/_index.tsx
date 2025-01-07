@@ -1,4 +1,12 @@
-import { CirclePower, LoaderCircle, Play, Settings, User } from "lucide-react";
+import {
+  CirclePower,
+  LoaderCircle,
+  Play,
+  Settings,
+  User,
+  Telescope,
+  LibraryBig,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -22,6 +30,16 @@ const items = [
     title: "Play",
     url: "/dashboard/play",
     icon: Play,
+  },
+  {
+    title: "Explore",
+    url: "/dashboard/explore",
+    icon: Telescope,
+  },
+  {
+    title: "Library",
+    url: "/dashboard/library",
+    icon: LibraryBig,
   },
   {
     title: "Profile",
