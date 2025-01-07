@@ -1,4 +1,12 @@
-import { CirclePower, LoaderCircle, Play, Settings, User } from "lucide-react";
+import {
+  CirclePower,
+  LoaderCircle,
+  Play,
+  Settings,
+  User,
+  Telescope,
+  LibraryBig,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -16,12 +24,21 @@ import { cn } from "@/lib/utils";
 import Cookies from "universal-cookie";
 import { signOut } from "@/api/user/auth/signOut";
 
-// Menu items.
 const items = [
   {
     title: "Play",
     url: "/dashboard/play",
     icon: Play,
+  },
+  {
+    title: "Explore",
+    url: "/dashboard/explore",
+    icon: Telescope,
+  },
+  {
+    title: "Library",
+    url: "/dashboard/library",
+    icon: LibraryBig,
   },
   {
     title: "Profile",
@@ -30,7 +47,7 @@ const items = [
   },
   {
     title: "Settings",
-    url: "#",
+    url: "/dashboard/settings",
     icon: Settings,
   },
 ];
