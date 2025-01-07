@@ -6,7 +6,7 @@ export default function Features() {
   const features: Feature[] = [
     {
       name: "Create Quiz",
-      desc: "Create fun, interactive quizzesto enage and inspire learning",
+      desc: "Create fun, interactive quizzes to enage and inspire learning",
       icon: <CirclePlus size={ICON_SIZE} />,
       href: "",
       className: "bg-[#6d23b6]",
