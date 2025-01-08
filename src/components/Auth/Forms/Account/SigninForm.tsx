@@ -23,7 +23,6 @@ export function SigninForm() {
   const cookies = new Cookies(null, { path: "/" });
 
   const onSubmit: SubmitHandler<SigninFormInputs> = async (credentials) => {
-    cookies.set("userEmail", credentials.email);
     await authClient.signIn.email(
       {
         email: credentials.email,
@@ -37,6 +36,9 @@ export function SigninForm() {
         onSuccess: async () => {
           const session = await getSession({ email: credentials.email });
           cookies.set("token", session.session.result.data.token, {
+            expires: new Date(session.session.result.data.expiresAt),
+          });
+          cookies.set("userEmail", credentials.email, {
             expires: new Date(session.session.result.data.expiresAt),
           });
           setLoading(false);
