@@ -7,8 +7,9 @@ import { io } from "socket.io-client";
 import { useState } from "react";
 import QuestionCard from "@/components/Game/Play/QuestionCard";
 import { LoaderCircle, Play } from "lucide-react";
+import { SOCKET_URL } from "@/lib/socket-client";
 
-const socket = io("http://localhost:9999");
+const socket = io(SOCKET_URL);
 
 export const Route = createFileRoute("/play/solo_/$quizId/")({
   component: RouteComponent,
