@@ -19,6 +19,7 @@ import { Route as DashboardPlayImport } from './routes/dashboard/play'
 import { Route as DashboardLibraryImport } from './routes/dashboard/library'
 import { Route as DashboardExploreImport } from './routes/dashboard/explore'
 import { Route as DashboardAccountImport } from './routes/dashboard/account'
+import { Route as PlaySoloQuizIdIndexImport } from './routes/play/solo_/$quizId/index'
 
 // Create Virtual Routes
 
@@ -106,6 +107,12 @@ const AuthAccountsSigninLazyRoute = AuthAccountsSigninLazyImport.update({
 } as any).lazy(() =>
   import('./routes/auth/accounts/signin.lazy').then((d) => d.Route),
 )
+
+const PlaySoloQuizIdIndexRoute = PlaySoloQuizIdIndexImport.update({
+  id: '/play/solo_/$quizId/',
+  path: '/play/solo/$quizId/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -195,6 +202,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthAccountsSignupLazyImport
       parentRoute: typeof rootRoute
     }
+    '/play/solo_/$quizId/': {
+      id: '/play/solo_/$quizId/'
+      path: '/play/solo/$quizId'
+      fullPath: '/play/solo/$quizId'
+      preLoaderRoute: typeof PlaySoloQuizIdIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -213,6 +227,7 @@ export interface FileRoutesByFullPath {
   '/auth/teacher': typeof AuthTeacherLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
+  '/play/solo/$quizId': typeof PlaySoloQuizIdIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -228,6 +243,7 @@ export interface FileRoutesByTo {
   '/auth/teacher': typeof AuthTeacherLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
+  '/play/solo/$quizId': typeof PlaySoloQuizIdIndexRoute
 }
 
 export interface FileRoutesById {
@@ -244,6 +260,7 @@ export interface FileRoutesById {
   '/auth/teacher': typeof AuthTeacherLazyRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
+  '/play/solo_/$quizId/': typeof PlaySoloQuizIdIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -261,6 +278,7 @@ export interface FileRouteTypes {
     | '/auth/teacher'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
+    | '/play/solo/$quizId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -275,6 +293,7 @@ export interface FileRouteTypes {
     | '/auth/teacher'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
+    | '/play/solo/$quizId'
   id:
     | '__root__'
     | '/'
@@ -289,6 +308,7 @@ export interface FileRouteTypes {
     | '/auth/teacher'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
+    | '/play/solo_/$quizId/'
   fileRoutesById: FileRoutesById
 }
 
@@ -305,6 +325,7 @@ export interface RootRouteChildren {
   AuthTeacherLazyRoute: typeof AuthTeacherLazyRoute
   AuthAccountsSigninLazyRoute: typeof AuthAccountsSigninLazyRoute
   AuthAccountsSignupLazyRoute: typeof AuthAccountsSignupLazyRoute
+  PlaySoloQuizIdIndexRoute: typeof PlaySoloQuizIdIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -320,6 +341,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthTeacherLazyRoute: AuthTeacherLazyRoute,
   AuthAccountsSigninLazyRoute: AuthAccountsSigninLazyRoute,
   AuthAccountsSignupLazyRoute: AuthAccountsSignupLazyRoute,
+  PlaySoloQuizIdIndexRoute: PlaySoloQuizIdIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -343,7 +365,8 @@ export const routeTree = rootRoute
         "/auth/student",
         "/auth/teacher",
         "/auth/accounts/signin",
-        "/auth/accounts/signup"
+        "/auth/accounts/signup",
+        "/play/solo_/$quizId/"
       ]
     },
     "/": {
@@ -381,6 +404,9 @@ export const routeTree = rootRoute
     },
     "/auth/accounts/signup": {
       "filePath": "auth/accounts/signup.lazy.tsx"
+    },
+    "/play/solo_/$quizId/": {
+      "filePath": "play/solo_/$quizId/index.tsx"
     }
   }
 }
