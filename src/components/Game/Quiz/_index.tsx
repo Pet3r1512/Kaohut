@@ -33,11 +33,13 @@ export default function Quiz() {
   }
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-8 w-full">
       <SearchBar />
       <Features />
-      <h1 className="lg:text-3xl font-bold text-primary">Quizzes Collection</h1>
-      <div className="flex flex-wrap items-center lg:gap-5">
+      <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
+        Quizzes Collection
+      </h1>
+      <div className="flex flex-wrap items-center gap-5 w-full">
         {quizzes.map((quiz, index) => (
           <QuizCard key={index} quiz={quiz} />
         ))}

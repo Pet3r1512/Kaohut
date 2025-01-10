@@ -22,7 +22,7 @@ export default function Features() {
     },
   ];
   return (
-    <div className="flex flex-col md:flex-row md:items-center gap-5">
+    <div className="flex flex-col md:flex-row md:items-center gap-5 max-w-full">
       {features.map((feat: Feature, index: number) => {
         return <FeatureCard feature={feat} key={index} />;
       })}
