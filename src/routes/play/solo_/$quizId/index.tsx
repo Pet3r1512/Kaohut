@@ -118,13 +118,10 @@ function RouteComponent() {
               )}
             </button>
           </>
+        ) : questionFetching ? (
+          <LoadingScreen />
         ) : (
-          !questionFetching && (
-            <QuestionCard
-              question={currentQuestion}
-              onAnswer={answerQuestion}
-            />
-          )
+          <QuestionCard question={currentQuestion} onAnswer={answerQuestion} />
         )}
       </div>
     </div>
