@@ -19,13 +19,13 @@ export default function FeatureCard({ feature }: { feature: Feature }) {
     <Link
       href={href}
       className={cn(
-        "flex flex-col gap-y-5 rounded-2xl p-3.5 h-40 w-96 lg:hover:scale-105 transition-all duration-150 ease-linear",
+        "flex flex-col justify-between gap-y-5 rounded-2xl p-3.5 lg:w-96 h-40 lg:h-48 lg:hover:scale-105 transition-all duration-150 ease-linear",
         className,
       )}
     >
-      <div className="flex gap-x-8 justify-between items-start text-white">
+      <div className="flex gap-x-5 lg:gap-x-8 justify-between items-start text-white">
         {icon}
-        <p className="lg:text-lg font-semibold text-white">{desc}</p>
+        <p className="lg:text-lg font-semibold text-white pt-1">{desc}</p>
       </div>
       <button
         className={`rounded-xl bg-white ${textColor} font-semibold py-2 px-3.5 w-fit self-end`}
