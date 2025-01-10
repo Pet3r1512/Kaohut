@@ -80,7 +80,7 @@ function RouteComponent() {
   if (finalScore !== null) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-300">
-        <div className="w-full h-screen lg:w-[450px] lg:h-[750px] lg:rounded-2xl shadow-2xl p-5 bg-gradient-to-bl from-[#654ea3] to-[#eaafc8] flex flex-col items-center justify-center gap-y-5 text-white">
+        <div className="w-full h-[100dvh] lg:w-[450px] lg:h-[750px] lg:rounded-2xl shadow-2xl p-5 bg-gradient-to-bl from-[#654ea3] to-[#eaafc8] flex flex-col items-center justify-center gap-y-5 text-white">
           <p className="text-4xl font-bold">Quiz Finished!</p>
           <p className="text-2xl font-bold">Your Final Score: {finalScore}</p>
           <Link
@@ -96,7 +96,7 @@ function RouteComponent() {
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-300">
-      <div className="w-full h-screen lg:w-[450px] lg:h-[750px] lg:rounded-2xl shadow-2xl p-5 bg-gradient-to-bl from-[#654ea3] to-[#eaafc8] flex flex-col items-center justify-center gap-y-14">
+      <div className="w-full h-[100dvh] lg:w-[450px] lg:h-[750px] lg:rounded-2xl shadow-2xl p-5 bg-gradient-to-bl from-[#654ea3] to-[#eaafc8] flex flex-col items-center justify-center gap-y-14">
         {!isGameStarted ? (
           <>
             <p className="text-white text-3xl lg:text-4xl font-bold">
