@@ -77,7 +77,11 @@ function RouteComponent() {
   };
 
   if (isPending) {
-    return <LoadingScreen />;
+    return (
+      <section className="w-full h-[100dvh] flex items-center justify-centers">
+        <LoadingScreen />
+      </section>
+    );
   }
 
   if (error) {
