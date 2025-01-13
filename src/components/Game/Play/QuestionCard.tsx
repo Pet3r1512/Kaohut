@@ -20,11 +20,9 @@ export default function QuestionCard({
     setSelectedAnswer(index);
 
     setTimeout(() => {
-      setTimeout(() => {
-        setSelectedAnswer(null);
-        onAnswer(index);
-      }, 1000);
-    }, 2000);
+      onAnswer(index);
+      setSelectedAnswer(null);
+    }, 2500);
   };
 
   return (
