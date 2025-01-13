@@ -20,6 +20,9 @@ function RouteComponent() {
   const [finalScore, setFinalScore] = useState<number | null>(null);
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
   const [questionFetching, setQuestionFetching] = useState<boolean>(false);
+  const [answerState, setAnswerState] = useState<
+    "correct" | "incorrect" | "pending" | null
+  >(null);
   const { quizId } = Route.useParams();
 
   const { isPending, data, error } = useQuery({
@@ -48,20 +51,28 @@ function RouteComponent() {
   };
 
   const answerQuestion = (answerIndex: number) => {
+    setAnswerState("pending");
+
     socket.emit("answer_question", { answerIndex }, (response: any) => {
       if (response.error) {
         console.error("Error answering question:", response.error);
+        setAnswerState(null); // Reset on error
         return;
       }
 
-      if (response.finalScore !== undefined) {
-        // Quiz completed
-        setFinalScore(response.finalScore);
-        setCurrentQuestion(null); // Clear current question
-      } else if (response.nextQuestion) {
-        // Load next question
-        setCurrentQuestion(response.nextQuestion);
-      }
+      const isCorrect = response.correct;
+      setAnswerState(isCorrect ? "correct" : "incorrect");
+
+      setQuestionFetching(true);
+      setTimeout(() => {
+        if (response.finalScore !== undefined) {
+          setFinalScore(response.finalScore);
+        } else if (response.nextQuestion) {
+          setCurrentQuestion(response.nextQuestion);
+        }
+        setQuestionFetching(false);
+        setAnswerState(null);
+      }, 2000);
     });
   };
 
@@ -121,7 +132,11 @@ function RouteComponent() {
         ) : questionFetching ? (
           <LoadingScreen />
         ) : (
-          <QuestionCard question={currentQuestion} onAnswer={answerQuestion} />
+          <QuestionCard
+            question={currentQuestion}
+            onAnswer={answerQuestion}
+            answerState={answerState}
+          />
         )}
       </div>
     </div>
