@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
+import TimerCircle from "./TimerCircle";
 
 interface QuestionCardProps {
   question: {
@@ -20,14 +21,31 @@ export default function QuestionCard({
     setSelectedAnswer(index);
 
     setTimeout(() => {
-      onAnswer(index);
       setSelectedAnswer(null);
-    }, 2500);
+      onAnswer(index);
+    }, 3000);
+  };
+
+  const handleTimerComplete = () => {
+    if (selectedAnswer === null) {
+      const correctAnswerIndex = question.answers.findIndex(
+        (answer) => answer.isCorrect,
+      );
+      setSelectedAnswer(correctAnswerIndex);
+
+      setTimeout(() => {
+        setSelectedAnswer(null);
+        onAnswer(correctAnswerIndex);
+      }, 3000);
+    }
   };
 
   return (
-    <Card className="size-full bg-transparent border-none flex flex-col items-center justify-center gap-y-8">
-      <div className="h-1/2 flex items-center justify-center w-full">
+    <Card className="size-full bg-transparent border-none flex flex-col items-center justify-center gap-y-8 relative">
+      <div className="absolute top-0 right-0">
+        <TimerCircle duration={20} onComplete={handleTimerComplete} />
+      </div>
+      <div className="h-1/2 flex flex-col items-center justify-center w-full">
         <p className="text-black font-bold text-xl text-center bg-yellow-200 rounded-xl p-5 w-full">
           {question.questionText}
         </p>
@@ -37,12 +55,16 @@ export default function QuestionCard({
           <button
             key={index}
             onClick={() => handleAnswer(index)}
-            disabled={selectedAnswer !== null} // Disable buttons while an animation is active
-            className={`p-5 rounded-xl text-center w-full text-xl lg:text-3xl transition-all duration-500 ${
+            disabled={selectedAnswer !== null}
+            className={`p-5 rounded-xl text-center w-full text-xl lg:text-3xl transition-all duration-500 break-words ${
               selectedAnswer !== null
-                ? answer.isCorrect
-                  ? "bg-green-500 scale-105"
-                  : "bg-red-500 scale-95 opacity-75"
+                ? selectedAnswer === index
+                  ? answer.isCorrect
+                    ? "bg-green-500 scale-105"
+                    : "bg-red-500 scale-95 opacity-75"
+                  : answer.isCorrect
+                    ? "bg-green-500 scale-105"
+                    : "bg-red-500 scale-95 opacity-75"
                 : [
                     "bg-red-500",
                     "bg-yellow-500",
