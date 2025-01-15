@@ -92,7 +92,7 @@ function RouteComponent() {
     return <p className="text-gray-500">No data found for this quiz.</p>;
   }
 
-  if (score !== 0) {
+  if (currentQuestionIndex === data.quiz.result.data.quiz.length) {
     return (
       <div className="flex items-center justify-center h-[100dvh] bg-gray-300">
         <div className="w-full h-[100dvh] lg:w-[450px] lg:h-[750px] lg:rounded-2xl shadow-2xl p-5 bg-gradient-to-bl from-[#654ea3] to-[#eaafc8] flex flex-col items-center justify-center gap-y-5 text-white">
