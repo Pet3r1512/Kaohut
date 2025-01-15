@@ -19,7 +19,7 @@ export default function FeatureCard({ feature }: { feature: Feature }) {
     <Link
       href={href}
       className={cn(
-        "flex flex-col justify-between gap-y-5 rounded-2xl p-3.5 md:max-w-96 lg:w-96 h-40 lg:h-48 lg:hover:scale-105 transition-all duration-150 ease-linear",
+        "flex flex-col justify-between gap-y-5 rounded-2xl p-3.5 md:max-w-96 lg:w-96 h-48 lg:hover:scale-105 transition-all duration-150 ease-linear",
         className,
       )}
     >
