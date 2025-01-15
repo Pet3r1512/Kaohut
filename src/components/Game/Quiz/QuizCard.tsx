@@ -17,7 +17,9 @@ export default function QuizCard({ quiz }: { quiz: Quiz }) {
         <p className="lg:text-xl font-bold lg:mb-2.5 truncate">{quiz.title}</p>
         <p className="text-black text-sm">{quiz.category}</p>
       </div>
-      <p className="h-[calc(2*2.25rem)] line-clamp-2">{quiz.description}</p>
+      <p className="lg:h-[calc(2*2.25rem)] h-[calc(2*3.25rem)] line-clamp-2">
+        {quiz.description}
+      </p>
       <Link
         to={`/play/solo/${quiz.id}`}
         className="bg-green-500 px-2.5 py-1 rounded-lg text-white font-semibold w-fit ml-auto"
