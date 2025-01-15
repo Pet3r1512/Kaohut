@@ -23,6 +23,7 @@ function RouteComponent() {
   const [answerState, setAnswerState] = useState<
     "correct" | "incorrect" | "pending" | null
   >(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(1);
   const { quizId } = Route.useParams();
 
   const { isPending, data, error } = useQuery({
@@ -69,6 +70,7 @@ function RouteComponent() {
           setFinalScore(response.finalScore);
         } else if (response.nextQuestion) {
           setCurrentQuestion(response.nextQuestion);
+          setCurrentQuestionIndex((prev) => prev + 1);
         }
         setQuestionFetching(false);
         setAnswerState(null);
@@ -140,6 +142,11 @@ function RouteComponent() {
             question={currentQuestion}
             onAnswer={answerQuestion}
             answerState={answerState}
+            questionOrder={{
+              current: currentQuestionIndex,
+              total: data.quiz.result.data.quiz.length,
+            }}
+            duration={data.quiz.result.data.quiz.time}
           />
         )}
       </div>
