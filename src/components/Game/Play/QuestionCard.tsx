@@ -14,6 +14,8 @@ interface QuestionCardProps {
     total: number;
   };
   duration: number;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function QuestionCard({
@@ -21,11 +23,17 @@ export default function QuestionCard({
   onAnswer,
   questionOrder,
   duration,
+  score,
+  setScore,
 }: QuestionCardProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
-  const handleAnswer = (index: number) => {
+  const handleAnswer = (index: number, isCorrect: boolean) => {
     setSelectedAnswer(index);
+
+    if (isCorrect) {
+      setScore((prevScore) => prevScore + 1);
+    }
 
     setTimeout(() => {
       setSelectedAnswer(null);
@@ -53,6 +61,10 @@ export default function QuestionCard({
         Question {questionOrder.current}/{questionOrder.total}
       </div>
 
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-yellow-200 text-black font-bold rounded-full py-2 px-4">
+        Score: {score}
+      </div>
+
       <div className="absolute top-0 right-0">
         <TimerCircle duration={duration} onComplete={handleTimerComplete} />
       </div>
@@ -67,7 +79,7 @@ export default function QuestionCard({
         {question.answers.map((answer, index) => (
           <button
             key={index}
-            onClick={() => handleAnswer(index)}
+            onClick={() => handleAnswer(index, answer.isCorrect)}
             disabled={selectedAnswer !== null}
             className={`p-5 rounded-xl text-center w-full text-xl lg:text-3xl transition-all duration-500 break-words ${
               selectedAnswer !== null
