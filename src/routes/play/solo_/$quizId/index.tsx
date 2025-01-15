@@ -17,12 +17,13 @@ export const Route = createFileRoute("/play/solo_/$quizId/")({
 
 function RouteComponent() {
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
-  const [finalScore, setFinalScore] = useState<number | null>(null);
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
   const [questionFetching, setQuestionFetching] = useState<boolean>(false);
   const [answerState, setAnswerState] = useState<
     "correct" | "incorrect" | "pending" | null
   >(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(1);
+  const [score, setScore] = useState<number>(0);
   const { quizId } = Route.useParams();
 
   const { isPending, data, error } = useQuery({
@@ -65,10 +66,9 @@ function RouteComponent() {
 
       setQuestionFetching(true);
       setTimeout(() => {
-        if (response.finalScore !== undefined) {
-          setFinalScore(response.finalScore);
-        } else if (response.nextQuestion) {
+        if (response.nextQuestion) {
           setCurrentQuestion(response.nextQuestion);
+          setCurrentQuestionIndex((prev) => prev + 1);
         }
         setQuestionFetching(false);
         setAnswerState(null);
@@ -92,12 +92,12 @@ function RouteComponent() {
     return <p className="text-gray-500">No data found for this quiz.</p>;
   }
 
-  if (finalScore !== null) {
+  if (score !== 0) {
     return (
       <div className="flex items-center justify-center h-[100dvh] bg-gray-300">
         <div className="w-full h-[100dvh] lg:w-[450px] lg:h-[750px] lg:rounded-2xl shadow-2xl p-5 bg-gradient-to-bl from-[#654ea3] to-[#eaafc8] flex flex-col items-center justify-center gap-y-5 text-white">
           <p className="text-4xl font-bold">Quiz Finished!</p>
-          <p className="text-2xl font-bold">Your Final Score: {finalScore}</p>
+          <p className="text-2xl font-bold">Your Final Score: {score}</p>
           <Link
             className="bg-blue-600 text-white font-bold px-5 py-2.5 rounded-2xl"
             to="/dashboard/play"
@@ -140,6 +140,13 @@ function RouteComponent() {
             question={currentQuestion}
             onAnswer={answerQuestion}
             answerState={answerState}
+            questionOrder={{
+              current: currentQuestionIndex,
+              total: data.quiz.result.data.quiz.length,
+            }}
+            duration={data.quiz.result.data.quiz.time}
+            score={score}
+            setScore={setScore}
           />
         )}
       </div>
