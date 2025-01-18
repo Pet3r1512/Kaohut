@@ -65,5 +65,15 @@
       "start": "Bắt Đầu Ngay",
       "explore": "Khám Phá"
     }
+  },
+  "dashboard": {
+    "sidebar": {
+      "play": "Thi Đấu",
+      "explore": "Khám Phá",
+      "library": "Thư Viện",
+      "profile": "Hồ Sơ",
+      "settings": "Cài Đặt",
+      "signout": "Đăng Xuất"
+    }
   }
 }
