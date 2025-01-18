@@ -8,7 +8,7 @@ exports[`FullLogo Component Tests > should match snapshot 1`] = `
   >
     <img
       alt="Kaohut Full Logo"
-      class="size-8 lg:size-12"
+      class="size-8"
       src="/logos/Logo.png"
     />
     <p
