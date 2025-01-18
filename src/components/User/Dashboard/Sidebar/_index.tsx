@@ -62,7 +62,7 @@ export function AppSidebar() {
   const cookies = new Cookies(null, { path: "/" });
 
   return (
-    <Sidebar collapsible="icon" className="border-none">
+    <Sidebar collapsible="icon" className="!border-none">
       <SidebarContent className="bg-white dark:bg-black shadow-2xl">
         <SidebarGroup className="h-full py-8">
           <SidebarGroupContent className="flex flex-col h-full">
