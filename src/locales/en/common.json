@@ -74,6 +74,16 @@
       "profile": "Profile",
       "settings": "Settings",
       "signout": "Sign Out"
+    },
+    "play": {
+      "create": {
+        "title": "Create Quiz",
+        "desc": "Create fun, interactive quizzes to enage and inspire learning"
+      },
+      "template": {
+        "title": "Choose Template",
+        "desc": "Use templates for quick and easy Kaohut Quiz creation"
+      }
     }
   }
 }
