@@ -93,6 +93,7 @@
       "workplace": "Workplace"
     },
     "settings": {
+      "title": "Settings",
       "theme": "Theme Mode",
       "lang": "Language"
     }

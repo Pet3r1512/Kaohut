@@ -14,7 +14,7 @@ function RouteComponent() {
   return (
     <DashboardLayout>
       <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
-        Settings
+        {t("dashboard.settings.title")}
       </h1>
       <div className="flex items-center w-full lg:w-1/5 justify-between my-8">
         <p className="md:text-lg lg:text-xl font-semibold">
