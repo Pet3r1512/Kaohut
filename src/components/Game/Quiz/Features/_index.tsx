@@ -5,16 +5,16 @@ export default function Features() {
   const ICON_SIZE = 56;
   const features: Feature[] = [
     {
-      name: "Create Quiz",
-      desc: "Create fun, interactive quizzes to enage and inspire learning",
+      name: "create",
+      desc: "",
       icon: <CirclePlus size={ICON_SIZE} />,
       href: "",
       className: "bg-[#6d23b6]",
       mainColor: "#6d23b6",
     },
     {
-      name: "Choose Template",
-      desc: "Use templates for quick and easy Kaohut Quiz creation",
+      name: "template",
+      desc: "",
       icon: <LayoutPanelTop size={ICON_SIZE} />,
       href: "",
       className: "bg-[#006d77]",
