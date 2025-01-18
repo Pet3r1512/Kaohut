@@ -24,6 +24,7 @@ import { cn } from "@/lib/utils";
 import Cookies from "universal-cookie";
 import { signOut } from "@/api/user/auth/signOut";
 import { useTranslation } from "react-i18next";
+import FullLogo from "@/components/Layout/Logos/FullLogo";
 
 const items = [
   {
@@ -62,10 +63,11 @@ export function AppSidebar() {
   const cookies = new Cookies(null, { path: "/" });
 
   return (
-    <Sidebar collapsible="icon" className="border-none">
+    <Sidebar collapsible="icon" className="!border-none">
       <SidebarContent className="bg-white dark:bg-black shadow-2xl">
         <SidebarGroup className="h-full py-8">
-          <SidebarGroupContent className="flex flex-col h-full">
+          <SidebarGroupContent className="flex flex-col gap-y-10 h-full">
+            <FullLogo />
             <SidebarMenu className="flex-1">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
