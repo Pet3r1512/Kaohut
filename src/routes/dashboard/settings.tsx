@@ -1,3 +1,4 @@
+import { LanguagesToggle } from "@/components/Layout/Header/LanguagesToggle";
 import ThemeToggle from "@/components/ThemeToggle";
 import DashboardLayout from "@/components/User/Dashboard/DashboardLayout";
 import { createFileRoute } from "@tanstack/react-router";
@@ -15,6 +16,10 @@ function RouteComponent() {
       <div className="flex items-center w-1/5 justify-between my-8">
         <p className="md:text-lg lg:text-xl font-semibold">Theme Mode</p>
         <ThemeToggle />
+      </div>
+      <div className="flex items-center w-1/5 justify-between my-8">
+        <p className="md:text-lg lg:text-xl font-semibold">Language</p>
+        <LanguagesToggle />
       </div>
     </DashboardLayout>
   );
