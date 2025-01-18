@@ -85,6 +85,13 @@
         "desc": "Use templates for quick and easy Kaohut Quiz creation"
       }
     },
+    "account": {
+      "title": "Account Info",
+      "name": "Full Name",
+      "email": "Email",
+      "role": "Role",
+      "workplace": "Workplace"
+    },
     "settings": {
       "theme": "Theme Mode",
       "lang": "Language"
