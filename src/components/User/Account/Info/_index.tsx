@@ -6,10 +6,13 @@ import { Input } from "@/components/ui/input";
 import { defaultUser, useUserStore } from "@/stores/user";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import Cookies from "universal-cookie";
 
 export default function AccountInfo() {
   const { getUser, setUser } = useUserStore();
+  const { t } = useTranslation();
+
   const currUser = getUser();
 
   const mutation = useMutation({
@@ -48,7 +51,7 @@ export default function AccountInfo() {
   return (
     <div className="flex flex-col gap-y-5">
       <div className="w-full">
-        <Label className="text-lg">Full Name</Label>
+        <Label className="text-lg">{t("dashboard.account.name")}</Label>
         <Input
           disabled
           value={currUser?.name || ""}
@@ -56,7 +59,7 @@ export default function AccountInfo() {
         />
       </div>
       <div className="w-full">
-        <Label className="text-lg">Email</Label>
+        <Label className="text-lg">{t("dashboard.account.email")}</Label>
         <Input
           disabled
           value={currUser?.email || ""}
@@ -65,7 +68,7 @@ export default function AccountInfo() {
       </div>
       <div className="lg:w-1/2 flex items-center gap-x-5">
         <div className="lg:w-1/2">
-          <Label className="text-lg">Role</Label>
+          <Label className="text-lg">{t("dashboard.account.role")}</Label>
           <Input
             disabled
             value={currUser?.role || ""}
@@ -73,7 +76,7 @@ export default function AccountInfo() {
           />
         </div>
         <div className="lg:w-1/2">
-          <Label className="text-lg">Workplace</Label>
+          <Label className="text-lg">{t("dashboard.account.workplace")}</Label>
           <Input
             disabled
             value={currUser?.workplace || ""}
