@@ -1,14 +1,25 @@
+import { useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 interface TimerCircleProps {
   duration?: number;
   onComplete: () => void;
+  setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function TimerCircle({
   duration = 10,
   onComplete,
+  setTimeLeft,
 }: TimerCircleProps) {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [setTimeLeft]);
+
   const renderTime = ({ remainingTime }: { remainingTime: number }) => {
     return (
       <div className="timer">
