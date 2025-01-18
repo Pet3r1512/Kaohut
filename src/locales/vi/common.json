@@ -74,6 +74,16 @@
       "profile": "Hồ Sơ",
       "settings": "Cài Đặt",
       "signout": "Đăng Xuất"
+    },
+    "play": {
+      "create": {
+        "title": "Tạo Bộ Câu Hỏi",
+        "desc": "Tạo các câu đố vui nhộn, tương tác để khuyến khích và truyền cảm hứng học tập"
+      },
+      "template": {
+        "title": "Chọn Mẫu",
+        "desc": "Sử dụng các mẫu để tạo câu đố Kaohut nhanh chóng và dễ dàng"
+      }
     }
   }
 }
