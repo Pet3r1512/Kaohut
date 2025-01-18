@@ -15,7 +15,7 @@ i18n
       en: { translation: en },
       vi: { translation: vi },
     },
-    lng: "en", // Default language
+    lng: localStorage.getItem("locale") || "en",
     fallbackLng: 'en',
     debug: false,
     interpolation: {
