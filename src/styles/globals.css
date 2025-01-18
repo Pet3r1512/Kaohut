@@ -3,6 +3,7 @@
 @tailwind utilities;
 * {
   outline: none !important;
+  border: none !important;
 }
 
 ::-webkit-scrollbar {
