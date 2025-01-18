@@ -26,27 +26,27 @@ import { signOut } from "@/api/user/auth/signOut";
 
 const items = [
   {
-    title: "Play",
+    title: "play",
     url: "/dashboard/play",
     icon: Play,
   },
   {
-    title: "Explore",
+    title: "explore",
     url: "/dashboard/explore",
     icon: Telescope,
   },
   {
-    title: "Library",
+    title: "library",
     url: "/dashboard/library",
     icon: LibraryBig,
   },
   {
-    title: "Profile",
+    title: "profile",
     url: "/dashboard/account",
     icon: User,
   },
   {
-    title: "Settings",
+    title: "settings",
     url: "/dashboard/settings",
     icon: Settings,
   },
