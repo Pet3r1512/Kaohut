@@ -18,6 +18,8 @@ interface QuestionCardProps {
   setScore: React.Dispatch<React.SetStateAction<number>>;
 }
 
+const MAX_SCORE_EACH_QUESTION = 1000;
+
 export default function QuestionCard({
   question,
   onAnswer,
@@ -27,12 +29,17 @@ export default function QuestionCard({
   setScore,
 }: QuestionCardProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [timeLeft, setTimeLeft] = useState<number>(duration);
 
   const handleAnswer = (index: number, isCorrect: boolean) => {
     setSelectedAnswer(index);
 
     if (isCorrect) {
-      setScore((prevScore) => prevScore + 1);
+      setScore(
+        (prevScore) =>
+          prevScore +
+          Math.round(MAX_SCORE_EACH_QUESTION * (timeLeft / duration)),
+      );
     }
 
     setTimeout(() => {
@@ -66,7 +73,11 @@ export default function QuestionCard({
       </div>
 
       <div className="absolute top-0 right-0">
-        <TimerCircle duration={duration} onComplete={handleTimerComplete} />
+        <TimerCircle
+          duration={duration}
+          onComplete={handleTimerComplete}
+          setTimeLeft={setTimeLeft}
+        />
       </div>
 
       <div className="h-1/2 flex flex-col items-center justify-center w-full">
