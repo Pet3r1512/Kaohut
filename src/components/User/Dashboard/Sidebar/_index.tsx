@@ -23,6 +23,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Cookies from "universal-cookie";
 import { signOut } from "@/api/user/auth/signOut";
+import { useTranslation } from "react-i18next";
 
 const items = [
   {
@@ -57,6 +58,7 @@ export function AppSidebar() {
   const router = useRouter();
   const { open } = useSidebar();
   const location = useLocation();
+  const { t } = useTranslation();
   const cookies = new Cookies(null, { path: "/" });
 
   return (
@@ -78,7 +80,7 @@ export function AppSidebar() {
                       )}
                     >
                       <item.icon />
-                      <span>{item.title}</span>
+                      <span>{t(`dashboard.sidebar.${item.title}`)}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -100,7 +102,7 @@ export function AppSidebar() {
                   ) : (
                     <div className="flex items-center gap-x-2 transition-all duration-300 ease-linear">
                       <CirclePower size={14} />
-                      {open && <span>Sign Out</span>}
+                      {open && <span>{t("dashboard.sidebar.signout")}</span>}
                     </div>
                   )}
                 </SidebarMenuButton>
