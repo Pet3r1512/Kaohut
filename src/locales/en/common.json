@@ -65,5 +65,36 @@
       "start": "Start Now",
       "explore": "Explore Features"
     }
+  },
+  "dashboard": {
+    "sidebar": {
+      "play": "Play",
+      "explore": "Explore",
+      "library": "Library",
+      "profile": "Profile",
+      "settings": "Settings",
+      "signout": "Sign Out"
+    },
+    "play": {
+      "create": {
+        "title": "Create Quiz",
+        "desc": "Create fun, interactive quizzes to enage and inspire learning"
+      },
+      "template": {
+        "title": "Choose Template",
+        "desc": "Use templates for quick and easy Kaohut Quiz creation"
+      }
+    },
+    "account": {
+      "title": "Account Info",
+      "name": "Full Name",
+      "email": "Email",
+      "role": "Role",
+      "workplace": "Workplace"
+    },
+    "settings": {
+      "theme": "Theme Mode",
+      "lang": "Language"
+    }
   }
 }
