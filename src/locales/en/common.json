@@ -84,6 +84,10 @@
         "title": "Choose Template",
         "desc": "Use templates for quick and easy Kaohut Quiz creation"
       }
+    },
+    "settings": {
+      "theme": "Theme Mode",
+      "lang": "Language"
     }
   }
 }
