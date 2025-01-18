@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 import { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface Feature {
   name: string;
@@ -12,7 +13,8 @@ export interface Feature {
 }
 
 export default function FeatureCard({ feature }: { feature: Feature }) {
-  const { name, desc, icon, href, className } = feature;
+  const { t } = useTranslation();
+  const { name, icon, href, className } = feature;
 
   return (
     <Link
@@ -24,12 +26,14 @@ export default function FeatureCard({ feature }: { feature: Feature }) {
     >
       <div className="flex gap-x-5 lg:gap-x-8 justify-between items-start dark:text-white text-black">
         {icon}
-        <p className="lg:text-lg font-semibold text-white pt-1">{desc}</p>
+        <p className="lg:text-lg font-semibold text-white pt-1">
+          {t(`dashboard.play.${name}.desc`)}
+        </p>
       </div>
       <button
         className={`rounded-xl bg-white text-black font-semibold py-2 px-3.5 w-fit self-end`}
       >
-        {name}
+        {t(`dashboard.play.${name}.title`)}
       </button>
     </Link>
   );
