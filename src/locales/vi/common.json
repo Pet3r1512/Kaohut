@@ -86,7 +86,7 @@
       }
     },
     "account": {
-      "title": "Thông Tin TàiKhoản",
+      "title": "Thông Tin Tài Khoản",
       "name": "Họ Tên",
       "email": "Email",
       "role": "Vai Trò",
