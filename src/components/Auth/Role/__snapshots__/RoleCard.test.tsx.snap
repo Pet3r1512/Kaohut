@@ -9,7 +9,7 @@ exports[`Role Card Component Tests > should match snapshot 1`] = `
         href="/auth/teacher"
       >
         <div
-          class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col max-w-80 lg:w-60"
+          class="rounded-lg bg-transparent cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col max-w-80 lg:w-60"
           data-testid="card"
         >
           <div
@@ -61,7 +61,7 @@ exports[`Role Card Component Tests > should match snapshot 1`] = `
       href="/auth/teacher"
     >
       <div
-        class="rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50 cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col max-w-80 lg:w-60"
+        class="rounded-lg bg-transparent cursor-pointer lg:hover:scale-105 transition-all duration-150 ease-linear group flex flex-row md:flex-col max-w-80 lg:w-60"
         data-testid="card"
       >
         <div
