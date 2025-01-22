@@ -20,7 +20,7 @@ export async function createHistory(history: History) {
 
     if (!response.ok) {
         const res = await response.json()
-        throw new Error(res.error || "Cannot create history")
+        throw new Error(res.error || `Cannot create history: ${response.statusText}`)
     }
 
     const res = await response.json()
