@@ -74,7 +74,7 @@ export default function QuestionCard({
     <Card className="size-full bg-transparent border-none flex flex-col items-center justify-center gap-y-8 relative">
       <div className="w-full flex items-center justify-between">
         <div className="bg-yellow-200 text-black font-bold rounded-full py-2 px-4">
-          Question: {questionOrder.current}/{questionOrder.total}
+          Question: {questionOrder.current}/{questionOrder.total - 1}
         </div>
 
         <div className="flex items-center gap-x-2.5 bg-white text-black font-bold rounded-full py-2 px-4 !min-w-20">
