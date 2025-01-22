@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import TimerCircle from "./TimerCircle";
+import CountUp from "@/components/ui/countup";
+import GradientText from "@/components/ui/gradient-text";
 
 interface QuestionCardProps {
   question: {
@@ -30,6 +32,12 @@ export default function QuestionCard({
 }: QuestionCardProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(duration);
+
+  const previousScoreRef = useRef(score);
+
+  useEffect(() => {
+    previousScoreRef.current = score;
+  }, [score]);
 
   const handleAnswer = (index: number, isCorrect: boolean) => {
     setSelectedAnswer(index);
@@ -64,15 +72,25 @@ export default function QuestionCard({
 
   return (
     <Card className="size-full bg-transparent border-none flex flex-col items-center justify-center gap-y-8 relative">
-      <div className="absolute top-0 left-0 bg-yellow-200 text-black font-bold rounded-full py-2 px-4">
-        Question {questionOrder.current}/{questionOrder.total}
-      </div>
+      <div className="w-full flex items-center justify-between">
+        <div className="bg-yellow-200 text-black font-bold rounded-full py-2 px-4">
+          Question: {questionOrder.current}/{questionOrder.total}
+        </div>
 
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-yellow-200 text-black font-bold rounded-full py-2 px-4">
-        Score: {score}
-      </div>
+        <div className="flex items-center gap-x-2.5 bg-white text-black font-bold rounded-full py-2 px-4 !min-w-20">
+          <p>Score: </p>
+          <GradientText>
+            <CountUp
+              from={previousScoreRef.current}
+              to={score}
+              separator=","
+              direction="up"
+              duration={1}
+              className="count-up-text font-bold text-xl"
+            />
+          </GradientText>
+        </div>
 
-      <div className="absolute top-0 right-0">
         <TimerCircle
           duration={duration}
           onComplete={handleTimerComplete}
