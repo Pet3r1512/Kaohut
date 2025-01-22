@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 export type User = {
+    id: string;
     name: string;
     email: string;
     role: string;
@@ -15,6 +16,7 @@ export type UserActions = {
 export type UserStore = User & UserActions;
 
 export const defaultUser: User = {
+    id: "",
     name: "",
     email: "",
     role: "",
@@ -29,7 +31,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
         }));
     },
     getUser: () => {
-        const { name, email, role, workplace } = get();
-        return { name, email, role, workplace };
+        const { id, name, email, role, workplace } = get();
+        return { id, name, email, role, workplace };
     }
 }));
