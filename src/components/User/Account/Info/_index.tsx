@@ -1,52 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { getUserByEmail } from "@/api/user/getUser";
 import { Label } from "@/components/aceternity/Label";
-import LoadingScreen from "@/components/LoadingScreen";
 import { Input } from "@/components/ui/input";
-import { defaultUser, useUserStore } from "@/stores/user";
-import { useMutation } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useUserStore } from "@/stores/user";
 import { useTranslation } from "react-i18next";
-import Cookies from "universal-cookie";
 
 export default function AccountInfo() {
-  const { getUser, setUser } = useUserStore();
+  const { getUser } = useUserStore();
   const { t } = useTranslation();
 
   const currUser = getUser();
-
-  const mutation = useMutation({
-    mutationFn: getUserByEmail,
-    mutationKey: ["user"],
-    onSuccess: (data) => {
-      const user = data.user.user;
-      setUser({
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        workplace: user.workplace,
-      });
-    },
-    onError: (error) => {
-      console.error("Error fetching user:", error.message);
-    },
-  });
-
-  useEffect(() => {
-    if (currUser.email === defaultUser.email) {
-      const cookies = new Cookies();
-      const userEmail = cookies.get("userEmail");
-      if (userEmail) {
-        mutation.mutate(userEmail);
-      } else {
-        console.warn("No userEmail cookie found.");
-      }
-    }
-  }, [currUser.email]);
-
-  if (mutation.isPending) {
-    return <LoadingScreen />;
-  }
 
   return (
     <div className="flex flex-col gap-y-5">
