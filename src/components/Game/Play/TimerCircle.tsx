@@ -23,7 +23,7 @@ export default function TimerCircle({
   const renderTime = ({ remainingTime }: { remainingTime: number }) => {
     return (
       <div className="timer">
-        <div className="value text-3xl font-bold text-white">
+        <div className="value text-xl font-bold text-white">
           {remainingTime}
         </div>
       </div>
@@ -32,7 +32,7 @@ export default function TimerCircle({
 
   return (
     <CountdownCircleTimer
-      size={75}
+      size={50}
       isPlaying
       duration={duration}
       colors={["#38b000", "#F7B801", "#A30000", "#A30000"]}
