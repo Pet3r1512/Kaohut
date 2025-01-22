@@ -8,6 +8,7 @@ import { useState } from "react";
 import QuestionCard from "@/components/Game/Play/QuestionCard";
 import { LoaderCircle, Play } from "lucide-react";
 import { SOCKET_URL } from "@/lib/socket-client";
+// import { createHistory, History } from "@/api/history/createHistory";
 
 const socket = io(SOCKET_URL);
 
@@ -24,6 +25,12 @@ function RouteComponent() {
   >(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(1);
   const [score, setScore] = useState<number>(0);
+  // const [history, setHistory] = useState<History>({
+  //   userId: "",
+  //   quizId: "",
+  //   quizName: "",
+  //   score: 0
+  // })
   const { quizId } = Route.useParams();
 
   const { isPending, data, error } = useQuery({
@@ -31,6 +38,11 @@ function RouteComponent() {
     queryFn: () => GetQuiz(quizId),
     enabled: !!quizId,
   });
+
+  // const historyQuery = useQuery({
+  //   queryKey: ["history"],
+  //   queryFn: () => createHistory(history)
+  // })
 
   const startSinglePlayer = (quizId: string, currentUserId: string) => {
     setQuestionFetching(true);
@@ -57,7 +69,7 @@ function RouteComponent() {
     socket.emit("answer_question", { answerIndex }, (response: any) => {
       if (response.error) {
         console.error("Error answering question:", response.error);
-        setAnswerState(null); // Reset on error
+        setAnswerState(null);
         return;
       }
 
