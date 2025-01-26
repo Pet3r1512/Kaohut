@@ -19,7 +19,7 @@
 - [Thanh Phong](https://github.com/Pet3r1512) - Fullstack Developer
 - [Linh Dan](https://github.com/nguyenholinhdan) - Frontend Developer | Content | Designer | Tester
 
-### How to use this app?
+# How to use this app?
 
 ## Step 1: Clone this Repo - Client Side
 
