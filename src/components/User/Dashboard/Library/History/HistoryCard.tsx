@@ -20,7 +20,7 @@ export default function HistoryCard({
       <p className="text-lg md:text-xl lg:text-2xl font-bold">{quizName}</p>
       <div>
         <p>🏆 Score: {score}</p>
-        <p>⏰ Played on: {playedAt.toLocaleDateString()}</p>
+        <p>⏰ Played on: {new Date(playedAt).toLocaleDateString("en-GB")}</p>
       </div>
     </Card>
   );
