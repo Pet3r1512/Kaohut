@@ -1,11 +1,11 @@
 import { getAllQuizzes } from "@/api/quiz/getAllQuizzes";
-import LoadingScreen from "@/components/LoadingScreen";
 import { useQuery } from "@tanstack/react-query";
 import QuizCard from "./QuizCard";
 import { type Quiz } from "./QuizCard";
 import { useState, useEffect } from "react";
 import Features from "./Features/_index";
 import SearchBar from "./Searchbar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Quiz() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
@@ -20,14 +20,6 @@ export default function Quiz() {
     }
   }, [data]);
 
-  if (isLoading) {
-    return (
-      <section className="w-full min-h-[calc(100vh-6.5rem)] flex items-center justify-center">
-        <LoadingScreen className="" />
-      </section>
-    );
-  }
-
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
@@ -40,9 +32,15 @@ export default function Quiz() {
         Quizzes Collection
       </h1>
       <div className="flex flex-wrap items-center gap-5 w-full">
-        {quizzes.map((quiz, index) => (
-          <QuizCard key={index} quiz={quiz} />
-        ))}
+        {isLoading ? (
+          <>
+            <Skeleton className="md:w-1/2 w-full md:max-w-96 lg:w-96 h-48 rounded-2xl" />
+            <Skeleton className="md:w-1/2 w-full md:max-w-96 lg:w-96 h-48 rounded-2xl" />
+            <Skeleton className="md:w-1/2 w-full md:max-w-96 lg:w-96 h-48 rounded-2xl" />
+          </>
+        ) : (
+          quizzes.map((quiz, index) => <QuizCard key={index} quiz={quiz} />)
+        )}
       </div>
     </section>
   );
