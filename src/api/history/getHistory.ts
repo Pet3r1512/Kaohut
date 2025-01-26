@@ -11,7 +11,7 @@ export async function getHistory(userId: string) {
 
     if (!response.ok) {
         const res = await response.json()
-        throw new Error(res.error || "Failed to fetch history")
+        throw new Error(res.error || `Failed to fetch history: ${response.status} ${response.statusText}`)
     }
 
     const res = await response.json()
