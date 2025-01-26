@@ -75,7 +75,7 @@ export function AppSidebar() {
                     <Link
                       to={item.url}
                       className={cn(
-                        "lg:hover:scale-105 transition-all lg:hover:px-5 duration-150 ease-linwear",
+                        "lg:hover:scale-105 transition-all lg:hover:px-5 duration-150 ease-linear",
                         location.pathname === item.url
                           ? "bg-primary rounded-full text-white lg:hover:bg-primary lg:hover:text-white lg:hover:pl-full lg:text-xl lg:font-bold lg:py-5"
                           : "",
