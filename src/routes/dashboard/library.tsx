@@ -1,4 +1,5 @@
 import DashboardLayout from "@/components/User/Dashboard/DashboardLayout";
+import History from "@/components/User/Dashboard/Library/History";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/dashboard/library")({
@@ -6,5 +7,9 @@ export const Route = createFileRoute("/dashboard/library")({
 });
 
 function RouteComponent() {
-  return <DashboardLayout>This is Library section</DashboardLayout>;
+  return (
+    <DashboardLayout>
+      <History />
+    </DashboardLayout>
+  );
 }
