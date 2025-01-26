@@ -8,6 +8,8 @@ import { getUserByEmail } from "@/api/user/getUser";
 import { useUserStore, defaultUser } from "@/stores/user";
 import Cookies from "universal-cookie";
 import { useEffect } from "react";
+import { useTheme } from "@/hooks/useTheme";
+import { cn } from "@/lib/utils";
 
 export default function DashboardLayout({
   children,
@@ -16,6 +18,7 @@ export default function DashboardLayout({
 }) {
   const { fetching } = useCheckSession();
   const { getUser, setUser } = useUserStore();
+  const { theme } = useTheme();
 
   const mutation = useMutation({
     mutationFn: getUserByEmail,
@@ -51,7 +54,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="p-8 w-full">
+      <main className={cn("p-8 w-full", theme === "dark" ? "dark" : "light")}>
         <SidebarTrigger />
         <section className="lg:py-8 min-h-[calc(100vh-6.5rem)]">
           {children}
