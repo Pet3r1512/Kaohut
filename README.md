@@ -36,13 +36,13 @@
 ## Step 5: Install dependencies
 - You can use any package manager but we recommend using pnpm to install dependencies.
 - Run `pnpm install` to install all needed packages and dependencies.
-- - Create a file named `.env` and add following lines:
-    `NODE_ENV=development
-      PORT=9999
-      LOG_LEVEL=silent
-      DATABASE_URL="postgresql://na9p0r:xau_xTTiCvYmHPg77NejfMEsRIOAOyvZ7Tbd2@us-east-1.sql.xata.sh:5432/kaohut:main?sslmode=require"
-      BETTER_AUTH_SECRET=JztP4VLWXPKRsAHpuMNDqrPzH3S3cpwh
-      BETTER_AUTH_URL=http://localhost:9999`
+- Create a file named `.env` and add following lines:
+    NODE_ENV=development
+    PORT=9999
+    LOG_LEVEL=silent
+    DATABASE_URL="postgresql://na9p0r:xau_xTTiCvYmHPg77NejfMEsRIOAOyvZ7Tbd2@us-east-1.sql.xata.sh:5432/kaohut:main?sslmode=require"
+    BETTER_AUTH_SECRET=JztP4VLWXPKRsAHpuMNDqrPzH3S3cpwh
+    BETTER_AUTH_URL=http://localhost:9999
 
 ## Step 6: Run Server
 - Use `pnpm dev` to start the server at localhost:9999
