@@ -16,11 +16,19 @@ export default function HistoryCard({
 }) {
   const { quizName, score, playedAt } = history;
   return (
-    <Card className="flex flex-col gap-y-5 bg-white dark:bg-black shadow-2xl rounded-2xl p-5 lg:hover:scale-105 transition-all duration-150 ease-linear">
-      <p className="text-lg md:text-xl lg:text-2xl font-bold">{quizName}</p>
+    <Card className="flex justify-between bg-white dark:bg-black shadow-2xl rounded-2xl p-5 lg:hover:scale-105 transition-all duration-150 ease-linear">
+      <p className="text-lg md:text-xl lg:text-2xl font-bold text-secondary">
+        {quizName}
+      </p>
       <div>
-        <p>🏆 Score: {score}</p>
-        <p>⏰ Played on: {new Date(playedAt).toLocaleDateString("en-GB")}</p>
+        <p>
+          🏆 <span className="text-lg font-semibold">Score</span>:{" "}
+          <span className="text-green-500 text-xl font-bold">{score}</span>
+        </p>
+        <p>
+          ⏰ <span className="text-lg font-semibold">Time</span>:{" "}
+          {new Date(playedAt).toLocaleDateString("en-GB")}
+        </p>
       </div>
     </Card>
   );
