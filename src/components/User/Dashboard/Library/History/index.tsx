@@ -27,7 +27,7 @@ export default function History() {
       {isFetching ? (
         <SkeletonHistory />
       ) : (
-        <div className="flex flex-col gap-y-6 lg:gap-y-7 w-full md:w-1/2 lg:w-2/3 mx-auto">
+        <div className="flex flex-col gap-y-6 lg:gap-y-7 w-full md:w-1/2 mx-auto">
           {data?.history.map((item: HistoryCardProps, index: number) => (
             <HistoryCard key={index} history={item} />
           ))}
@@ -40,9 +40,9 @@ export default function History() {
 function SkeletonHistory() {
   return (
     <div className="flex flex-col gap-y-6 lg:gap-y-7 w-full md:w-1/2 lg:w-2/3 mx-auto">
-      <Skeleton className="h-[122px] rounded-2xl shadow-2xl w-full" />
-      <Skeleton className="h-[122px] rounded-2xl shadow-2xl w-full" />
-      <Skeleton className="h-[122px] rounded-2xl shadow-2xl w-full" />
+      <Skeleton className="h-[106.75px] rounded-2xl shadow-2xl w-full" />
+      <Skeleton className="h-[106.75px] rounded-2xl shadow-2xl w-full" />
+      <Skeleton className="h-[106.75px] rounded-2xl shadow-2xl w-full" />
     </div>
   );
 }
