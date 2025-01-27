@@ -32,8 +32,8 @@ export default function HistoryCard({
   }
 
   return (
-    <Card className="flex justify-between bg-white dark:bg-black shadow-2xl rounded-2xl p-5 lg:hover:scale-105 transition-all duration-150 ease-linear">
-      <div className="flex flex-col gap-y-2.5">
+    <Card className="flex flex-col md:flex-row md:justify-between bg-white dark:bg-black shadow-2xl rounded-2xl p-5 lg:hover:scale-105 transition-all duration-150 ease-linear">
+      <div className="flex flex-row md:flex-col justify-between gap-y-2.5">
         <p className="text-lg md:text-xl lg:text-2xl font-bold text-secondary">
           {quizName}
         </p>
@@ -47,7 +47,7 @@ export default function HistoryCard({
         <p>
           ⏰ <span className="text-lg font-semibold">Played</span>:{" "}
           <span className="text-[#f15bb5] font-bold text-xl">
-            {playedString}
+            {played < 0 ? "Today" : playedString}
           </span>
         </p>
       </div>
