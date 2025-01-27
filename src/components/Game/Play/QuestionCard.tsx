@@ -83,7 +83,6 @@ export default function QuestionCard({
             <CountUp
               from={previousScoreRef.current}
               to={score}
-              separator=","
               direction="up"
               duration={1}
               className="count-up-text font-bold text-xl"

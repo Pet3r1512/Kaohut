@@ -9,14 +9,13 @@ import { useTranslation } from "react-i18next";
 export function LanguagesToggle() {
   const { i18n } = useTranslation();
 
-  // Define language options with their respective codes
   const Langs = [
     { name: "Tiếng Việt", code: "vi" },
     { name: "English", code: "en" },
   ];
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="dark:text-white text-black flex items-center">
+      <DropdownMenuTrigger className="flex items-center">
         <Languages />
         <ChevronDown size={12} />
       </DropdownMenuTrigger>

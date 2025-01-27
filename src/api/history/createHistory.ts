@@ -4,7 +4,8 @@ export interface History {
     userId: string,
     quizName: string,
     quizId: string,
-    score: number
+    score: number,
+    performance: string
 }
 
 export async function createHistory(history: History) {
