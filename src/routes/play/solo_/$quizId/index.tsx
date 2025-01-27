@@ -11,6 +11,7 @@ import { LoaderCircle, Play } from "lucide-react";
 import { SOCKET_URL } from "@/lib/socket-client";
 import { createHistory, History } from "@/api/history/createHistory";
 import { useUserStore } from "@/stores/user";
+import CalculatePerformance from "@/utils/calculatePerformace";
 
 const socket = io(SOCKET_URL);
 
@@ -54,6 +55,10 @@ function RouteComponent() {
         quizName: data.quiz.result.data.quiz.title,
         quizId: quizId,
         score: score,
+        performance: CalculatePerformance(
+          score,
+          (data.quiz.result.data.quiz.length - 1) * 1000,
+        ),
       };
 
       mutation.mutate(finalHistory);
