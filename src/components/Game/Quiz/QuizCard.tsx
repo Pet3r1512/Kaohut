@@ -20,12 +20,20 @@ export default function QuizCard({ quiz }: { quiz: Quiz }) {
       <p className="lg:h-[calc(2*2.25rem)] h-[calc(2*3.25rem)] line-clamp-2">
         {quiz.description}
       </p>
-      <Link
-        to={`/play/solo/${quiz.id}`}
-        className="bg-green-500 px-2.5 py-1 rounded-lg text-white font-semibold w-fit ml-auto"
-      >
-        Play Now
-      </Link>
+      <div className="flex items-center ml-auto gap-x-2.5">
+        <Link
+          to={`/play/multi/${quiz.id}`}
+          className="bg-blue-500 px-2.5 py-1 rounded-lg text-white font-semibold w-fit"
+        >
+          Host Game
+        </Link>
+        <Link
+          to={`/play/solo/${quiz.id}`}
+          className="bg-green-500 px-2.5 py-1 rounded-lg text-white font-semibold w-fit"
+        >
+          Play Now
+        </Link>
+      </div>
     </div>
   );
 }
