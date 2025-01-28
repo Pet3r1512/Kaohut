@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./Sidebar/_index";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -24,14 +23,16 @@ export default function DashboardLayout({
     mutationFn: getUserByEmail,
     mutationKey: ["user"],
     onSuccess: (data) => {
-      const user = data.user.user;
-      setUser({
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        workplace: user.workplace,
-      });
+      const user = data.user?.user;
+      if (user) {
+        setUser({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+          workplace: user.workplace,
+        });
+      }
     },
     onError: (error) => {
       console.error("Error fetching user:", error.message);
@@ -41,11 +42,24 @@ export default function DashboardLayout({
   useEffect(() => {
     const cookies = new Cookies(null, { path: "/" });
     const user = getUser();
+
     if (JSON.stringify(user) === JSON.stringify(defaultUser)) {
-      mutation.mutate(cookies.get("userEmail"));
-      setUser(mutation.data?.user.user);
+      const userEmail = cookies.get("userEmail");
+      if (userEmail && !mutation.isPending && !mutation.data) {
+        mutation.mutate(userEmail);
+      }
+    } else {
+      if (user && user.id && user.name && !mutation.isPending) {
+        if (
+          user.id !== getUser().id ||
+          user.name !== getUser().name ||
+          user.email !== getUser().email
+        ) {
+          setUser(user);
+        }
+      }
     }
-  }, []);
+  }, [getUser, setUser, mutation]);
 
   if (fetching) {
     return <LoadingScreen />;
