@@ -29,6 +29,7 @@ function RouteComponent() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(1);
   const [score, setScore] = useState<number>(0);
   const [hasSubmitted, setHasSubmitted] = useState<boolean>(false);
+  const [isQuizFinished, setIsQuizFinished] = useState<boolean>(false);
   const { getUser } = useUserStore();
   const { quizId } = Route.useParams();
 
@@ -57,7 +58,7 @@ function RouteComponent() {
         score: score,
         performance: CalculatePerformance(
           score,
-          (data.quiz.result.data.quiz.length - 1) * 1000,
+          data.quiz.result.data.quiz.length * 1000,
         ),
       };
 
@@ -102,9 +103,11 @@ function RouteComponent() {
         if (response.nextQuestion) {
           setCurrentQuestion(response.nextQuestion);
           setCurrentQuestionIndex((prev) => prev + 1);
+          setQuestionFetching(false);
+          setAnswerState(null);
+        } else {
+          setIsQuizFinished(true);
         }
-        setQuestionFetching(false);
-        setAnswerState(null);
       }, 2000);
     });
   };
@@ -125,7 +128,7 @@ function RouteComponent() {
     return <p className="text-gray-500">No data found for this quiz.</p>;
   }
 
-  if (currentQuestionIndex === data.quiz.result.data.quiz.length) {
+  if (isQuizFinished) {
     return (
       <div className="flex items-center justify-center h-[100dvh] bg-gray-300">
         <div className="w-full h-[100dvh] lg:w-[450px] lg:h-[750px] lg:rounded-2xl shadow-2xl p-5 bg-gradient-to-bl from-[#654ea3] to-[#eaafc8] flex flex-col items-center justify-center gap-y-5 text-white">
@@ -155,7 +158,7 @@ function RouteComponent() {
                 startSinglePlayer(quizId, "z_U6sTT1JUdg5Ns7E7Ye9");
                 setIsGameStarted(true);
               }}
-              className=" text-white font-bold bg-green-600 px-5 py-2 rounded-lg"
+              className="text-white font-bold bg-green-600 px-5 py-2 rounded-lg"
             >
               {questionFetching ? (
                 <LoaderCircle className="animate-spin mx-auto" />
