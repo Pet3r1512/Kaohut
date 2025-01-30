@@ -7,6 +7,19 @@ export const Route = createFileRoute("/play/multi/$quizId/")({
 function RouteComponent() {
   const { quizId } = Route.useParams();
 
+  const { isPending, data, error } = useQuery({
+    queryKey: ["quiz", quizId],
+    queryFn: () => GetQuiz(quizId),
+    enabled: !!quizId,
+  });
+
+  if (isPending) {
+    return <Skeleton className="size-4/5 rounded-2xl shadow-2xl" />;
+  }
+
+  if (error) {
+    console.error(error.message);
+  }
   return (
     <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc] justify-center items-center text-white">
       <div className="flex flex-col justify-center size-4/5 rounded-2xl shadow-2xl bg-[#669bbc] p-5 lg:p-10 gap-y-5 lg:gap-y-10">
