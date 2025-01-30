@@ -4,7 +4,7 @@ import Waiting from "./Waiting";
 
 export default function Lobby() {
   return (
-    <section className="p-5 flex flex-col h-screen w-screen bg-[url('/images/bricks_dark.png')] bg-cover">
+    <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc]">
       <Pin pin="123 456" />
       <Waiting />
       <Settings />
