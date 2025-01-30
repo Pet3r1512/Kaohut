@@ -29,7 +29,7 @@ function RouteComponent() {
 
   return (
     <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc] justify-center items-center text-white">
-      <div className="flex flex-col justify-center md:size-4/5 md:h-1/2 rounded-2xl shadow-2xl bg-[#669bbc] p-5 lg:p-10 gap-y-5 lg:gap-y-10">
+      <div className="flex flex-col justify-center md:size-4/5 md:h-1/2 lg:h-4/5 rounded-2xl shadow-2xl bg-[#669bbc] p-5 lg:p-10 gap-y-5 lg:gap-y-10">
         <div className="space-y-5">
           <p className="text-3xl md:text-5xl lg:text-7xl font-bold italic">
             Multiplayer Mode
