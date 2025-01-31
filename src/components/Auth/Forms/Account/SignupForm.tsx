@@ -150,8 +150,7 @@ export function SignupForm() {
                 message: t("auth.signup-page.password.condition"),
               },
               pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d@$!%*?&#]{8,}$/,
+                value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
                 message: t("auth.signup-page.password.note"),
               },
             })}
