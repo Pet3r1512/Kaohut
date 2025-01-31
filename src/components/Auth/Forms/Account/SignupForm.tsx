@@ -150,8 +150,7 @@ export function SignupForm() {
                 message: t("auth.signup-page.password.condition"),
               },
               pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d@$!%*?&#]{8,}$/,
+                value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z\d]).{8,}$/,
                 message: t("auth.signup-page.password.note"),
               },
             })}
@@ -175,8 +174,7 @@ export function SignupForm() {
                 message: "Password must be at least 8 characters long",
               },
               pattern: {
-                value:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d])[A-Za-z\d@$!%*?&#]{8,}$/,
+                value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z\d]).{8,}$/,
                 message:
                   "Password must have at least 1 number, 1 uppercase, 1 lowercase, and 1 special character",
               },
