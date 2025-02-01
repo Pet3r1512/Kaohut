@@ -50,6 +50,9 @@ function RouteComponent() {
             </p>
             <Link
               to={`/play/multi/${quizId}/waiting`}
+              search={{
+                hostname: data?.quiz.result.data.quiz.creatorName,
+              }}
               className="lg:text-xl font-bold bg-secondary lg:px-3.5 px-2.5 py-1.5 lg:py-2 rounded-xl text-white lg:hover:bg-secondary/80 transition-all duration-150 ease-linear"
             >
               Create Room

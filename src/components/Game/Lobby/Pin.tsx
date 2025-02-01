@@ -8,7 +8,7 @@ export default function Pin({ pin }: { pin: string }) {
     >
       <p className="text-lg font-bold text-black">Game PIN:</p>
       <div className="flex items-end gap-x-8">
-        <p className="text-6xl font-extrabold tracking-widest text-primary">
+        <p className="text-6xl w-60 h-18 font-extrabold tracking-widest text-primary">
           {pin}
         </p>
         <Clipboard className="text-black" />
