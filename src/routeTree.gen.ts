@@ -13,7 +13,6 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as PlayLobbyImport } from './routes/play/lobby'
 import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
 import { Route as DashboardPlayImport } from './routes/dashboard/play'
 import { Route as DashboardLibraryImport } from './routes/dashboard/library'
@@ -57,12 +56,6 @@ const AuthRoleLazyRoute = AuthRoleLazyImport.update({
   path: '/auth/role',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/auth/role.lazy').then((d) => d.Route))
-
-const PlayLobbyRoute = PlayLobbyImport.update({
-  id: '/play/lobby',
-  path: '/play/lobby',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const DashboardSettingsRoute = DashboardSettingsImport.update({
   id: '/dashboard/settings',
@@ -174,13 +167,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsImport
       parentRoute: typeof rootRoute
     }
-    '/play/lobby': {
-      id: '/play/lobby'
-      path: '/play/lobby'
-      fullPath: '/play/lobby'
-      preLoaderRoute: typeof PlayLobbyImport
-      parentRoute: typeof rootRoute
-    }
     '/auth/role': {
       id: '/auth/role'
       path: '/auth/role'
@@ -249,7 +235,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/library': typeof DashboardLibraryRoute
   '/dashboard/play': typeof DashboardPlayRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/play/lobby': typeof PlayLobbyRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
@@ -267,7 +252,6 @@ export interface FileRoutesByTo {
   '/dashboard/library': typeof DashboardLibraryRoute
   '/dashboard/play': typeof DashboardPlayRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/play/lobby': typeof PlayLobbyRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
@@ -286,7 +270,6 @@ export interface FileRoutesById {
   '/dashboard/library': typeof DashboardLibraryRoute
   '/dashboard/play': typeof DashboardPlayRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
-  '/play/lobby': typeof PlayLobbyRoute
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
@@ -306,7 +289,6 @@ export interface FileRouteTypes {
     | '/dashboard/library'
     | '/dashboard/play'
     | '/dashboard/settings'
-    | '/play/lobby'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
@@ -323,7 +305,6 @@ export interface FileRouteTypes {
     | '/dashboard/library'
     | '/dashboard/play'
     | '/dashboard/settings'
-    | '/play/lobby'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
@@ -340,7 +321,6 @@ export interface FileRouteTypes {
     | '/dashboard/library'
     | '/dashboard/play'
     | '/dashboard/settings'
-    | '/play/lobby'
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
@@ -359,7 +339,6 @@ export interface RootRouteChildren {
   DashboardLibraryRoute: typeof DashboardLibraryRoute
   DashboardPlayRoute: typeof DashboardPlayRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
-  PlayLobbyRoute: typeof PlayLobbyRoute
   AuthRoleLazyRoute: typeof AuthRoleLazyRoute
   AuthStudentLazyRoute: typeof AuthStudentLazyRoute
   AuthTeacherLazyRoute: typeof AuthTeacherLazyRoute
@@ -377,7 +356,6 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardLibraryRoute: DashboardLibraryRoute,
   DashboardPlayRoute: DashboardPlayRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
-  PlayLobbyRoute: PlayLobbyRoute,
   AuthRoleLazyRoute: AuthRoleLazyRoute,
   AuthStudentLazyRoute: AuthStudentLazyRoute,
   AuthTeacherLazyRoute: AuthTeacherLazyRoute,
@@ -404,7 +382,6 @@ export const routeTree = rootRoute
         "/dashboard/library",
         "/dashboard/play",
         "/dashboard/settings",
-        "/play/lobby",
         "/auth/role",
         "/auth/student",
         "/auth/teacher",
@@ -432,9 +409,6 @@ export const routeTree = rootRoute
     },
     "/dashboard/settings": {
       "filePath": "dashboard/settings.tsx"
-    },
-    "/play/lobby": {
-      "filePath": "play/lobby.tsx"
     },
     "/auth/role": {
       "filePath": "auth/role.lazy.tsx"
