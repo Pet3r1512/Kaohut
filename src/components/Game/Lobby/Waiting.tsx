@@ -8,10 +8,10 @@ export default function Waiting({ players }: { players: Player[] }) {
           Waiting for players...
         </p>
       </div>
-      {players.map((player, index) => {
+      {players.map((player: Player) => {
         return (
           <div
-            key={index}
+            key={player.id}
             className="cursor-pointer w-fit p-1.5 rounded-full bg-orange-500"
           >
             <p className="text-lg lg:text-xl text-black font-semibold">
