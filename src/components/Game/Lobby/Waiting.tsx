@@ -8,18 +8,20 @@ export default function Waiting({ players }: { players: Player[] }) {
           Waiting for players...
         </p>
       </div>
-      {players.map((player: Player) => {
-        return (
-          <div
-            key={player.id}
-            className="cursor-pointer w-fit p-1.5 rounded-full bg-orange-500"
-          >
-            <p className="text-lg lg:text-xl text-black font-semibold">
-              {player.name}
-            </p>
-          </div>
-        );
-      })}
+      <div className="flex flex-wrap gap-5">
+        {players.map((player: Player) => {
+          return (
+            <div
+              key={player.id}
+              className="cursor-pointer w-fit py-2.5 px-4 rounded-full bg-white text-primary shadow-2xl"
+            >
+              <p className="text-lg lg:text-xl text-black font-semibold">
+                {player.name}
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
