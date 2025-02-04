@@ -24,7 +24,8 @@ function RouteComponent() {
   }, []);
 
   const joinGame = () => {
-    if (!joinGameCode) {
+    const trimmedJoinGameCode = joinGameCode.trim();
+    if (!trimmedJoinGameCode) {
       setError("Please enter a valid game code.");
       return;
     }
@@ -35,7 +36,7 @@ function RouteComponent() {
     socket.emit(
       "join_game",
       {
-        gameCode: joinGameCode,
+        gameCode: trimmedJoinGameCode,
         playerName: "Thanh Phong", // You can dynamically get this name if needed
       },
       (response: any) => {
