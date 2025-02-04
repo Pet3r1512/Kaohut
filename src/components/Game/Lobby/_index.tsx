@@ -3,7 +3,19 @@ import Pin from "./Pin";
 import Settings from "./Settings";
 import Waiting from "./Waiting";
 
-export default function Lobby({ gameCode }: { gameCode: string }) {
+export interface Player {
+  id: string;
+  name: string;
+  score: number;
+}
+
+export default function Lobby({
+  gameCode,
+  players,
+}: {
+  gameCode: string;
+  players: Player[];
+}) {
   return (
     <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc]">
       {gameCode === "" ? (
@@ -11,7 +23,7 @@ export default function Lobby({ gameCode }: { gameCode: string }) {
       ) : (
         <>
           <Pin pin={gameCode} />
-          <Waiting />
+          <Waiting players={players} />
           <Settings />
         </>
       )}
