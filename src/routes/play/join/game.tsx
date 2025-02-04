@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import FullLogo from "@/components/Layout/Logos/FullLogo";
+import { Input } from "@/components/ui/input";
+import { Toaster } from "@/components/ui/toaster";
 import { useSocket } from "@/context/SocketContext";
+import { toast } from "@/hooks/useToast";
 import { connectSocket } from "@/lib/socket-client";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
@@ -9,7 +13,8 @@ export const Route = createFileRoute("/play/join/game")({
 });
 
 function RouteComponent() {
-  const [joinGameCode, setJoinGameCode] = useState("");
+  const [joinGameCode, setJoinGameCode] = useState<string>("");
+  const [playerName, setPlayerName] = useState<string>("");
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState<string | null>(null); // Error state
   const socket = useSocket() || connectSocket(); // Ensure the socket connection is established
@@ -27,6 +32,10 @@ function RouteComponent() {
     const trimmedJoinGameCode = joinGameCode.trim();
     if (!trimmedJoinGameCode) {
       setError("Please enter a valid game code.");
+      toast({
+        variant: "destructive",
+        title: error || "Invalid Game Code",
+      });
       return;
     }
 
@@ -37,13 +46,17 @@ function RouteComponent() {
       "join_game",
       {
         gameCode: trimmedJoinGameCode,
-        playerName: "Thanh Phong", // You can dynamically get this name if needed
+        playerName: playerName, // You can dynamically get this name if needed
       },
       (response: any) => {
         setLoading(false); // Stop loading indicator
 
         if (response.error) {
           setError(response.error); // Set error if response has error
+          toast({
+            variant: "destructive",
+            title: error || "Invalid Game Code",
+          });
           return;
         }
 
@@ -54,17 +67,33 @@ function RouteComponent() {
   };
 
   return (
-    <div>
-      <input
-        value={joinGameCode}
-        onChange={(e) => setJoinGameCode(e.target.value)}
-        type="text"
-        placeholder="Enter game code"
-      />
-      <button onClick={joinGame} disabled={loading}>
-        {loading ? "Joining..." : "Join Game"}
-      </button>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-    </div>
+    <main className="bg-gradient-to-tr from-[#403A3E] via-[#D7DDE8] to-[#BE5869] h-[100dvh] flex flex-col items-center justify-center gap-y-10">
+      <FullLogo imgClassName="!size-14" textClassName="lg:text-5xl" />
+      <div className="w-60 flex flex-col gap-y-5">
+        <Input
+          type="number"
+          maxLength={6}
+          minLength={6}
+          placeholder="Game Code"
+          onChange={(e) => setJoinGameCode(e.target.value)}
+          className="text-center !text-lg font-bold rounded-2xl shadow-2xl w-full"
+        />
+        <Input
+          type="text"
+          minLength={1}
+          placeholder="Your Name"
+          onChange={(e) => setPlayerName(e.target.value)}
+          className="text-center !text-lg font-bold rounded-2xl shadow-2xl w-full"
+        />
+        <button
+          onClick={joinGame}
+          disabled={loading}
+          className="bg-primary text-white font-bold text-lg w-full py-1.5 rounded-2xl shadow-2xl"
+        >
+          {loading ? "Joining..." : "Join Game"}
+        </button>
+      </div>
+      <Toaster />
+    </main>
   );
 }
