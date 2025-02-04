@@ -4,16 +4,14 @@ import { GetQuiz } from "@/api/quiz/getQuiz";
 import LoadingScreen from "@/components/LoadingScreen";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 import QuestionCard from "@/components/Game/Play/QuestionCard";
 import { LoaderCircle, Play } from "lucide-react";
-import { SOCKET_URL } from "@/lib/socket-client";
 import { createHistory, History } from "@/api/history/createHistory";
 import { useUserStore } from "@/stores/user";
 import CalculatePerformance from "@/utils/calculatePerformance";
-
-const socket = io(SOCKET_URL);
+import { useSocket } from "@/context/SocketContext";
+import { connectSocket } from "@/lib/socket-client";
 
 export const Route = createFileRoute("/play/solo_/$quizId/")({
   component: RouteComponent,
@@ -32,6 +30,7 @@ function RouteComponent() {
   const [isQuizFinished, setIsQuizFinished] = useState<boolean>(false);
   const { getUser } = useUserStore();
   const { quizId } = Route.useParams();
+  const socket = useSocket() || connectSocket();
 
   const { isPending, data, error } = useQuery({
     queryKey: ["quiz", quizId],
