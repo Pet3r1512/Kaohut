@@ -18,6 +18,7 @@ import { Route as DashboardPlayImport } from './routes/dashboard/play'
 import { Route as DashboardLibraryImport } from './routes/dashboard/library'
 import { Route as DashboardExploreImport } from './routes/dashboard/explore'
 import { Route as DashboardAccountImport } from './routes/dashboard/account'
+import { Route as PlayJoinGameImport } from './routes/play/join/game'
 import { Route as PlaySoloQuizIdIndexImport } from './routes/play/solo_/$quizId/index'
 import { Route as PlayMultiQuizIdIndexImport } from './routes/play/multi/$quizId/index'
 import { Route as PlayMultiQuizIdWaitingImport } from './routes/play/multi/$quizId/waiting'
@@ -102,6 +103,12 @@ const AuthAccountsSigninLazyRoute = AuthAccountsSigninLazyImport.update({
 } as any).lazy(() =>
   import('./routes/auth/accounts/signin.lazy').then((d) => d.Route),
 )
+
+const PlayJoinGameRoute = PlayJoinGameImport.update({
+  id: '/play/join/game',
+  path: '/play/join/game',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const PlaySoloQuizIdIndexRoute = PlaySoloQuizIdIndexImport.update({
   id: '/play/solo_/$quizId/',
@@ -188,6 +195,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthTeacherLazyImport
       parentRoute: typeof rootRoute
     }
+    '/play/join/game': {
+      id: '/play/join/game'
+      path: '/play/join/game'
+      fullPath: '/play/join/game'
+      preLoaderRoute: typeof PlayJoinGameImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/accounts/signin': {
       id: '/auth/accounts/signin'
       path: '/auth/accounts/signin'
@@ -238,6 +252,7 @@ export interface FileRoutesByFullPath {
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
+  '/play/join/game': typeof PlayJoinGameRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
   '/play/multi/$quizId/waiting': typeof PlayMultiQuizIdWaitingRoute
@@ -255,6 +270,7 @@ export interface FileRoutesByTo {
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
+  '/play/join/game': typeof PlayJoinGameRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
   '/play/multi/$quizId/waiting': typeof PlayMultiQuizIdWaitingRoute
@@ -273,6 +289,7 @@ export interface FileRoutesById {
   '/auth/role': typeof AuthRoleLazyRoute
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
+  '/play/join/game': typeof PlayJoinGameRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
   '/play/multi/$quizId/waiting': typeof PlayMultiQuizIdWaitingRoute
@@ -292,6 +309,7 @@ export interface FileRouteTypes {
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
+    | '/play/join/game'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
     | '/play/multi/$quizId/waiting'
@@ -308,6 +326,7 @@ export interface FileRouteTypes {
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
+    | '/play/join/game'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
     | '/play/multi/$quizId/waiting'
@@ -324,6 +343,7 @@ export interface FileRouteTypes {
     | '/auth/role'
     | '/auth/student'
     | '/auth/teacher'
+    | '/play/join/game'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
     | '/play/multi/$quizId/waiting'
@@ -342,6 +362,7 @@ export interface RootRouteChildren {
   AuthRoleLazyRoute: typeof AuthRoleLazyRoute
   AuthStudentLazyRoute: typeof AuthStudentLazyRoute
   AuthTeacherLazyRoute: typeof AuthTeacherLazyRoute
+  PlayJoinGameRoute: typeof PlayJoinGameRoute
   AuthAccountsSigninLazyRoute: typeof AuthAccountsSigninLazyRoute
   AuthAccountsSignupLazyRoute: typeof AuthAccountsSignupLazyRoute
   PlayMultiQuizIdWaitingRoute: typeof PlayMultiQuizIdWaitingRoute
@@ -359,6 +380,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoleLazyRoute: AuthRoleLazyRoute,
   AuthStudentLazyRoute: AuthStudentLazyRoute,
   AuthTeacherLazyRoute: AuthTeacherLazyRoute,
+  PlayJoinGameRoute: PlayJoinGameRoute,
   AuthAccountsSigninLazyRoute: AuthAccountsSigninLazyRoute,
   AuthAccountsSignupLazyRoute: AuthAccountsSignupLazyRoute,
   PlayMultiQuizIdWaitingRoute: PlayMultiQuizIdWaitingRoute,
@@ -385,6 +407,7 @@ export const routeTree = rootRoute
         "/auth/role",
         "/auth/student",
         "/auth/teacher",
+        "/play/join/game",
         "/auth/accounts/signin",
         "/auth/accounts/signup",
         "/play/multi/$quizId/waiting",
@@ -418,6 +441,9 @@ export const routeTree = rootRoute
     },
     "/auth/teacher": {
       "filePath": "auth/teacher.lazy.tsx"
+    },
+    "/play/join/game": {
+      "filePath": "play/join/game.tsx"
     },
     "/auth/accounts/signin": {
       "filePath": "auth/accounts/signin.lazy.tsx"
