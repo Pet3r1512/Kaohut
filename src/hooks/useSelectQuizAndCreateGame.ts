@@ -24,14 +24,16 @@ const useSelectQuizAndCreateGame = (quizId: string, hostname: string) => {
       setGameCode(response.gameCode);
     });
 
-    const handlePlayerJoined = (updatedPlayers: Player[]) => {
+    const handlePlayersStatus = (updatedPlayers: Player[]) => {
       setPlayers(updatedPlayers);
     };
 
-    socket.on("player_joined", handlePlayerJoined);
+    socket.on("player_joined", handlePlayersStatus);
+
+    socket.on("player_left", handlePlayersStatus)
 
     return () => {
-      socket.off("player_joined", handlePlayerJoined);
+      socket.off("player_joined", handlePlayersStatus);
     };
   }, [socket, quizId, hostname]);
 
