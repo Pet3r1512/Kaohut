@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { connectSocket } from "@/lib/socket-client";
+import { useSocket } from "@/context/SocketContext";
 import { useEffect, useState } from "react";
 
 export const useGuestRoom = (gameCode: string, playerName?: string) => {
     const [players, setPlayers] = useState<{ id: string; name: string; score: number }[]>([]);
-    const [socket, setSocket] = useState<any>(null);
+    const socket = useSocket()
 
     useEffect(() => {
-        const socket = connectSocket()
+        if (!socket) return
 
         socket.on("connect", () => {
             console.log("[Socket.IO] Connected:", socket.id);
@@ -29,12 +29,10 @@ export const useGuestRoom = (gameCode: string, playerName?: string) => {
             });
         }
 
-        setSocket(socket);
-
         return () => {
             socket.disconnect();
         };
-    }, [gameCode, playerName]);
+    }, [gameCode, playerName, socket]);
 
     return { players, socket };
 };
