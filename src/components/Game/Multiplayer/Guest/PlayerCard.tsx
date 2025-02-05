@@ -3,9 +3,10 @@ function extractPlayerInitials(name: string): string {
 
   if (words.length === 1) {
     return words[0].slice(0, 2).toUpperCase(); // Take first 2 letters of the single word
+  } else if (words.length > 1) {
+    return (words[0][0] + words[1][0]).toUpperCase(); // Take first letter of first two words
   }
-
-  return (words[0][0] + words[1][0]).toUpperCase(); // Take first letter of first two words
+  return ""; // Handle case where words has fewer than 1 element
 }
 
 export default function PlayerCard({ playerName }: { playerName: string }) {
