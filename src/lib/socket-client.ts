@@ -9,7 +9,9 @@ export const SOCKET_URL = import.meta.env.MODE === "development"
 
 export const connectSocket = () => {
     if (!socket) {
-        socket = io(SOCKET_URL);
+        socket = io(SOCKET_URL, {
+            closeOnBeforeunload: true
+        });
     }
     return socket;
 };
