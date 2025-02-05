@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Lobby from "@/components/Game/Lobby/_index";
-import { useRoomPlayers } from "@/hooks/useRoomPLayers";
+import { useRoomPlayers } from "@/hooks/useRoomPlayers";
 
 export const Route = createFileRoute("/play/join/guest")({
   component: RouteComponent,
