@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { useSocket } from "@/context/SocketContext";
 import { toast } from "@/hooks/useToast";
 import { connectSocket } from "@/lib/socket-client";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/play/join/game")({
@@ -18,6 +18,8 @@ function RouteComponent() {
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState<string | null>(null); // Error state
   const socket = useSocket() || connectSocket(); // Ensure the socket connection is established
+
+  const router = useRouter();
 
   useEffect(() => {
     // Connect to the socket when the component mounts
@@ -61,7 +63,13 @@ function RouteComponent() {
         }
 
         // Handle successful response
-        console.trace(response);
+        router.navigate({
+          to: `/play/join/guest`,
+          search: {
+            gameCode: joinGameCode,
+            playerName: playerName,
+          },
+        });
       },
     );
   };
