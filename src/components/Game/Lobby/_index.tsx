@@ -24,7 +24,7 @@ export default function Lobby({
         <>
           <Pin pin={gameCode} />
           <Waiting players={players} />
-          <Settings />
+          <Settings players={players} />
         </>
       )}
     </section>
