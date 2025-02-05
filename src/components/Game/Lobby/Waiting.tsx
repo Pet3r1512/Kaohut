@@ -15,9 +15,7 @@ export default function Waiting({ players }: { players: Player[] }) {
               key={player.id}
               className="cursor-pointer w-fit py-2.5 px-4 rounded-full bg-white text-primary shadow-2xl"
             >
-              <p className="text-lg lg:text-xl text-black font-semibold">
-                {player.name}
-              </p>
+              <p className="text-lg lg:text-xl font-semibold">{player.name}</p>
             </div>
           );
         })}
