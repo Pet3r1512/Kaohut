@@ -66,7 +66,7 @@ function RouteComponent() {
         router.navigate({
           to: `/play/join/guest`,
           search: {
-            gameCode: joinGameCode,
+            gameCode: trimmedJoinGameCode,
             playerName: playerName,
           },
         });
