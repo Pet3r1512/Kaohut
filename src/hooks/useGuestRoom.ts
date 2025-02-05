@@ -2,7 +2,7 @@
 import { connectSocket } from "@/lib/socket-client";
 import { useEffect, useState } from "react";
 
-export const useRoomPlayers = (gameCode: string, playerName?: string) => {
+export const useGuestRoom = (gameCode: string, playerName?: string) => {
     const [players, setPlayers] = useState<{ id: string; name: string; score: number }[]>([]);
     const [socket, setSocket] = useState<any>(null);
 

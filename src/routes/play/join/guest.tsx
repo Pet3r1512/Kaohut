@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Lobby from "@/components/Game/Lobby/_index";
-import { useRoomPlayers } from "@/hooks/useRoomPlayers";
+import { useGuestRoom } from "@/hooks/useGuestRoom";
 
 export const Route = createFileRoute("/play/join/guest")({
   component: RouteComponent,
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/play/join/guest")({
 
 function RouteComponent() {
   const { gameCode, playerName } = Route.useSearch();
-  const { players } = useRoomPlayers(gameCode, playerName);
+  const { players } = useGuestRoom(gameCode, playerName);
 
   return (
     <Lobby gameCode={gameCode} players={players} playerName={playerName} />
