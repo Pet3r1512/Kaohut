@@ -1,4 +1,7 @@
 import { Clipboard } from "lucide-react";
+function CopyToClipboard(pin: string) {
+  navigator.clipboard.writeText(pin);
+}
 
 export default function Pin({ pin }: { pin: string }) {
   return (
