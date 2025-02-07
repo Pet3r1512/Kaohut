@@ -34,6 +34,10 @@ function RouteComponent() {
   });
 
   useEffect(() => {
+    console.log(currentQuestion);
+  }, [currentQuestion]);
+
+  useEffect(() => {
     if (!isPending) {
       setCurrentQuiz(data?.quiz.result.data.quiz);
       console.log(currentQuiz);
@@ -43,6 +47,20 @@ function RouteComponent() {
   useEffect(() => {
     console.log("🚀 Answer Index Updated:", answerIndex);
   }, [answerIndex]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("next_question", ({ nextQuestion }) => {
+      setCurrentQuestion(nextQuestion);
+      setAnswerIndex(null); // Reset selected answer
+      setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Reset timer
+    });
+
+    return () => {
+      socket.off("next_question");
+    };
+  }, [currentQuiz, socket]);
 
   const handleAnswerSelect = (index: number) => {
     console.log("✅ User selected answer index:", index);
@@ -112,6 +130,24 @@ function RouteComponent() {
       socket.off("player_answered");
     };
   }, [currentQuiz, gameCode, socket, timeLeft]);
+
+  useEffect(() => {
+    if (currentQuestion) {
+      setTimeLeft(currentQuiz ? currentQuiz.time : 0);
+
+      const timer = setInterval(() => {
+        setTimeLeft((prevTime) => {
+          if (prevTime <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
+    }
+  }, [currentQuestion, currentQuiz]);
 
   return (
     <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc]">
