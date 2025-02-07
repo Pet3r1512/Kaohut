@@ -58,7 +58,8 @@ function RouteComponent() {
 
         // Handle successful response
         router.navigate({
-          to: `/play/join/guest`,
+          to: `/play/join/$quizId/guest`,
+          params: { quizId: response.quizId },
           search: {
             gameCode: trimmedJoinGameCode,
             playerName: playerName,
