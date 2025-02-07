@@ -18,6 +18,7 @@ interface QuestionCardProps {
   duration: number;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
+  isMultiplayerMode: boolean;
 }
 
 const MAX_SCORE_EACH_QUESTION = 1000;
@@ -29,6 +30,7 @@ export default function QuestionCard({
   duration,
   score,
   setScore,
+  isMultiplayerMode,
 }: QuestionCardProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(duration);
@@ -72,23 +74,27 @@ export default function QuestionCard({
 
   return (
     <Card className="size-full bg-transparent border-none flex flex-col items-center justify-center gap-y-8 relative">
-      <div className="w-full flex items-center justify-between">
+      <div
+        className={`w-full flex items-center ${isMultiplayerMode ? "justify-center gap-x-10" : "justify-between"}`}
+      >
         <div className="bg-yellow-200 text-black font-bold rounded-full py-2 px-4">
           Question: {questionOrder.current}/{questionOrder.total}
         </div>
 
-        <div className="flex items-center gap-x-2.5 bg-white text-black font-bold rounded-full py-2 px-4 !min-w-20">
-          <p>Score: </p>
-          <GradientText>
-            <CountUp
-              from={previousScoreRef.current}
-              to={score}
-              direction="up"
-              duration={1}
-              className="count-up-text font-bold text-xl"
-            />
-          </GradientText>
-        </div>
+        {!isMultiplayerMode && (
+          <div className="flex items-center gap-x-2.5 bg-white text-black font-bold rounded-full py-2 px-4 !min-w-20">
+            <p>Score: </p>
+            <GradientText>
+              <CountUp
+                from={previousScoreRef.current}
+                to={score}
+                direction="up"
+                duration={1}
+                className="count-up-text font-bold text-xl"
+              />
+            </GradientText>
+          </div>
+        )}
 
         <TimerCircle
           duration={duration}
@@ -107,7 +113,11 @@ export default function QuestionCard({
         {question.answers.map((answer, index) => (
           <button
             key={index}
-            onClick={() => handleAnswer(index, answer.isCorrect)}
+            onClick={
+              !isMultiplayerMode
+                ? () => handleAnswer(index, answer.isCorrect)
+                : () => {}
+            }
             disabled={selectedAnswer !== null}
             className={`p-5 rounded-xl text-center w-full text-xl lg:text-3xl transition-all duration-500 break-words ${
               selectedAnswer !== null
