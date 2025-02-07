@@ -101,9 +101,15 @@ function RouteComponent() {
       setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Prevent null access error
     });
 
+    socket.on("player_answered", ({ score, currentQuestion }) => {
+      setScore(score);
+      setCurrentQuestion(currentQuestion);
+    });
+
     return () => {
       socket.off("game_started");
       socket.off("answer_result");
+      socket.off("player_answered");
     };
   }, [currentQuiz, gameCode, socket, timeLeft]);
 
