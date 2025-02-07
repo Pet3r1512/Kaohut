@@ -101,11 +101,13 @@ export default function Lobby({
               <Tooltip>
                 <TooltipTrigger asChild>
                   <button
-                    disabled={players.length < 2 ? true : false}
-                    className={`text-white font-bold py-3 px-5 rounded-2xl ${players.length < 2 ? "cursor-not-allowed bg-gray-500" : "bg-green-500"}`}
+                    disabled={
+                      players.length < 2 || isGameStarted ? true : false
+                    }
+                    className={`text-white font-bold py-3 px-5 rounded-2xl ${players.length < 2 || isGameStarted ? "cursor-not-allowed bg-gray-500" : "bg-green-500"}`}
                     onClick={handleStartGame}
                   >
-                    Start Game
+                    {isGameStarted ? "Exit Game" : "Start Game"}
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -132,6 +134,7 @@ export default function Lobby({
               duration={quiz.quiz.result.data.quiz.time}
               score={score}
               setScore={setScore}
+              isMultiplayerMode={true}
             />
           )}
           <Settings players={players} />
