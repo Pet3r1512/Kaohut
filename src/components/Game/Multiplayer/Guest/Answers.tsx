@@ -19,7 +19,9 @@ interface AnswerProps {
 export default function Answer({
   answers,
   score,
+  setScore,
   duration,
+  playerId,
   onAnswerSelect,
   selectedAnswer,
 }: AnswerProps) {
@@ -41,12 +43,22 @@ export default function Answer({
   }, []);
 
   useEffect(() => {
-    if (!socket) {
-      return;
-    }
+    if (!socket) return;
 
-    socket.on("answer_result", ({ correctAnswerIndex }) => {
+    socket.on("answer_result", ({ correctAnswerIndex, updatedScores }) => {
       setCorrectAnswerIndex(correctAnswerIndex);
+
+      // Find the current player's score from updatedScores
+      const playerScore = updatedScores.find(
+        (player: { id: string; name: string; score: number }) =>
+          player.id === playerId,
+      )?.score;
+
+      if (playerScore !== undefined) {
+        setScore(playerScore);
+        console.log(`🎯 Player ${playerId} new score:`, playerScore);
+      }
+
       setTimeout(() => {
         setCorrectAnswerIndex(null);
         onAnswerSelect(null as unknown as number); // Reset the selection
@@ -56,7 +68,7 @@ export default function Answer({
     return () => {
       socket.off("answer_result");
     };
-  }, [socket, onAnswerSelect]);
+  }, [socket, setScore, playerId, onAnswerSelect]);
 
   const handleAnswerClick = (index: number) => {
     if (selectedAnswer === null && timeLeft > 0) {
@@ -84,7 +96,7 @@ export default function Answer({
         </GradientText>
       </div>
 
-      {/* Answer Buttons - Kept 100% Unchanged */}
+      {/* Answer Buttons */}
       <div className="grid grid-cols-2 grid-rows-2 w-full flex-1 gap-5">
         {answers.map((answer, index) => (
           <button
