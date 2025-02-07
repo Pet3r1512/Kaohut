@@ -55,7 +55,6 @@ function RouteComponent() {
           });
           return;
         }
-
         // Handle successful response
         router.navigate({
           to: `/play/join/$quizId/guest`,
