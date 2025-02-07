@@ -15,14 +15,16 @@ export const Route = createFileRoute("/play/join/$quizId/guest")({
   }),
 });
 
+const MAX_SCORE_EACH_QUESTION = 1000;
+
 function RouteComponent() {
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
   const [score, setScore] = useState<number>(0);
   const socket = useSocket();
   const { playerName, gameCode } = Route.useSearch();
   const [answerIndex, setAnswerIndex] = useState<number | null>(null);
-  const [timeLeft, setTimeLeft] = useState<number | null>(null);
-  const [currrentQuiz, setCurrentQuiz] = useState<any>(null);
+  const [timeLeft, setTimeLeft] = useState<number>(0);
+  const [currentQuiz, setCurrentQuiz] = useState<any>(null);
   const { quizId } = Route.useParams();
 
   const { isPending, data } = useQuery({
@@ -34,9 +36,9 @@ function RouteComponent() {
   useEffect(() => {
     if (!isPending) {
       setCurrentQuiz(data?.quiz.result.data.quiz);
-      console.log(currrentQuiz);
+      console.log(currentQuiz);
     }
-  }, [isPending, data, currrentQuiz]);
+  }, [isPending, data, currentQuiz]);
 
   useEffect(() => {
     console.log("🚀 Answer Index Updated:", answerIndex);
@@ -76,25 +78,34 @@ function RouteComponent() {
       setAnswerIndex(null); // Reset selection when a new game starts
     });
 
-    socket.on("answer_result", ({ nextQuestion, updatedScores }) => {
-      console.log("🔄 Answer Result Received, Resetting Selection...");
+    socket.on("answer_result", ({ correct, nextQuestion, updatedScores }) => {
       const playerScore = updatedScores.find(
         (p: any) => p.id === socket.id,
       )?.score;
+
       if (playerScore !== undefined) {
         setScore(playerScore);
       }
 
+      if (correct) {
+        // Ensure currentQuiz is not null before accessing it
+        setScore(
+          (prevScore) =>
+            prevScore +
+            Math.round(MAX_SCORE_EACH_QUESTION * (timeLeft / currentQuiz.time)),
+        );
+      }
+
       setCurrentQuestion(nextQuestion);
       setAnswerIndex(null); // Reset selection after answer result
-      setTimeLeft(null); // Reset timer
+      setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Prevent null access error
     });
 
     return () => {
       socket.off("game_started");
       socket.off("answer_result");
     };
-  }, [gameCode, socket]);
+  }, [currentQuiz, gameCode, socket, timeLeft]);
 
   return (
     <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc]">
@@ -111,7 +122,7 @@ function RouteComponent() {
             score={score}
             setScore={setScore}
             answers={currentQuestion.answers}
-            duration={currrentQuiz.time}
+            duration={currentQuiz.time}
             gameCode={gameCode}
             playerId={socket!.id!}
             onAnswerSelect={handleAnswerSelect}
