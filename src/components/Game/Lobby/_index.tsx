@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import LoadingScreen from "@/components/LoadingScreen";
 import Pin from "./Pin";
@@ -10,7 +11,7 @@ import {
   TooltipContent,
 } from "@radix-ui/react-tooltip";
 import { useSocket } from "@/context/SocketContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QuestionCard from "../Play/QuestionCard";
 
 export interface Player {
@@ -36,7 +37,15 @@ export default function Lobby({
     "correct" | "incorrect" | "pending" | null
   >(null);
   const [score, setScore] = useState<number>(0);
+  const [questionTimer, setQuestionTimer] = useState<number>(
+    quiz.quiz.result.data.quiz.time,
+  );
+
   const socket = useSocket();
+
+  useEffect(() => {
+    setQuestionTimer(quiz.quiz.result.data.quiz.time); // Reset timer
+  }, [currentQuestion]);
 
   const handleStartGame = () => {
     if (!socket) {
@@ -59,21 +68,28 @@ export default function Lobby({
   };
 
   const answerQuestion = (answerIndex: number) => {
-    if (!socket) {
-      return;
-    }
+    if (!socket) return;
 
     socket.emit(
       "answer_question",
       { gameCode, answerIndex },
-      (response: { isCorrect: boolean; nextQuestion: any; error: any }) => {
+      (response: any) => {
         if (response.error) {
           console.log(response.error);
           return;
         }
-        setCurrentQuestion(response.nextQuestion);
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setAnswerState("correct");
+
+        setAnswerState(response.isCorrect ? "correct" : "incorrect");
+
+        setTimeout(() => {
+          setAnswerState(null);
+          setCurrentQuestion(response.nextQuestion);
+          setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+          socket.emit("next_question", {
+            gameCode,
+            nextQuestion: response.nextQuestion,
+          });
+        }, 3000);
       },
     );
   };
@@ -131,7 +147,7 @@ export default function Lobby({
                 current: currentQuestionIndex,
                 total: quiz.quiz.result.data.quiz.length,
               }}
-              duration={quiz.quiz.result.data.quiz.time}
+              duration={questionTimer} // Use the updated timer state
               score={score}
               setScore={setScore}
               isMultiplayerMode={true}
