@@ -29,6 +29,7 @@ export default function Lobby({
   quiz: any;
 }) {
   const [isGameStarted, setIsGameStarted] = useState<boolean>(false);
+  const [isGameLoading, setIsGameLoading] = useState<boolean>(false);
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(1);
   const [answerState, setAnswerState] = useState<
@@ -41,7 +42,7 @@ export default function Lobby({
     if (!socket) {
       return;
     }
-
+    setIsGameLoading(true);
     socket.emit(
       "start_game",
       { gameCode },
@@ -52,7 +53,7 @@ export default function Lobby({
         }
         setIsGameStarted(true);
         setCurrentQuestion(response.firstQuestion);
-        console.log(response.firstQuestion);
+        setIsGameLoading(false);
       },
     );
   };
@@ -76,6 +77,14 @@ export default function Lobby({
       },
     );
   };
+
+  if (isGameLoading) {
+    return (
+      <section className="h-[100dvh] flex items-center justify-center">
+        <LoadingScreen />
+      </section>
+    );
+  }
 
   return (
     <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc]">
