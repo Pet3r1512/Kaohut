@@ -59,7 +59,8 @@ export default function QuestionCard({
   };
 
   const handleTimerComplete = () => {
-    if (selectedAnswer === null) {
+    if (selectedAnswer === null && question) {
+      // Check if question exists
       const correctAnswerIndex = question.answers.findIndex(
         (answer) => answer.isCorrect,
       );
@@ -71,6 +72,18 @@ export default function QuestionCard({
       }, 3000);
     }
   };
+
+  useEffect(() => {
+    setTimeLeft(duration);
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [duration, question]);
 
   return (
     <Card className="size-full bg-transparent border-none flex flex-col items-center justify-center gap-y-8 relative">
@@ -97,6 +110,7 @@ export default function QuestionCard({
         )}
 
         <TimerCircle
+          key={question.questionText}
           duration={duration}
           onComplete={handleTimerComplete}
           setTimeLeft={setTimeLeft}
