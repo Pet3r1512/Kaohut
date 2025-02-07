@@ -10,7 +10,7 @@ interface QuestionCardProps {
     answers: { answerText: string; isCorrect: boolean }[];
   };
   onAnswer: (answerIndex: number) => void;
-  answerState: string | null;
+  answerState?: string | null;
   questionOrder: {
     current: number;
     total: number;
@@ -18,7 +18,7 @@ interface QuestionCardProps {
   duration: number;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
-  isMultiplayerMode: boolean;
+  isMultiplayerMode?: boolean;
 }
 
 const MAX_SCORE_EACH_QUESTION = 1000;
@@ -113,12 +113,8 @@ export default function QuestionCard({
         {question.answers.map((answer, index) => (
           <button
             key={index}
-            onClick={
-              !isMultiplayerMode
-                ? () => handleAnswer(index, answer.isCorrect)
-                : () => {}
-            }
-            disabled={selectedAnswer !== null}
+            onClick={() => handleAnswer(index, answer.isCorrect)}
+            disabled={selectedAnswer !== null || isMultiplayerMode}
             className={`p-5 rounded-xl text-center w-full text-xl lg:text-3xl transition-all duration-500 break-words ${
               selectedAnswer !== null
                 ? selectedAnswer === index
