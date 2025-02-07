@@ -1,0 +1,129 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import CountUp from "@/components/ui/countup";
+import GradientText from "@/components/ui/gradient-text";
+import { useSocket } from "@/context/SocketContext";
+import { useEffect, useRef, useState } from "react";
+import TimerCircle from "../../Play/TimerCircle";
+
+interface AnswerProps {
+  answers: any[];
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+  duration: number;
+  gameCode: string;
+  playerId: string;
+  onAnswerSelect: (index: number) => void;
+  selectedAnswer: number | null;
+}
+
+export default function Answer({
+  answers,
+  score,
+  setScore,
+  duration,
+  playerId,
+  onAnswerSelect,
+  selectedAnswer,
+}: AnswerProps) {
+  const [timeLeft, setTimeLeft] = useState(duration);
+  const [, setCorrectAnswerIndex] = useState<number | null>(null);
+  const socket = useSocket();
+  const previousScoreRef = useRef(score);
+
+  useEffect(() => {
+    previousScoreRef.current = score;
+  }, [score]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("answer_result", ({ correctAnswerIndex, updatedScores }) => {
+      setCorrectAnswerIndex(correctAnswerIndex);
+
+      // Find the current player's score from updatedScores
+      const playerScore = updatedScores.find(
+        (player: { id: string; name: string; score: number }) =>
+          player.id === playerId,
+      )?.score;
+
+      if (playerScore !== undefined) {
+        setScore(playerScore);
+        console.log(`🎯 Player ${playerId} new score:`, playerScore);
+      }
+
+      setTimeout(() => {
+        setCorrectAnswerIndex(null);
+        onAnswerSelect(null as unknown as number); // Reset the selection
+      }, 3000);
+    });
+
+    return () => {
+      socket.off("answer_result");
+    };
+  }, [socket, setScore, playerId, onAnswerSelect]);
+
+  const handleAnswerClick = (index: number) => {
+    if (selectedAnswer === null && timeLeft > 0) {
+      onAnswerSelect(index);
+    }
+  };
+
+  return (
+    <section className="w-full h-full flex flex-col gap-y-10">
+      {/* Timer & Score */}
+      <div className="px-5 py-3 rounded-lg text-black font w-1/5 mx-auto text-center font-bold flex items-center gap-x-10">
+        <TimerCircle
+          duration={duration}
+          onComplete={() => {}}
+          setTimeLeft={setTimeLeft}
+        />
+        <GradientText>
+          <CountUp
+            from={previousScoreRef.current}
+            to={score}
+            direction="up"
+            duration={1}
+            className="count-up-text font-bold text-xl"
+          />
+        </GradientText>
+      </div>
+
+      {/* Answer Buttons */}
+      <div className="grid grid-cols-2 grid-rows-2 w-full flex-1 gap-5">
+        {answers.map((answer, index) => (
+          <button
+            key={index}
+            onClick={() => handleAnswerClick(index)}
+            disabled={timeLeft === 0 || selectedAnswer !== null}
+            className={`p-5 rounded-xl text-center w-full text-xl lg:text-3xl transition-all duration-500 break-words text-white font-bold ${
+              selectedAnswer !== null
+                ? selectedAnswer === index
+                  ? answer.isCorrect
+                    ? "bg-green-500 scale-105"
+                    : "bg-red-500 scale-95 opacity-75"
+                  : answer.isCorrect
+                    ? "bg-green-500 scale-105"
+                    : "bg-red-500 scale-95 opacity-75"
+                : [
+                    "bg-red-500",
+                    "bg-yellow-500",
+                    "bg-blue-500",
+                    "bg-green-500",
+                  ][index % 4]
+            }`}
+          >
+            {answer.answerText}
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}

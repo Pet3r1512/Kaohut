@@ -4,9 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Toaster } from "@/components/ui/toaster";
 import { useSocket } from "@/context/SocketContext";
 import { toast } from "@/hooks/useToast";
-import { connectSocket } from "@/lib/socket-client";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const Route = createFileRoute("/play/join/game")({
   component: RouteComponent,
@@ -17,18 +16,9 @@ function RouteComponent() {
   const [playerName, setPlayerName] = useState<string>("");
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState<string | null>(null); // Error state
-  const socket = useSocket() || connectSocket(); // Ensure the socket connection is established
+  const socket = useSocket(); // Ensure the socket connection is established
 
   const router = useRouter();
-
-  useEffect(() => {
-    // Connect to the socket when the component mounts
-    connectSocket(); // Ensure socket is initialized
-
-    return () => {
-      // Optionally handle disconnection logic here if needed
-    };
-  }, []);
 
   const joinGame = () => {
     const trimmedJoinGameCode = joinGameCode.trim();
@@ -43,6 +33,10 @@ function RouteComponent() {
 
     setLoading(true);
     setError(null); // Clear any previous errors
+
+    if (!socket) {
+      return;
+    }
 
     socket.emit(
       "join_game",
@@ -61,10 +55,10 @@ function RouteComponent() {
           });
           return;
         }
-
         // Handle successful response
         router.navigate({
-          to: `/play/join/guest`,
+          to: `/play/join/$quizId/guest`,
+          params: { quizId: response.quizId },
           search: {
             gameCode: trimmedJoinGameCode,
             playerName: playerName,
