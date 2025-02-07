@@ -18,11 +18,11 @@ import { Route as DashboardPlayImport } from './routes/dashboard/play'
 import { Route as DashboardLibraryImport } from './routes/dashboard/library'
 import { Route as DashboardExploreImport } from './routes/dashboard/explore'
 import { Route as DashboardAccountImport } from './routes/dashboard/account'
-import { Route as PlayJoinGuestImport } from './routes/play/join/guest'
 import { Route as PlayJoinGameImport } from './routes/play/join/game'
 import { Route as PlaySoloQuizIdIndexImport } from './routes/play/solo_/$quizId/index'
 import { Route as PlayMultiQuizIdIndexImport } from './routes/play/multi/$quizId/index'
 import { Route as PlayMultiQuizIdWaitingImport } from './routes/play/multi/$quizId/waiting'
+import { Route as PlayJoinQuizIdGuestImport } from './routes/play/join/$quizId/guest'
 
 // Create Virtual Routes
 
@@ -105,12 +105,6 @@ const AuthAccountsSigninLazyRoute = AuthAccountsSigninLazyImport.update({
   import('./routes/auth/accounts/signin.lazy').then((d) => d.Route),
 )
 
-const PlayJoinGuestRoute = PlayJoinGuestImport.update({
-  id: '/play/join/guest',
-  path: '/play/join/guest',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const PlayJoinGameRoute = PlayJoinGameImport.update({
   id: '/play/join/game',
   path: '/play/join/game',
@@ -132,6 +126,12 @@ const PlayMultiQuizIdIndexRoute = PlayMultiQuizIdIndexImport.update({
 const PlayMultiQuizIdWaitingRoute = PlayMultiQuizIdWaitingImport.update({
   id: '/play/multi/$quizId/waiting',
   path: '/play/multi/$quizId/waiting',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PlayJoinQuizIdGuestRoute = PlayJoinQuizIdGuestImport.update({
+  id: '/play/join/$quizId/guest',
+  path: '/play/join/$quizId/guest',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -209,13 +209,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayJoinGameImport
       parentRoute: typeof rootRoute
     }
-    '/play/join/guest': {
-      id: '/play/join/guest'
-      path: '/play/join/guest'
-      fullPath: '/play/join/guest'
-      preLoaderRoute: typeof PlayJoinGuestImport
-      parentRoute: typeof rootRoute
-    }
     '/auth/accounts/signin': {
       id: '/auth/accounts/signin'
       path: '/auth/accounts/signin'
@@ -228,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/accounts/signup'
       fullPath: '/auth/accounts/signup'
       preLoaderRoute: typeof AuthAccountsSignupLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/play/join/$quizId/guest': {
+      id: '/play/join/$quizId/guest'
+      path: '/play/join/$quizId/guest'
+      fullPath: '/play/join/$quizId/guest'
+      preLoaderRoute: typeof PlayJoinQuizIdGuestImport
       parentRoute: typeof rootRoute
     }
     '/play/multi/$quizId/waiting': {
@@ -267,9 +267,9 @@ export interface FileRoutesByFullPath {
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
   '/play/join/game': typeof PlayJoinGameRoute
-  '/play/join/guest': typeof PlayJoinGuestRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
+  '/play/join/$quizId/guest': typeof PlayJoinQuizIdGuestRoute
   '/play/multi/$quizId/waiting': typeof PlayMultiQuizIdWaitingRoute
   '/play/multi/$quizId': typeof PlayMultiQuizIdIndexRoute
   '/play/solo/$quizId': typeof PlaySoloQuizIdIndexRoute
@@ -286,9 +286,9 @@ export interface FileRoutesByTo {
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
   '/play/join/game': typeof PlayJoinGameRoute
-  '/play/join/guest': typeof PlayJoinGuestRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
+  '/play/join/$quizId/guest': typeof PlayJoinQuizIdGuestRoute
   '/play/multi/$quizId/waiting': typeof PlayMultiQuizIdWaitingRoute
   '/play/multi/$quizId': typeof PlayMultiQuizIdIndexRoute
   '/play/solo/$quizId': typeof PlaySoloQuizIdIndexRoute
@@ -306,9 +306,9 @@ export interface FileRoutesById {
   '/auth/student': typeof AuthStudentLazyRoute
   '/auth/teacher': typeof AuthTeacherLazyRoute
   '/play/join/game': typeof PlayJoinGameRoute
-  '/play/join/guest': typeof PlayJoinGuestRoute
   '/auth/accounts/signin': typeof AuthAccountsSigninLazyRoute
   '/auth/accounts/signup': typeof AuthAccountsSignupLazyRoute
+  '/play/join/$quizId/guest': typeof PlayJoinQuizIdGuestRoute
   '/play/multi/$quizId/waiting': typeof PlayMultiQuizIdWaitingRoute
   '/play/multi/$quizId/': typeof PlayMultiQuizIdIndexRoute
   '/play/solo_/$quizId/': typeof PlaySoloQuizIdIndexRoute
@@ -327,9 +327,9 @@ export interface FileRouteTypes {
     | '/auth/student'
     | '/auth/teacher'
     | '/play/join/game'
-    | '/play/join/guest'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
+    | '/play/join/$quizId/guest'
     | '/play/multi/$quizId/waiting'
     | '/play/multi/$quizId'
     | '/play/solo/$quizId'
@@ -345,9 +345,9 @@ export interface FileRouteTypes {
     | '/auth/student'
     | '/auth/teacher'
     | '/play/join/game'
-    | '/play/join/guest'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
+    | '/play/join/$quizId/guest'
     | '/play/multi/$quizId/waiting'
     | '/play/multi/$quizId'
     | '/play/solo/$quizId'
@@ -363,9 +363,9 @@ export interface FileRouteTypes {
     | '/auth/student'
     | '/auth/teacher'
     | '/play/join/game'
-    | '/play/join/guest'
     | '/auth/accounts/signin'
     | '/auth/accounts/signup'
+    | '/play/join/$quizId/guest'
     | '/play/multi/$quizId/waiting'
     | '/play/multi/$quizId/'
     | '/play/solo_/$quizId/'
@@ -383,9 +383,9 @@ export interface RootRouteChildren {
   AuthStudentLazyRoute: typeof AuthStudentLazyRoute
   AuthTeacherLazyRoute: typeof AuthTeacherLazyRoute
   PlayJoinGameRoute: typeof PlayJoinGameRoute
-  PlayJoinGuestRoute: typeof PlayJoinGuestRoute
   AuthAccountsSigninLazyRoute: typeof AuthAccountsSigninLazyRoute
   AuthAccountsSignupLazyRoute: typeof AuthAccountsSignupLazyRoute
+  PlayJoinQuizIdGuestRoute: typeof PlayJoinQuizIdGuestRoute
   PlayMultiQuizIdWaitingRoute: typeof PlayMultiQuizIdWaitingRoute
   PlayMultiQuizIdIndexRoute: typeof PlayMultiQuizIdIndexRoute
   PlaySoloQuizIdIndexRoute: typeof PlaySoloQuizIdIndexRoute
@@ -402,9 +402,9 @@ const rootRouteChildren: RootRouteChildren = {
   AuthStudentLazyRoute: AuthStudentLazyRoute,
   AuthTeacherLazyRoute: AuthTeacherLazyRoute,
   PlayJoinGameRoute: PlayJoinGameRoute,
-  PlayJoinGuestRoute: PlayJoinGuestRoute,
   AuthAccountsSigninLazyRoute: AuthAccountsSigninLazyRoute,
   AuthAccountsSignupLazyRoute: AuthAccountsSignupLazyRoute,
+  PlayJoinQuizIdGuestRoute: PlayJoinQuizIdGuestRoute,
   PlayMultiQuizIdWaitingRoute: PlayMultiQuizIdWaitingRoute,
   PlayMultiQuizIdIndexRoute: PlayMultiQuizIdIndexRoute,
   PlaySoloQuizIdIndexRoute: PlaySoloQuizIdIndexRoute,
@@ -430,9 +430,9 @@ export const routeTree = rootRoute
         "/auth/student",
         "/auth/teacher",
         "/play/join/game",
-        "/play/join/guest",
         "/auth/accounts/signin",
         "/auth/accounts/signup",
+        "/play/join/$quizId/guest",
         "/play/multi/$quizId/waiting",
         "/play/multi/$quizId/",
         "/play/solo_/$quizId/"
@@ -468,14 +468,14 @@ export const routeTree = rootRoute
     "/play/join/game": {
       "filePath": "play/join/game.tsx"
     },
-    "/play/join/guest": {
-      "filePath": "play/join/guest.tsx"
-    },
     "/auth/accounts/signin": {
       "filePath": "auth/accounts/signin.lazy.tsx"
     },
     "/auth/accounts/signup": {
       "filePath": "auth/accounts/signup.lazy.tsx"
+    },
+    "/play/join/$quizId/guest": {
+      "filePath": "play/join/$quizId/guest.tsx"
     },
     "/play/multi/$quizId/waiting": {
       "filePath": "play/multi/$quizId/waiting.tsx"
