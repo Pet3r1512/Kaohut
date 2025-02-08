@@ -19,6 +19,7 @@ const MAX_SCORE_EACH_QUESTION = 1000;
 
 function RouteComponent() {
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const socket = useSocket();
   const { playerName, gameCode } = Route.useSearch();
@@ -34,36 +35,17 @@ function RouteComponent() {
   });
 
   useEffect(() => {
-    console.log(currentQuestion);
-  }, [currentQuestion]);
-
-  useEffect(() => {
     if (!isPending) {
       setCurrentQuiz(data?.quiz.result.data.quiz);
-      console.log(currentQuiz);
     }
   }, [isPending, data, currentQuiz]);
 
   useEffect(() => {
-    console.log("🚀 Answer Index Updated:", answerIndex);
+    console.log("Answer Index Updated:", answerIndex);
   }, [answerIndex]);
 
-  useEffect(() => {
-    if (!socket) return;
-
-    socket.on("next_question", ({ nextQuestion }) => {
-      setCurrentQuestion(nextQuestion);
-      setAnswerIndex(null); // Reset selected answer
-      setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Reset timer
-    });
-
-    return () => {
-      socket.off("next_question");
-    };
-  }, [currentQuiz, socket]);
-
   const handleAnswerSelect = (index: number) => {
-    console.log("✅ User selected answer index:", index);
+    console.log("User selected answer index:", index);
 
     if (answerIndex !== null) return; // Prevent multiple selections
 
@@ -71,7 +53,7 @@ function RouteComponent() {
 
     if (currentQuestion && socket) {
       socket.emit(
-        "answer_question",
+        "answer_question_multiplayer",
         {
           gameCode,
           playerId: socket.id,
@@ -80,8 +62,9 @@ function RouteComponent() {
         },
         (response: any) => {
           if (response.error) {
-            console.error("❌ Error:", response.error);
+            console.error("Error:", response.error);
           }
+          console.log(response);
         },
       );
     }
@@ -91,12 +74,12 @@ function RouteComponent() {
     if (!socket) return;
 
     socket.on("game_started", ({ firstQuestion }) => {
-      console.log("🔄 New Game Started, Resetting Selection...");
+      console.log("New Game Started, Resetting Selection...");
       setCurrentQuestion(firstQuestion);
       setAnswerIndex(null); // Reset selection when a new game starts
     });
 
-    socket.on("answer_result", ({ correct, nextQuestion, updatedScores }) => {
+    socket.on("answer_result", ({ correct, updatedScores }) => {
       const playerScore = updatedScores.find(
         (p: any) => p.id === socket.id,
       )?.score;
@@ -114,22 +97,33 @@ function RouteComponent() {
         );
       }
 
-      setCurrentQuestion(nextQuestion);
       setAnswerIndex(null); // Reset selection after answer result
       setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Prevent null access error
     });
 
-    socket.on("player_answered", ({ score, currentQuestion }) => {
+    socket.on("player_answered", ({ score }) => {
       setScore(score);
-      setCurrentQuestion(currentQuestion);
+      console.log(currentQuestion);
+    });
+
+    socket.on("next_question", ({ nextQuestion }) => {
+      console.log("Moving to next question:", nextQuestion); // Debug log to confirm event reception
+      if (nextQuestion) {
+        setCurrentQuestion(nextQuestion);
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+        setAnswerIndex(null); // Reset selected answer
+        setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Reset timer
+        console.log("Next question set:", nextQuestion);
+      }
     });
 
     return () => {
       socket.off("game_started");
       socket.off("answer_result");
       socket.off("player_answered");
+      socket.off("next_question");
     };
-  }, [currentQuiz, gameCode, socket, timeLeft]);
+  }, [currentQuestion, currentQuiz, gameCode, socket, timeLeft]);
 
   useEffect(() => {
     if (currentQuestion) {
@@ -161,6 +155,8 @@ function RouteComponent() {
           </div>
         ) : (
           <Answer
+            key={currentQuestionIndex} // Add a key prop to force re-render
+            id={currentQuestionIndex}
             score={score}
             setScore={setScore}
             answers={currentQuestion.answers}
