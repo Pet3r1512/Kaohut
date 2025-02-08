@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createFileRoute } from "@tanstack/react-router";
 import PlayerCard from "@/components/Game/Multiplayer/Guest/PlayerCard";
@@ -106,16 +107,14 @@ function RouteComponent() {
       console.log(currentQuestion);
     });
 
-    socket.on("next_question", ({ nextQuestion }) => {
-      console.log("Moving to next question:", nextQuestion); // Debug log to confirm event reception
-      if (nextQuestion) {
+    setTimeout(() => {
+      socket.on("next_question", ({ nextQuestion }) => {
         setCurrentQuestion(nextQuestion);
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
         setAnswerIndex(null); // Reset selected answer
         setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Reset timer
-        console.log("Next question set:", nextQuestion);
-      }
-    });
+      });
+    }, 5000);
 
     return () => {
       socket.off("game_started");
@@ -133,6 +132,10 @@ function RouteComponent() {
         setTimeLeft((prevTime) => {
           if (prevTime <= 1) {
             clearInterval(timer);
+            if (answerIndex === null) {
+              // Simulate incorrect answer if no answer was selected
+              handleAnswerSelect(-1); // -1 indicates no valid answer
+            }
             return 0;
           }
           return prevTime - 1;
@@ -141,7 +144,14 @@ function RouteComponent() {
 
       return () => clearInterval(timer);
     }
-  }, [currentQuestion, currentQuiz]);
+  }, [
+    currentQuestion,
+    currentQuiz,
+    answerIndex,
+    socket,
+    gameCode,
+    handleAnswerSelect,
+  ]);
 
   return (
     <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc]">
