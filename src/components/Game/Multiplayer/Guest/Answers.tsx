@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import TimerCircle from "../../Play/TimerCircle";
 
 interface AnswerProps {
+  id: number;
   answers: any[];
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
@@ -17,6 +18,7 @@ interface AnswerProps {
 }
 
 export default function Answer({
+  id,
   answers,
   score,
   setScore,
@@ -81,6 +83,7 @@ export default function Answer({
       {/* Timer & Score */}
       <div className="px-5 py-3 rounded-lg text-black font w-1/5 mx-auto text-center font-bold flex items-center gap-x-10">
         <TimerCircle
+          key={id}
           duration={duration}
           onComplete={() => {}}
           setTimeLeft={setTimeLeft}
