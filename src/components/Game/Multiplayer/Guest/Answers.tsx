@@ -103,7 +103,7 @@ export default function Answer({
       <div className="grid grid-cols-2 grid-rows-2 w-full flex-1 gap-5">
         {answers.map((answer, index) => (
           <button
-            key={index}
+            key={answer.id}
             onClick={() => handleAnswerClick(index)}
             disabled={timeLeft === 0 || selectedAnswer !== null}
             className={`p-5 rounded-xl text-center w-full text-xl lg:text-3xl transition-all duration-500 break-words text-white font-bold ${
