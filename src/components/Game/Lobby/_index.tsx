@@ -88,7 +88,7 @@ export default function Lobby({
             gameCode,
             nextQuestion: response.nextQuestion,
           });
-        }, 3000);
+        }, 1000);
       },
     );
   };
