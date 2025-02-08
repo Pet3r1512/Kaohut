@@ -80,7 +80,6 @@ export default function Lobby({
         }
 
         setAnswerState(response.isCorrect ? "correct" : "incorrect");
-
         setTimeout(() => {
           setAnswerState(null);
           setCurrentQuestion(response.nextQuestion);
