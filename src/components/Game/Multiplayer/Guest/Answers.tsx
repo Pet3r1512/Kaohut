@@ -46,7 +46,7 @@ export default function Answer({
   };
 
   return (
-    <section className="w-full h-full flex flex-col gap-y-10">
+    <section className="w-full h-[100dvh] flex flex-col gap-y-10">
       {/* Timer & Score */}
       <div className="px-5 py-3 rounded-lg text-black font w-1/5 mx-auto text-center font-bold flex items-center gap-x-10">
         <TimerCircle
