@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 
 export type Quiz = {
@@ -8,6 +9,7 @@ export type Quiz = {
   creatorId: string;
   createdAt: Date;
   updatedAt: Date;
+  mode: string;
 };
 
 export default function QuizCard({ quiz }: { quiz: Quiz }) {
@@ -23,7 +25,10 @@ export default function QuizCard({ quiz }: { quiz: Quiz }) {
       <div className="flex items-center ml-auto gap-x-2.5">
         <Link
           to={`/play/multi/${quiz.id}`}
-          className="bg-blue-500 px-2.5 py-1 rounded-lg text-white font-semibold w-fit"
+          className={cn(
+            "bg-blue-500 px-2.5 py-1 rounded-lg text-white font-semibold w-fit",
+            quiz.mode === "multiplayer" ? "block" : "hidden",
+          )}
         >
           Host Game
         </Link>
