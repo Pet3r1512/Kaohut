@@ -2,7 +2,8 @@
   "navigation": {
     "About": "Giới Thiệu",
     "Features": "Tính Năng",
-    "Pricing": "Chi Phí"
+    "Pricing": "Chi Phí",
+    "Play": "Chơi Ngay"
   },
   "auth": {
     "signin": "Đăng Nhập",
