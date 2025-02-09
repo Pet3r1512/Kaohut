@@ -52,10 +52,8 @@ export default function QuestionCard({
       );
     }
 
-    setTimeout(() => {
-      setSelectedAnswer(null);
-      onAnswer(index);
-    }, 3000);
+    setSelectedAnswer(null);
+    onAnswer(index);
   };
 
   const handleTimerComplete = () => {
@@ -69,7 +67,7 @@ export default function QuestionCard({
       setTimeout(() => {
         setSelectedAnswer(null);
         onAnswer(correctAnswerIndex);
-      }, 3000);
+      }, 2500);
     }
   };
 
