@@ -1,4 +1,3 @@
-import { getAllQuizzes } from "@/api/quiz/getAllQuizzes";
 import { useQuery } from "@tanstack/react-query";
 import QuizCard from "./QuizCard";
 import { type Quiz } from "./QuizCard";
@@ -6,12 +5,13 @@ import { useState, useEffect } from "react";
 import Features from "./Features/_index";
 import SearchBar from "./Searchbar";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getFirst10Quizzes } from "@/api/quiz/getFirst10Quizzes";
 
 export default function Quiz() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["quizzes"],
-    queryFn: getAllQuizzes,
+    queryFn: getFirst10Quizzes,
   });
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Quiz() {
       <SearchBar />
       <Features />
       <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
-        Quizzes Collection
+        Most Recent Quizzes
       </h1>
       <div className="flex flex-wrap items-center gap-5 w-full">
         {isLoading ? (
