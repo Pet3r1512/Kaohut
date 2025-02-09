@@ -2,7 +2,8 @@
   "navigation": {
     "About": "About Us",
     "Features": "Features",
-    "Pricing": "Pricing"
+    "Pricing": "Pricing",
+    "Play": "Play Now"
   },
   "auth": {
     "signin": "Log In",
