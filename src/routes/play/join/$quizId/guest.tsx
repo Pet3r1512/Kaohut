@@ -27,6 +27,7 @@ function RouteComponent() {
   const [answerIndex, setAnswerIndex] = useState<number | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(0);
   const [currentQuiz, setCurrentQuiz] = useState<any>(null);
+  const [isGameEnd, setIsGameEnd] = useState<boolean | null>(null);
   const { quizId } = Route.useParams();
 
   const { isPending, data } = useQuery({
@@ -107,20 +108,25 @@ function RouteComponent() {
       console.log(currentQuestion);
     });
 
-    setTimeout(() => {
-      socket.on("next_question", ({ nextQuestion }) => {
+    socket.on("next_question", ({ nextQuestion }) => {
+      setTimeout(() => {
         setCurrentQuestion(nextQuestion);
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
         setAnswerIndex(null); // Reset selected answer
         setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Reset timer
-      });
-    }, 5000);
+      }, 2500);
+    });
+
+    socket.on("game_over", () => {
+      setIsGameEnd(true);
+    });
 
     return () => {
       socket.off("game_started");
       socket.off("answer_result");
       socket.off("player_answered");
       socket.off("next_question");
+      socket.off("game_over");
     };
   }, [currentQuestion, currentQuiz, gameCode, socket, timeLeft]);
 
@@ -152,6 +158,15 @@ function RouteComponent() {
     gameCode,
     handleAnswerSelect,
   ]);
+
+  if (isGameEnd && currentQuestionIndex > 0) {
+    return (
+      <div>
+        <p>Game Finished</p>
+        <p>Your Score: {score}</p>
+      </div>
+    );
+  }
 
   return (
     <section className="p-5 flex flex-col h-screen w-screen bg-gradient-to-br from-[#d9a7c7] via-[#e1eec3] to-[#fffcdc]">
