@@ -40,11 +40,17 @@ export default function Lobby({
   const [questionTimer, setQuestionTimer] = useState<number>(
     quiz.quiz.result.data.quiz.time,
   );
+  const [isGameEnd, setIsGameEnd] = useState<boolean | null>(null);
 
   const socket = useSocket();
 
   useEffect(() => {
     setQuestionTimer(quiz.quiz.result.data.quiz.time); // Reset timer
+    if (!socket) return;
+
+    socket.on("game_over", () => {
+      setIsGameEnd(true);
+    });
   }, [currentQuestion]);
 
   const handleStartGame = () => {
@@ -97,6 +103,14 @@ export default function Lobby({
     return (
       <section className="h-[100dvh] flex items-center justify-center">
         <LoadingScreen />
+      </section>
+    );
+  }
+
+  if (isGameEnd) {
+    return (
+      <section className="h-[100dvh] flex items-center justify-center">
+        Game Finished
       </section>
     );
   }

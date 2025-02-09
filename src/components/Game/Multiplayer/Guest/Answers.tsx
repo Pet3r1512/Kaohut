@@ -87,6 +87,7 @@ export default function Answer({
           duration={duration}
           onComplete={() => {}}
           setTimeLeft={setTimeLeft}
+          handleClickMultiplayer={handleAnswerClick}
         />
         <GradientText>
           <CountUp
