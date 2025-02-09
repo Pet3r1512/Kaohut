@@ -2,7 +2,8 @@
   "navigation": {
     "About": "About Us",
     "Features": "Features",
-    "Pricing": "Pricing"
+    "Pricing": "Pricing",
+    "Play": "Play Now"
   },
   "auth": {
     "signin": "Log In",
@@ -83,6 +84,10 @@
       "template": {
         "title": "Choose Template",
         "desc": "Use templates for quick and easy Kaohut Quiz creation"
+      },
+      "play": {
+        "title": "Join a Quiz",
+        "desc": "Participating in a game to compete with your friends"
       }
     },
     "account": {

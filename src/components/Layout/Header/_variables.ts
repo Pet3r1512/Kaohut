@@ -11,4 +11,8 @@ export const Navs = [
     name: "Pricing",
     href: "/pricing",
   },
+  {
+    name: "Play",
+    href: "/play/join/game"
+  }
 ];

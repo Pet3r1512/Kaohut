@@ -24,7 +24,7 @@ export default function FeatureCard({ feature }: { feature: Feature }) {
         className,
       )}
     >
-      <div className="flex gap-x-5 lg:gap-x-8 justify-between items-start dark:text-white text-black">
+      <div className="flex gap-x-5 lg:gap-x-8 justify-between items-start text-white">
         {icon}
         <p className="lg:text-lg font-semibold text-white pt-1">
           {t(`dashboard.play.${name}.desc`)}

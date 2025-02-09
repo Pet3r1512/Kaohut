@@ -1,9 +1,17 @@
-import { CirclePlus, LayoutPanelTop } from "lucide-react";
+import { CirclePlus, LayoutPanelTop, Play } from "lucide-react";
 import FeatureCard, { Feature } from "./FeatureCard";
 
 export default function Features() {
   const ICON_SIZE = 56;
   const features: Feature[] = [
+    {
+      name: "play",
+      desc: "",
+      icon: <Play size={ICON_SIZE} />,
+      href: "/play/join/game",
+      className: "bg-[#fb8500]",
+      mainColor: "#fb8500",
+    },
     {
       name: "create",
       desc: "",
