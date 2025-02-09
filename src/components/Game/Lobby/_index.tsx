@@ -13,6 +13,7 @@ import {
 import { useSocket } from "@/context/SocketContext";
 import { useEffect, useState } from "react";
 import QuestionCard from "../Play/QuestionCard";
+import { Link } from "@tanstack/react-router";
 
 export interface Player {
   id: string;
@@ -110,7 +111,8 @@ export default function Lobby({
   if (isGameEnd) {
     return (
       <section className="h-[100dvh] flex items-center justify-center">
-        Game Finished
+        <p className="text-4xl font-bold">Game Finished</p>
+        <Link to="/dashboard/play">Go Home</Link>
       </section>
     );
   }
