@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
@@ -5,18 +6,19 @@ interface TimerCircleProps {
   duration?: number;
   onComplete: () => void;
   setTimeLeft: React.Dispatch<React.SetStateAction<number>>;
+  handleClickMultiplayer?: any;
 }
 
 export default function TimerCircle({
   duration = 10,
   onComplete,
   setTimeLeft,
+  handleClickMultiplayer,
 }: TimerCircleProps) {
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
-
     return () => clearInterval(interval);
   }, [setTimeLeft]);
 
@@ -29,6 +31,19 @@ export default function TimerCircle({
       </div>
     );
   };
+
+  useEffect(() => {
+    if (!handleClickMultiplayer) return;
+    const interval = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime === 1) {
+          handleClickMultiplayer(Math.floor(Math.random() * 4));
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [handleClickMultiplayer, setTimeLeft]);
 
   return (
     <CountdownCircleTimer
