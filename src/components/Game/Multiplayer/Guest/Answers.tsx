@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import CountUp from "@/components/ui/countup";
 import GradientText from "@/components/ui/gradient-text";
-import { useSocket } from "@/context/SocketContext";
 import { useEffect, useRef, useState } from "react";
 import TimerCircle from "../../Play/TimerCircle";
 
@@ -21,15 +20,11 @@ export default function Answer({
   id,
   answers,
   score,
-  setScore,
   duration,
-  playerId,
   onAnswerSelect,
   selectedAnswer,
 }: AnswerProps) {
   const [timeLeft, setTimeLeft] = useState(duration);
-  const [, setCorrectAnswerIndex] = useState<number | null>(null);
-  const socket = useSocket();
   const previousScoreRef = useRef(score);
 
   useEffect(() => {
@@ -43,34 +38,6 @@ export default function Answer({
 
     return () => clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    if (!socket) return;
-
-    socket.on("answer_result", ({ correctAnswerIndex, updatedScores }) => {
-      setCorrectAnswerIndex(correctAnswerIndex);
-
-      // Find the current player's score from updatedScores
-      const playerScore = updatedScores.find(
-        (player: { id: string; name: string; score: number }) =>
-          player.id === playerId,
-      )?.score;
-
-      if (playerScore !== undefined) {
-        setScore(playerScore);
-        console.log(`🎯 Player ${playerId} new score:`, playerScore);
-      }
-
-      setTimeout(() => {
-        setCorrectAnswerIndex(null);
-        onAnswerSelect(null as unknown as number); // Reset the selection
-      }, 3000);
-    });
-
-    return () => {
-      socket.off("answer_result");
-    };
-  }, [socket, setScore, playerId, onAnswerSelect]);
 
   const handleAnswerClick = (index: number) => {
     if (selectedAnswer === null && timeLeft > 0) {
