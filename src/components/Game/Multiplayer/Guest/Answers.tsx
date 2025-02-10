@@ -3,6 +3,7 @@ import CountUp from "@/components/ui/countup";
 import GradientText from "@/components/ui/gradient-text";
 import { useEffect, useRef, useState } from "react";
 import TimerCircle from "../../Play/TimerCircle";
+import { useSocket } from "@/context/SocketContext";
 
 interface AnswerProps {
   id: number;
@@ -20,16 +21,31 @@ export default function Answer({
   id,
   answers,
   score,
+  setScore,
   duration,
   onAnswerSelect,
   selectedAnswer,
 }: AnswerProps) {
   const [timeLeft, setTimeLeft] = useState(duration);
   const previousScoreRef = useRef(score);
+  const socket = useSocket();
 
   useEffect(() => {
     previousScoreRef.current = score;
   }, [score]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("answer_result", ({ updatedScores }) => {
+      const playerScore = updatedScores.find(
+        (p: any) => p.id === socket.id,
+      )?.score;
+      if (playerScore !== undefined) {
+        setScore(playerScore); // Use the correct player score from the server
+      }
+    });
+  }, [setScore, socket]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,9 +57,26 @@ export default function Answer({
 
   const handleAnswerClick = (index: number) => {
     if (selectedAnswer === null && timeLeft > 0) {
-      onAnswerSelect(index);
+      onAnswerSelect(index); // Let the parent component handle selection
     }
   };
+
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("answer_result", ({ updatedScores }) => {
+      const playerScore = updatedScores.find(
+        (p: any) => p.id === socket.id,
+      )?.score;
+      if (playerScore !== undefined) {
+        setScore(playerScore); // Always use the correct server score
+      }
+    });
+
+    return () => {
+      socket.off("answer_result");
+    };
+  }, [setScore, socket]);
 
   return (
     <section className="w-full h-[100dvh] flex flex-col gap-y-10">

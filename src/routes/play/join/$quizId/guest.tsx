@@ -16,8 +16,6 @@ export const Route = createFileRoute("/play/join/$quizId/guest")({
   }),
 });
 
-const MAX_SCORE_EACH_QUESTION = 1000;
-
 function RouteComponent() {
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
@@ -47,26 +45,17 @@ function RouteComponent() {
   }, [answerIndex]);
 
   const handleAnswerSelect = (index: number) => {
-    console.log("User selected answer index:", index);
-
-    if (answerIndex !== null) return; // Prevent multiple selections
-
+    if (answerIndex !== null) return;
     setAnswerIndex(index);
 
     if (currentQuestion && socket) {
       socket.emit(
         "answer_question_multiplayer",
-        {
-          gameCode,
-          playerId: socket.id,
-          answerIndex: index,
-          timeLeft: timeLeft,
-        },
+        { gameCode, answerIndex: index },
         (response: any) => {
           if (response.error) {
             console.error("Error:", response.error);
           }
-          console.log(response);
         },
       );
     }
@@ -75,32 +64,44 @@ function RouteComponent() {
   useEffect(() => {
     if (!socket) return;
 
+    socket.on("player_answered", ({ playerId, score, isCorrect }) => {
+      if (playerId === socket.id) {
+        setScore(score);
+      }
+      if (isCorrect) {
+        console.log("Correct!");
+      } else {
+        console.log("Incorrect.");
+      }
+    });
+
+    socket.on("next_question", ({ nextQuestion }) => {
+      setTimeout(() => {
+        setCurrentQuestion(nextQuestion);
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+        setAnswerIndex(null);
+        setTimeLeft(currentQuiz?.time || 0);
+      }, 2500);
+    });
+
+    socket.on("game_over", ({ players }) => {
+      setIsGameEnd(true);
+      console.log(players);
+    });
+
+    return () => {
+      socket.off("player_answered");
+      socket.off("next_question");
+      socket.off("game_over");
+    };
+  }, [currentQuestion, currentQuiz, gameCode, socket]);
+  useEffect(() => {
+    if (!socket) return;
+
     socket.on("game_started", ({ firstQuestion }) => {
       console.log("New Game Started, Resetting Selection...");
       setCurrentQuestion(firstQuestion);
       setAnswerIndex(null); // Reset selection when a new game starts
-    });
-
-    socket.on("answer_result", ({ correct, updatedScores }) => {
-      const playerScore = updatedScores.find(
-        (p: any) => p.id === socket.id,
-      )?.score;
-
-      if (playerScore !== undefined) {
-        setScore(playerScore);
-      }
-
-      if (correct) {
-        // Ensure currentQuiz is not null before accessing it
-        setScore(
-          (prevScore) =>
-            prevScore +
-            Math.round(MAX_SCORE_EACH_QUESTION * (timeLeft / currentQuiz.time)),
-        );
-      }
-
-      setAnswerIndex(null); // Reset selection after answer result
-      setTimeLeft(currentQuiz ? currentQuiz.time : 0); // Prevent null access error
     });
 
     socket.on("player_answered", ({ score }) => {
