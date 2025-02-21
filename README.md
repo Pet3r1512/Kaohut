@@ -48,3 +48,7 @@ BETTER_AUTH_URL=http://localhost:9999
 
 ## Step 6: Run Server
 - Use `pnpm dev` to start the server at localhost:9999
+
+Account:
+- Username: peter1512.dev@gmail.com
+- Password: 1512@ppP
